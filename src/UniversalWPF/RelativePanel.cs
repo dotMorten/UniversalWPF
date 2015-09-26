@@ -56,10 +56,23 @@ namespace UniversalWPF
 			available size for the element, if the desired size is smaller than the available size.
 
 		*/
+		private FrameworkElement GetDependencyElement(DependencyProperty property, DependencyObject child, Dictionary<string, FrameworkElement> elements)
+		{
+			
+			var dependency = child.GetValue(property);
+			if (dependency is string)
+			{
+				if (!elements.ContainsKey((string)dependency))
+					throw new ArgumentException(string.Format("RelativePanel error: The name '{0}' does not exist in the current context", dependency));
+				return elements[(string)dependency];
+			}
+			else
+				return dependency as FrameworkElement;
+		}
 
 		protected override Size ArrangeOverride(Size finalSize)
 		{
-			Dictionary<string, object> elements = new Dictionary<string, object>();
+			Dictionary<string, FrameworkElement> elements = new Dictionary<string, FrameworkElement>();
 			foreach (var child in Children.OfType<FrameworkElement>().Where(c => c.Name != null))
 			{
 				elements[child.Name] = child;
@@ -70,16 +83,11 @@ namespace UniversalWPF
 				double top = 0;
 				double width = child.DesiredSize.Width;
 				double height = child.DesiredSize.Height;
-				var rightWidth = GetAlignRightWith(child);
-				if(rightWidth is string)
-				{
-					if (!elements.ContainsKey((string)rightWidth))
-						throw new ArgumentException(string.Format("RelativePanel error: The name '{0}' does not exist in the current context", rightWidth));
-					rightWidth = elements[(string)rightWidth];
-				}
-				if (rightWidth is FrameworkElement)
-					left = ((FrameworkElement)rightWidth).DesiredSize.Width;
-				else if (GetAlignLeftWithPanel(child))
+				var rightWidth = GetDependencyElement(RelativePanel.RightOfProperty, child, elements);
+				if (rightWidth != null)
+					left = rightWidth.DesiredSize.Width;
+				//Align with panels always wins
+				if (GetAlignLeftWithPanel(child))
 					left = 0;
 				if (GetAlignRightWithPanel(child))
 					width = finalSize.Width - left;
@@ -87,8 +95,6 @@ namespace UniversalWPF
 					top = 0;
 				if (GetAlignBottomWithPanel(child))
 					height = finalSize.Height - top;
-				//if (GetAlignRightWithPanel(child))
-				//	height = finalSize.Width - left;
 				child.Arrange(new Rect(left, top, width, height));
 			}
 			return base.ArrangeOverride(finalSize);
