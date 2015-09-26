@@ -1,7 +1,6 @@
 ﻿<Window x:Class="TestApp.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-		xmlns:uwp="clr-namespace:UniversalWPF;assembly=UniversalWPF"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
 		<Grid.ColumnDefinitions>
@@ -10,33 +9,33 @@
 			<ColumnDefinition />
 		</Grid.ColumnDefinitions>
 
-		<uwp:RelativePanel >
+		<RelativePanel >
 			<Rectangle x:Name="RedRect" Fill="Red" MinHeight="100" MinWidth="100"/>
 			<Rectangle x:Name="BlueRect" Fill="Blue" MinHeight="100" MinWidth="100" 
-               uwp:RelativePanel.RightOf="RedRect" />
+               RelativePanel.RightOf="RedRect" />
 			<Rectangle x:Name="GreenRect" Fill="Green" MinHeight="100" Margin="0,5,0,0" 
-               uwp:RelativePanel.Below="RedRect" 
-               uwp:RelativePanel.AlignLeftWith="RedRect" 
-               uwp:RelativePanel.AlignRightWith="BlueRect"/>
+               RelativePanel.Below="RedRect" 
+               RelativePanel.AlignLeftWith="RedRect" 
+               RelativePanel.AlignRightWith="BlueRect"/>
 			<Rectangle Fill="Yellow" MinHeight="100" 
-               uwp:RelativePanel.Below="GreenRect" 
-               uwp:RelativePanel.AlignLeftWith="BlueRect" 
-               uwp:RelativePanel.AlignRightWithPanel="True"/>
-		</uwp:RelativePanel>
+               RelativePanel.Below="GreenRect" 
+               RelativePanel.AlignLeftWith="BlueRect" 
+               RelativePanel.AlignRightWithPanel="True"/>
+		</RelativePanel>
 
-		<uwp:RelativePanel Grid.Column="1">
+		<RelativePanel Grid.Column="1">
 			<Rectangle Fill="Green" x:Name="topleft" Width="25" Height="50" />
 
 			<Rectangle Fill="Red" MinHeight="100" MinWidth="100"
-					   uwp:RelativePanel.AlignBottomWithPanel="True"
-					   uwp:RelativePanel.AlignRightWithPanel="False"
-					   uwp:RelativePanel.AlignLeftWithPanel="True"
-					   uwp:RelativePanel.AlignTopWithPanel="True"
-					   uwp:RelativePanel.AlignRightWith="topleft"
+					   RelativePanel.AlignBottomWithPanel="True"
+					   RelativePanel.AlignRightWithPanel="False"
+					   RelativePanel.AlignLeftWithPanel="True"
+					   RelativePanel.AlignTopWithPanel="True"
+					   RelativePanel.AlignRightWith="topleft"
 					   />
 
 
-		</uwp:RelativePanel>
+		</RelativePanel>
 
 	</Grid>
 </Window>

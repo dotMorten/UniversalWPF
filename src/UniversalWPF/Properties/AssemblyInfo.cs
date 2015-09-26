@@ -53,3 +53,7 @@ using System.Windows;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+
+[assembly: System.Windows.Markup.XmlnsDefinition("http://schemas.microsoft.com/winfx/2006/xaml/presentation", "UniversalWPF")]
+[assembly: System.Windows.Markup.XmlnsPrefix("http://schemas.microsoft.com/winfx/2006/xaml/presentation", "")]
+
