@@ -56,28 +56,36 @@ namespace UniversalWPF
 			available size for the element, if the desired size is smaller than the available size.
 
 		*/
-		private FrameworkElement GetDependencyElement(DependencyProperty property, DependencyObject child, Dictionary<string, FrameworkElement> elements)
-		{
-			
+		private UIElement GetDependencyElement(DependencyProperty property, DependencyObject child, Dictionary<string, UIElement> elements)
+		{			
 			var dependency = child.GetValue(property);
+			if(dependency == null)
+				return null;
 			if (dependency is string)
 			{
-				if (!elements.ContainsKey((string)dependency))
-					throw new ArgumentException(string.Format("RelativePanel error: The name '{0}' does not exist in the current context", dependency));
-				return elements[(string)dependency];
+				string name = (string)dependency;
+				if (!elements.ContainsKey(name))
+					throw new ArgumentException(string.Format("RelativePanel error: The name '{0}' does not exist in the current context", name));
+				return elements[name];
 			}
-			else
-				return dependency as FrameworkElement;
+			if (dependency is UIElement)
+			{
+				if(Children.Contains((UIElement)dependency))
+					return (UIElement)dependency;				
+				throw new ArgumentException(string.Format("RelativePanel error: Element does not exist in the current context", property.Name));
+			}
+			
+			throw new ArgumentException("RelativePanel error: Value must be of type UIElement");			
 		}
 
 		protected override Size ArrangeOverride(Size finalSize)
 		{
-			Dictionary<string, FrameworkElement> elements = new Dictionary<string, FrameworkElement>();
+			Dictionary<string, UIElement> elements = new Dictionary<string, UIElement>();
 			foreach (var child in Children.OfType<FrameworkElement>().Where(c => c.Name != null))
 			{
 				elements[child.Name] = child;
 			}
-			foreach(var child in Children.OfType<FrameworkElement>())
+			foreach(var child in Children.OfType<UIElement>())
 			{
 				double left = 0;
 				double top = 0;
@@ -86,6 +94,7 @@ namespace UniversalWPF
 				var rightWidth = GetDependencyElement(RelativePanel.RightOfProperty, child, elements);
 				if (rightWidth != null)
 					left = rightWidth.DesiredSize.Width;
+
 				//Align with panels always wins
 				if (GetAlignLeftWithPanel(child))
 					left = 0;
