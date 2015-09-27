@@ -88,12 +88,11 @@ namespace UniversalWPF
 				elements[child.Name] = child;
 			}
 			List<double[]> arranges = new List<double[]>(Children.Count);
-			int i = 0;
-            //First pass aligns all sides that aren't constrained by other elements
+			//First pass aligns all sides that aren't constrained by other elements
             int arrangedCount = 0;
             foreach (var child in Children.OfType<UIElement>())
             {
-                //NaN means the arrange rectangle is not constrained for that value
+                //NaN means the arrange rectangle is not constrained yet for that value
                 double[] rect = new[] { double.NaN, double.NaN, double.NaN, double.NaN };
                 arranges.Add(rect);
                 child.SetValue(ArrangeStateProperty, rect);
@@ -116,20 +115,21 @@ namespace UniversalWPF
                     child.GetValue(AlignRightWithProperty) == null && child.GetValue(LeftOfProperty) == null &&
 					!GetAlignHorizontalCenterWithPanel(child) &&
 					!GetAlignVerticalCenterWithPanel(child))
-                    rect[2] = finalSize.Width - rect[0] - child.DesiredSize.Width;// finalSize.Width - (double.IsNaN(rect[0]) ? 0 : rect[0]);
+                    rect[2] = finalSize.Width - rect[0] - child.DesiredSize.Width;
 
                 if (GetAlignBottomWithPanel(child))
                     rect[3] = 0;
                 else if (!double.IsNaN(rect[1]) &&
                     (child.GetValue(AlignBottomWithProperty) == null && child.GetValue(AboveProperty) == null) &&
                     child.GetValue(AlignVerticalCenterWithProperty) == null)
-                    rect[3] = finalSize.Height - rect[1] - child.DesiredSize.Height; // finalSize.Height - (double.IsNaN(rect[1]) ? 0 : rect[1]);
+                    rect[3] = finalSize.Height - rect[1] - child.DesiredSize.Height;
 
                 if (!double.IsNaN(rect[0]) && !double.IsNaN(rect[1]) &&
 					!double.IsNaN(rect[2]) && !double.IsNaN(rect[3]))
                     arrangedCount++;
             }
-            while (arrangedCount < Children.Count) //Iterative layout process
+			int i = 0;
+			while (arrangedCount < Children.Count) //Iterative layout process
             {
 				int lastArrangeCount = arrangedCount;
                 i = 0;
@@ -206,7 +206,6 @@ namespace UniversalWPF
                             }
 							else if(!double.IsNaN(rect[0]))
 							{
-								//TODO: Consider horizontal alignment
 								rect[2] = finalSize.Width - rect[0] - child.DesiredSize.Width;
 							}
                         }
@@ -231,7 +230,6 @@ namespace UniversalWPF
                             }
 							else if (!double.IsNaN(rect[1]))
 							{
-								//TODO: Consider vertical alignment
 								rect[3] = finalSize.Height - rect[1] - child.DesiredSize.Height;
 							}
 						}
@@ -260,6 +258,7 @@ namespace UniversalWPF
 						}
 					}
 
+					//Vertical alignments
 					if (double.IsNaN(rect[1]) && double.IsNaN(rect[3]))
 					{
 						var alignVerticalCenterWith = GetDependencyElement(RelativePanel.AlignVerticalCenterWithProperty, child, elements);
@@ -272,20 +271,29 @@ namespace UniversalWPF
 								rect[3] = finalSize.Height - rect[1] - child.DesiredSize.Height;
 							}
 						}
-						//bool alignVerticalCenterWithPanel = GetAlignVerticalCenterWithPanel(child);
+						else
+						{
+							if (GetAlignVerticalCenterWithPanel(child))
+							{
+								var roomToSpare = finalSize.Height - child.DesiredSize.Height;
+								rect[1] = roomToSpare * .5;
+								rect[3] = roomToSpare * .5;
+							}
+						}
 					}
 
 
-
+					//if panel is now fully arranged, increase the counter
 					if (!double.IsNaN(rect[0]) && !double.IsNaN(rect[1]) && 
 						!double.IsNaN(rect[2]) && !double.IsNaN(rect[3]))
-                        arrangedCount++; //Control is fully arranged
+                        arrangedCount++;
                 }
 				if(lastArrangeCount == arrangedCount)
 				{
 					throw new ArgumentException("RelativePanel error: Circular dependency detected. Layout could not complete");
 				}
             }
+
 			i = 0;
 			foreach (var child in Children.OfType<UIElement>())
 			{
