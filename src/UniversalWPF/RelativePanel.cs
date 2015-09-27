@@ -15,8 +15,8 @@ using System.Windows.Shapes;
 
 namespace UniversalWPF
 {
-    public partial class RelativePanel : Panel
-    {
+	public partial class RelativePanel : Panel
+	{
 		//static RelativePanel()
 		//{
 		//    DefaultStyleKeyProperty.OverrideMetadata(typeof(RelativePanel), new FrameworkPropertyMetadata(typeof(RelativePanel)));
@@ -24,7 +24,7 @@ namespace UniversalWPF
 
 		protected override Size MeasureOverride(Size availableSize)
 		{
-			foreach(var child in Children.OfType<FrameworkElement>())
+			foreach (var child in Children.OfType<FrameworkElement>())
 			{
 				child.Measure(availableSize);
 			}
@@ -57,9 +57,9 @@ namespace UniversalWPF
 
 		*/
 		private UIElement GetDependencyElement(DependencyProperty property, DependencyObject child, Dictionary<string, UIElement> elements)
-		{			
+		{
 			var dependency = child.GetValue(property);
-			if(dependency == null)
+			if (dependency == null)
 				return null;
 			if (dependency is string)
 			{
@@ -70,15 +70,15 @@ namespace UniversalWPF
 			}
 			if (dependency is UIElement)
 			{
-				if(Children.Contains((UIElement)dependency))
-					return (UIElement)dependency;				
+				if (Children.Contains((UIElement)dependency))
+					return (UIElement)dependency;
 				throw new ArgumentException(string.Format("RelativePanel error: Element does not exist in the current context", property.Name));
 			}
-			
-			throw new ArgumentException("RelativePanel error: Value must be of type UIElement");			
+
+			throw new ArgumentException("RelativePanel error: Value must be of type UIElement");
 		}
-        private static readonly DependencyProperty ArrangeStateProperty =
-		    DependencyProperty.Register("ArrangeState", typeof(double[]), typeof(StateTrigger), new PropertyMetadata(null));
+		private static readonly DependencyProperty ArrangeStateProperty =
+			DependencyProperty.Register("ArrangeState", typeof(double[]), typeof(StateTrigger), new PropertyMetadata(null));
 
 		protected override Size ArrangeOverride(Size finalSize)
 		{
@@ -89,145 +89,145 @@ namespace UniversalWPF
 			}
 			List<double[]> arranges = new List<double[]>(Children.Count);
 			//First pass aligns all sides that aren't constrained by other elements
-            int arrangedCount = 0;
-            foreach (var child in Children.OfType<UIElement>())
-            {
-                //NaN means the arrange rectangle is not constrained yet for that value
-                double[] rect = new[] { double.NaN, double.NaN, double.NaN, double.NaN };
-                arranges.Add(rect);
-                child.SetValue(ArrangeStateProperty, rect);
+			int arrangedCount = 0;
+			foreach (var child in Children.OfType<UIElement>())
+			{
+				//NaN means the arrange rectangle is not constrained yet for that value
+				double[] rect = new[] { double.NaN, double.NaN, double.NaN, double.NaN };
+				arranges.Add(rect);
+				child.SetValue(ArrangeStateProperty, rect);
 
-                //Align with panels always wins, so do these first
-                if (GetAlignLeftWithPanel(child) ||
-                    child.GetValue(AlignLeftWithProperty) == null && child.GetValue(RightOfProperty) == null &&
+				//Align with panels always wins, so do these first
+				if (GetAlignLeftWithPanel(child) ||
+					child.GetValue(AlignLeftWithProperty) == null && child.GetValue(RightOfProperty) == null &&
 					!GetAlignHorizontalCenterWithPanel(child))
-                    rect[0] = 0;
+					rect[0] = 0;
 
-                if (GetAlignTopWithPanel(child) ||
-                    child.GetValue(AlignTopWithProperty) == null && child.GetValue(BelowProperty) == null &&
+				if (GetAlignTopWithPanel(child) ||
+					child.GetValue(AlignTopWithProperty) == null && child.GetValue(BelowProperty) == null &&
 					child.GetValue(AlignVerticalCenterWithProperty) == null &&
 					!GetAlignVerticalCenterWithPanel(child))
-                    rect[1] = 0;
+					rect[1] = 0;
 
-                if (GetAlignRightWithPanel(child))
-                    rect[2] = 0;
-                   else if(!double.IsNaN(rect[0]) && 
-                    child.GetValue(AlignRightWithProperty) == null && child.GetValue(LeftOfProperty) == null &&
-					!GetAlignHorizontalCenterWithPanel(child) &&
-					!GetAlignVerticalCenterWithPanel(child))
-                    rect[2] = finalSize.Width - rect[0] - child.DesiredSize.Width;
+				if (GetAlignRightWithPanel(child))
+					rect[2] = 0;
+				else if (!double.IsNaN(rect[0]) &&
+				 child.GetValue(AlignRightWithProperty) == null && child.GetValue(LeftOfProperty) == null &&
+				 !GetAlignHorizontalCenterWithPanel(child) &&
+				 !GetAlignVerticalCenterWithPanel(child))
+					rect[2] = finalSize.Width - rect[0] - child.DesiredSize.Width;
 
-                if (GetAlignBottomWithPanel(child))
-                    rect[3] = 0;
-                else if (!double.IsNaN(rect[1]) &&
-                    (child.GetValue(AlignBottomWithProperty) == null && child.GetValue(AboveProperty) == null) &&
-                    child.GetValue(AlignVerticalCenterWithProperty) == null)
-                    rect[3] = finalSize.Height - rect[1] - child.DesiredSize.Height;
+				if (GetAlignBottomWithPanel(child))
+					rect[3] = 0;
+				else if (!double.IsNaN(rect[1]) &&
+					(child.GetValue(AlignBottomWithProperty) == null && child.GetValue(AboveProperty) == null) &&
+					child.GetValue(AlignVerticalCenterWithProperty) == null)
+					rect[3] = finalSize.Height - rect[1] - child.DesiredSize.Height;
 
-                if (!double.IsNaN(rect[0]) && !double.IsNaN(rect[1]) &&
+				if (!double.IsNaN(rect[0]) && !double.IsNaN(rect[1]) &&
 					!double.IsNaN(rect[2]) && !double.IsNaN(rect[3]))
-                    arrangedCount++;
-            }
+					arrangedCount++;
+			}
 			int i = 0;
 			while (arrangedCount < Children.Count) //Iterative layout process
-            {
+			{
 				int lastArrangeCount = arrangedCount;
-                i = 0;
-                foreach (var child in Children.OfType<UIElement>())
-                {
-                    double[] rect = arranges[i++];
-                    if (!double.IsNaN(rect[0]) && !double.IsNaN(rect[1]) &&
+				i = 0;
+				foreach (var child in Children.OfType<UIElement>())
+				{
+					double[] rect = arranges[i++];
+					if (!double.IsNaN(rect[0]) && !double.IsNaN(rect[1]) &&
 						!double.IsNaN(rect[2]) && !double.IsNaN(rect[3]))
-                        continue; //Control is fully arranged
+						continue; //Control is fully arranged
 
-                    if(double.IsNaN(rect[0])) //Left
-                    {
-                        var alignLeftWith = GetDependencyElement(RelativePanel.AlignLeftWithProperty, child, elements);
-                        if (alignLeftWith != null)
-                        {
-                            double[] r = (double[])alignLeftWith.GetValue(ArrangeStateProperty);
-                            if (!double.IsNaN(r[0]))
-                                rect[0] = r[0];
-                        }
-                        else
-                        {
-                            var rightOf = GetDependencyElement(RelativePanel.RightOfProperty, child, elements);
-                            if (rightOf != null)
-                            {
-                                double[] r = (double[])rightOf.GetValue(ArrangeStateProperty);
-                                rect[0] = finalSize.Width - r[2];
-                            }
+					if (double.IsNaN(rect[0])) //Left
+					{
+						var alignLeftWith = GetDependencyElement(RelativePanel.AlignLeftWithProperty, child, elements);
+						if (alignLeftWith != null)
+						{
+							double[] r = (double[])alignLeftWith.GetValue(ArrangeStateProperty);
+							if (!double.IsNaN(r[0]))
+								rect[0] = r[0];
+						}
+						else
+						{
+							var rightOf = GetDependencyElement(RelativePanel.RightOfProperty, child, elements);
+							if (rightOf != null)
+							{
+								double[] r = (double[])rightOf.GetValue(ArrangeStateProperty);
+								rect[0] = finalSize.Width - r[2];
+							}
 							else if (!double.IsNaN(rect[2]))
 							{
 								rect[0] = finalSize.Width - rect[2] - child.DesiredSize.Width;
 							}
 						}
 					}
-                    if(double.IsNaN(rect[1])) //Top
-                    {
-                        var alignTopWith = GetDependencyElement(RelativePanel.AlignTopWithProperty, child, elements);
-                        if (alignTopWith != null)
-                        {
-                            double[] r = (double[])alignTopWith.GetValue(ArrangeStateProperty);
-                            if (!double.IsNaN(r[1]))
-                                rect[1] = r[1];
-                        }
-                        else
-                        {
-                            var below = GetDependencyElement(RelativePanel.BelowProperty, child, elements);
-                            if (below != null)
-                            {
-                                double[] r = (double[])below.GetValue(ArrangeStateProperty);
-                                rect[1] = finalSize.Height - r[3];
+					if (double.IsNaN(rect[1])) //Top
+					{
+						var alignTopWith = GetDependencyElement(RelativePanel.AlignTopWithProperty, child, elements);
+						if (alignTopWith != null)
+						{
+							double[] r = (double[])alignTopWith.GetValue(ArrangeStateProperty);
+							if (!double.IsNaN(r[1]))
+								rect[1] = r[1];
+						}
+						else
+						{
+							var below = GetDependencyElement(RelativePanel.BelowProperty, child, elements);
+							if (below != null)
+							{
+								double[] r = (double[])below.GetValue(ArrangeStateProperty);
+								rect[1] = finalSize.Height - r[3];
 							}
 							else if (!double.IsNaN(rect[3]))
 							{
 								rect[3] = finalSize.Height - rect[3] - child.DesiredSize.Height;
 							}
 						}
-                    }
+					}
 
-                    if (double.IsNaN(rect[2])) //Right
-                    {
-                        var alignRightWith = GetDependencyElement(RelativePanel.AlignRightWithProperty, child, elements);
-                        if (alignRightWith != null)
-                        {
-                            double[] r = (double[])alignRightWith.GetValue(ArrangeStateProperty);
-                            if (!double.IsNaN(r[2]))
-                                rect[2] = r[2];
-                        }
-                        else
-                        {
-                            var leftOf = GetDependencyElement(RelativePanel.LeftOfProperty, child, elements);
-                            if (leftOf != null)
-                            {
-                                double[] r = (double[])leftOf.GetValue(ArrangeStateProperty);
-                                rect[2] = finalSize.Width - r[0];
-                            }
-							else if(!double.IsNaN(rect[0]))
+					if (double.IsNaN(rect[2])) //Right
+					{
+						var alignRightWith = GetDependencyElement(RelativePanel.AlignRightWithProperty, child, elements);
+						if (alignRightWith != null)
+						{
+							double[] r = (double[])alignRightWith.GetValue(ArrangeStateProperty);
+							if (!double.IsNaN(r[2]))
+								rect[2] = r[2];
+						}
+						else
+						{
+							var leftOf = GetDependencyElement(RelativePanel.LeftOfProperty, child, elements);
+							if (leftOf != null)
+							{
+								double[] r = (double[])leftOf.GetValue(ArrangeStateProperty);
+								rect[2] = finalSize.Width - r[0];
+							}
+							else if (!double.IsNaN(rect[0]))
 							{
 								rect[2] = finalSize.Width - rect[0] - child.DesiredSize.Width;
 							}
-                        }
-                    }
+						}
+					}
 
-                    if (double.IsNaN(rect[3])) //Bottom
-                    {
-                        var alignBottomWith = GetDependencyElement(RelativePanel.AlignBottomWithProperty, child, elements);
-                        if (alignBottomWith != null)
-                        {
-                            double[] r = (double[])alignBottomWith.GetValue(ArrangeStateProperty);
-                            if (!double.IsNaN(r[3]))
-                                rect[3] = r[3];
-                        }
-                        else
-                        {
-                            var above = GetDependencyElement(RelativePanel.AboveProperty, child, elements);
-                            if (above != null)
-                            {
-                                double[] r = (double[])above.GetValue(ArrangeStateProperty);
-                                rect[3] = finalSize.Height - r[1];
-                            }
+					if (double.IsNaN(rect[3])) //Bottom
+					{
+						var alignBottomWith = GetDependencyElement(RelativePanel.AlignBottomWithProperty, child, elements);
+						if (alignBottomWith != null)
+						{
+							double[] r = (double[])alignBottomWith.GetValue(ArrangeStateProperty);
+							if (!double.IsNaN(r[3]))
+								rect[3] = r[3];
+						}
+						else
+						{
+							var above = GetDependencyElement(RelativePanel.AboveProperty, child, elements);
+							if (above != null)
+							{
+								double[] r = (double[])above.GetValue(ArrangeStateProperty);
+								rect[3] = finalSize.Height - r[1];
+							}
 							else if (!double.IsNaN(rect[1]))
 							{
 								rect[3] = finalSize.Height - rect[1] - child.DesiredSize.Height;
@@ -284,21 +284,21 @@ namespace UniversalWPF
 
 
 					//if panel is now fully arranged, increase the counter
-					if (!double.IsNaN(rect[0]) && !double.IsNaN(rect[1]) && 
+					if (!double.IsNaN(rect[0]) && !double.IsNaN(rect[1]) &&
 						!double.IsNaN(rect[2]) && !double.IsNaN(rect[3]))
-                        arrangedCount++;
-                }
-				if(lastArrangeCount == arrangedCount)
+						arrangedCount++;
+				}
+				if (lastArrangeCount == arrangedCount)
 				{
 					throw new ArgumentException("RelativePanel error: Circular dependency detected. Layout could not complete");
 				}
-            }
+			}
 
 			i = 0;
 			foreach (var child in Children.OfType<UIElement>())
 			{
-                double[] rect = arranges[i++];
-                child.Arrange(new Rect(rect[0], rect[1], Math.Max(0, finalSize.Width - rect[2] - rect[0]), Math.Max(0, finalSize.Height - rect[3] - rect[1])));
+				double[] rect = arranges[i++];
+				child.Arrange(new Rect(rect[0], rect[1], Math.Max(0, finalSize.Width - rect[2] - rect[0]), Math.Max(0, finalSize.Height - rect[3] - rect[1])));
 			}
 			return base.ArrangeOverride(finalSize);
 		}
