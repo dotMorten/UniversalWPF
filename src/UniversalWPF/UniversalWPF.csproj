@@ -48,6 +48,10 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdaptiveTrigger.cs" />
+    <Compile Include="StateTrigger.cs" />
+    <Compile Include="StateTriggerBase.cs" />
+    <Compile Include="VisualStateUwp.cs" />
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
