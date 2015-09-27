@@ -60,25 +60,26 @@ namespace UniversalWPF
 			foreach(var setter in _setters.OfType< System.Windows.Setter>())
 			{
 				System.Windows.DependencyProperty property = setter.Property;
-				object value = setter.Value;
+				object value = setter.Value; //Why doesn't this  return the actual value???
 				string targetName = setter.TargetName;
 
-				if (System.Windows.Application.Current.MainWindow != null)
-				{
-					if (System.Windows.Application.Current.MainWindow.IsLoaded)
-					{
-						var target = System.Windows.Application.Current.MainWindow.FindName(targetName) as System.Windows.DependencyObject;
-						if (target != null)
-							target.SetValue(property, value);
-					}
-					else
-						System.Windows.Application.Current.MainWindow.Loaded += (s, e) =>
-						{
-							var target = System.Windows.Application.Current.MainWindow.FindName(targetName) as System.Windows.DependencyObject;
-							if (target != null)
-								target.SetValue(property, value);
-						};
-				}
+				//This isn't really working... need a better way
+				//if (System.Windows.Application.Current.MainWindow != null)
+				//{
+				//	if (System.Windows.Application.Current.MainWindow.IsLoaded)
+				//	{
+				//		var target = System.Windows.Application.Current.MainWindow.FindName(targetName) as System.Windows.DependencyObject;
+				//		if (target != null)
+				//			target.SetValue(property, value);
+				//	}
+				//	else
+				//		System.Windows.Application.Current.MainWindow.Loaded += (s, e) =>
+				//		{
+				//			var target = System.Windows.Application.Current.MainWindow.FindName(targetName) as System.Windows.DependencyObject;
+				//			if (target != null)
+				//				target.SetValue(property, value);
+				//		};
+				//}
 			}
 		}
 
