@@ -6,14 +6,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:uwp="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition />
-			<ColumnDefinition />
-			<ColumnDefinition />
+			<ColumnDefinition Width="0" />
+			<ColumnDefinition Width="0"/>
+			<ColumnDefinition Width="*" />
 		</Grid.ColumnDefinitions>
 		<uwp:RelativePanel >
 			<Rectangle x:Name="RedRect" Fill="Red" MinHeight="100" MinWidth="100"/>
@@ -36,11 +37,10 @@
 		In this example, RectA doesn't have any constraints, so it's positioned at (0,0). RectB is not shown on the screen because 
 		it is declared to be Above RectA and is therefore pushed out of the panel.
 		-->
-		<uwp:RelativePanel Grid.Column="1" Margin="20">
+		<RelativePanel Grid.Column="1" >
 			<Rectangle Name="RectA" Fill="Red" Margin="20" Height="40" Width="40"/>
-			<Rectangle Name="RectB" Fill="Blue" Height="40" Width="40"
-               uwp:RelativePanel.Above="RectA"/>
-		</uwp:RelativePanel>
+			<Rectangle Name="RectB" Fill="Blue" Height="40" Width="40" RelativePanel.Above="RectA"/>
+		</RelativePanel>
 
 		<!--
 		A circular dependency occurs when two elements inside a RelativePanel declare relationships with each other in any direction. 
@@ -53,7 +53,16 @@
 			<Rectangle Name="RectD" Fill="Blue" Height="40" Width="40"
                RelativePanel.Below="RectC"/>
 		</RelativePanel>-->
+		<TextBlock x:Name="tb" />
+		<RelativePanel Grid.Column="2">
+		<Rectangle Fill="Red" MinHeight="100" MinWidth="100" Opacity=".5" 
+					   RelativePanel.AlignLeftWithPanel="True"
+					   RelativePanel.AlignTopWithPanel="True"
+					   RelativePanel.AlignBottomWithPanel="True"
+					   RelativePanel.AlignRightWithPanel="True"
+					   />
 
-
+		<Rectangle Fill="Black" x:Name="topleft" Width="100" Height="100" />
+		</RelativePanel>
 	</Grid>
 </Page>

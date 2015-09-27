@@ -3,13 +3,40 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-		<Grid.ColumnDefinitions>
+		<!--<Grid.ColumnDefinitions>
 			<ColumnDefinition />
 			<ColumnDefinition />
 			<ColumnDefinition />
-		</Grid.ColumnDefinitions>
+		</Grid.ColumnDefinitions>-->
 
-		<RelativePanel >
+		<!--<RelativePanel Grid.ColumnSpan="3">
+			<Rectangle x:Name="RedRect" Fill="Red" 
+					   RelativePanel.AlignLeftWithPanel="False"
+					   RelativePanel.AlignTopWithPanel="False"
+					   RelativePanel.AlignRightWithPanel="False"
+					   RelativePanel.AlignBottomWithPanel="True"
+					   RelativePanel.AlignRightWith="YellowRect"
+					   RelativePanel.RightOf="GreenRect"
+					   RelativePanel.Below="BlueRect"
+					   />
+
+			<Rectangle x:Name="BlueRect" Fill="Blue" Height="100" Width="150" 
+					   />
+			<Rectangle x:Name="YellowRect" 
+					   Fill="Yellow" 
+					   RelativePanel.AlignRightWithPanel="True"
+					   RelativePanel.RightOf="BlueRect"
+					   RelativePanel.AlignBottomWith="BlueRect"
+					   />
+			<Rectangle x:Name="GreenRect" 
+					   Fill="Green"
+					   RelativePanel.AlignBottomWithPanel="True"
+					   RelativePanel.Below="BlueRect"
+					   RelativePanel.AlignRightWith="BlueRect"					   
+					   />
+		</RelativePanel>-->
+
+		<RelativePanel Background="White" >
 			<Rectangle x:Name="RedRect" Fill="Red" MinHeight="100" MinWidth="100"/>
 			<Rectangle x:Name="BlueRect" Fill="Blue" MinHeight="100" MinWidth="100" 
                RelativePanel.RightOf="RedRect" />
@@ -23,7 +50,7 @@
                RelativePanel.AlignRightWithPanel="True"/>
 		</RelativePanel>
 
-		<RelativePanel Grid.Column="1">
+		<!--<RelativePanel Grid.Column="1">
 			<Rectangle Fill="Green" x:Name="topleft" Width="25" Height="50" />
 
 			<Rectangle Fill="Red" MinHeight="100" MinWidth="100"
@@ -35,8 +62,33 @@
 					   />
 
 
-		</RelativePanel>
+		</RelativePanel>-->
 
+
+		<!-- 
+		By default, any unconstrained element declared as a child of the RelativePanel is given the entire available space and 
+		positioned at the (0, 0) coordinates (upper left corner) of the panel. So, if you are positioning a second element relative
+		to an unconstrained element, keep in mind that the second element might get pushed out of the panel. 
+		In this example, RectA doesn't have any constraints, so it's positioned at (0,0). RectB is not shown on the screen because 
+		it is declared to be Above RectA and is therefore pushed out of the panel.
+		-->
+		<!--<RelativePanel Background="White">
+			<Rectangle Name="RectA" Fill="Red" Margin="20" Height="40" Width="40"/>
+			<Rectangle Name="RectB" Fill="Blue" Height="40" Width="40" RelativePanel.Above="RectA"/>
+		</RelativePanel>-->
+
+
+		<!--
+		A circular dependency occurs when two elements inside a RelativePanel declare relationships with each other in any direction. 
+		For example, this XAML results in a design-time exception, "RelativePanel error: Circular dependency detected. Layout could
+		not complete."
+		-->
+		<!--<RelativePanel>
+			<Rectangle Name="RectC" Fill="Red" Height="40" Width="40"
+               RelativePanel.Above="RectD"/>
+			<Rectangle Name="RectD" Fill="Blue" Height="40" Width="40"
+               RelativePanel.Below="RectC"/>
+		</RelativePanel>-->
 	</Grid>
 </Window>
 
