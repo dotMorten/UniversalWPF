@@ -33,7 +33,10 @@
 									RelativePanel.AlignLeftWith="BlueRect"
 									RelativePanel.AlignRightWith="BlueRect"/>
 			<TextBlock Text="Green" 
-									RelativePanel.AlignVerticalCenterWith="GreenRect"
+									RelativePanel.AlignVerticalCenterWithPanel="True"
+									RelativePanel.AlignHorizontalCenterWithPanel="True"
+								    RelativePanel.AlignVerticalCenterWith="GreenRect"
+									RelativePanel.AlignHorizontalCenterWith="GreenRect"
 									HorizontalAlignment="Center" 
 									RelativePanel.AlignLeftWith="RedRect"
 									RelativePanel.AlignRightWith="BlueRect"/>

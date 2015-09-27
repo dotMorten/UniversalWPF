@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:UwpTestApp"
+	xmlns:localShared="using:TestApp.Shared"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:uwp="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -10,43 +11,6 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-		<RelativePanel Background="White" >
-			<Rectangle x:Name="RedRect" Fill="Red" MinHeight="100" MinWidth="100"/>
-			<Rectangle x:Name="BlueRect" Fill="Blue" MinHeight="100" MinWidth="100" 
-               RelativePanel.RightOf="RedRect" />
-			<Rectangle x:Name="GreenRect" Fill="Green" MinHeight="100" Margin="0,5,0,0" 
-               RelativePanel.Below="RedRect" 
-               RelativePanel.AlignLeftWith="RedRect" 
-               RelativePanel.AlignRightWith="BlueRect"/>
-			<Rectangle Fill="Yellow" MinHeight="100" 
-               RelativePanel.Below="GreenRect" 
-               RelativePanel.AlignLeftWith="BlueRect" 
-               RelativePanel.AlignRightWithPanel="True"/>
-		</RelativePanel>
-
-		<!-- 
-		By default, any unconstrained element declared as a child of the RelativePanel is given the entire available space and 
-		positioned at the (0, 0) coordinates (upper left corner) of the panel. So, if you are positioning a second element relative
-		to an unconstrained element, keep in mind that the second element might get pushed out of the panel. 
-		In this example, RectA doesn't have any constraints, so it's positioned at (0,0). RectB is not shown on the screen because 
-		it is declared to be Above RectA and is therefore pushed out of the panel.
-		-->
-		<!--<RelativePanel Grid.Column="1" >
-			<Rectangle Name="RectA" Fill="Red" Margin="20" Height="40" Width="40"/>
-			<Rectangle Name="RectB" Fill="Blue" Height="40" Width="40" RelativePanel.Above="RectA"/>
-		</RelativePanel>-->
-
-		<!--
-		A circular dependency occurs when two elements inside a RelativePanel declare relationships with each other in any direction. 
-		For example, this XAML results in a design-time exception, "RelativePanel error: Circular dependency detected. Layout could
-		not complete."
-		-->
-		<!--<RelativePanel>
-			<Rectangle Name="RectC" Fill="Red" Height="40" Width="40"
-               RelativePanel.Above="RectD"/>
-			<Rectangle Name="RectD" Fill="Blue" Height="40" Width="40"
-               RelativePanel.Below="RectC"/>
-		</RelativePanel>-->
+		<localShared:Sample2 />
 	</Grid>
 </Page>
