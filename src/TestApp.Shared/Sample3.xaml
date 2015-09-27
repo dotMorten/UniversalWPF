@@ -1,0 +1,22 @@
+﻿<UserControl
+    x:Class="TestApp.Shared.Sample3"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+	<!--
+		A circular dependency occurs when two elements inside a RelativePanel declare relationships with each other in any direction. 
+		For example, this XAML results in a design-time exception, "RelativePanel error: Circular dependency detected. Layout could
+		not complete."
+	-->
+	<RelativePanel>
+		<Rectangle Name="RectC" Fill="Red" Height="40" Width="40"
+               RelativePanel.Above="RectD"/>
+		<Rectangle Name="RectD" Fill="Blue" Height="40" Width="40"
+               RelativePanel.Below="RectC"/>
+	</RelativePanel>
+
+</UserControl>

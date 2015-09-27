@@ -43,6 +43,10 @@
 									HorizontalAlignment="Center" 
 									RelativePanel.AlignLeftWith="YellowRect"
 									RelativePanel.AlignRightWith="BlueRect"/>
+			<TextBlock Text="This text is centered on panel" Opacity=".5" 
+									RelativePanel.AlignVerticalCenterWithPanel="True"
+									RelativePanel.AlignHorizontalCenterWithPanel="True"
+									/>
 		</RelativePanel>
 
 	</Grid>
