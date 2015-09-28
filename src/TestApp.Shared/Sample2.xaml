@@ -20,7 +20,22 @@
 			<Rectangle Fill="Yellow" MinHeight="100" x:Name="YellowRect"
 									RelativePanel.Below="GreenRect"
 									RelativePanel.AlignLeftWith="BlueRect"
-									RelativePanel.AlignRightWithPanel="True"/>
+									RelativePanel.AlignRightWithPanel="True"
+									RelativePanel.AlignBottomWithPanel="True"/>
+			
+			<Rectangle x:Name="PurpleRect" Fill="Purple" MinHeight="50"
+								    RelativePanel.AlignBottomWith="GreenRect"
+									RelativePanel.RightOf="BlueRect"
+									RelativePanel.AlignRightWithPanel="True" />
+
+			<Rectangle x:Name="OrangeRect" Fill="Orange" MinHeight="50" MinWidth="50"
+								    RelativePanel.AlignTopWith="GreenRect"
+									RelativePanel.AlignRightWithPanel="True" />
+
+			<Rectangle x:Name="CyanRect" Fill="Cyan" MinHeight="50" MinWidth="50"
+								    RelativePanel.AlignVerticalCenterWith="BlueRect"
+								    RelativePanel.AlignHorizontalCenterWith="PurpleRect"
+									/>
 
 			<TextBlock Text="Red" HorizontalAlignment="Right"
 									RelativePanel.AlignVerticalCenterWith="RedRect"
@@ -50,6 +65,14 @@
 									RelativePanel.AlignVerticalCenterWithPanel="True"
 									RelativePanel.AlignHorizontalCenterWithPanel="True"
 									/>
+			
+			<TextBlock Text="Lorem Ipsom and so on to test text-wrapping etc etc." TextWrapping="Wrap"
+					   RelativePanel.AlignLeftWithPanel="True"
+					   RelativePanel.AlignTopWith="YellowRect"
+					   RelativePanel.AlignBottomWithPanel="True"
+					   VerticalAlignment="Center"
+					   RelativePanel.LeftOf="YellowRect"
+					   />
 		</RelativePanel>
 
 	</Grid>

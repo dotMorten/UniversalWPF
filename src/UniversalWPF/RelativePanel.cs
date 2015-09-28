@@ -100,36 +100,67 @@ namespace UniversalWPF
 				arranges.Add(rect);
 				child.SetValue(ArrangeStateProperty, rect);
 
-				//Align with panels always wins, so do these first, or if no constraints are set at all
-				if (GetAlignLeftWithPanel(child) ||
+				//Align with panels always wins, so do these first, or if no constraints are set at all set margin to 0
+
+				//Left side
+				if (GetAlignLeftWithPanel(child))
+				{
+					rect[0] = 0;
+				}
+				else if(
 					child.GetValue(AlignLeftWithProperty) == null &&
 					child.GetValue(RightOfProperty) == null &&
-					!GetAlignHorizontalCenterWithPanel(child))
-					rect[0] = 0;
+					child.GetValue(AlignHorizontalCenterWithProperty) == null &&
+                    !GetAlignHorizontalCenterWithPanel(child))
+				{
+					if (GetAlignRightWithPanel(child))
+						rect[0] = finalSize.Width - child.DesiredSize.Width;
+					else if(child.GetValue(AlignRightWithProperty) == null && child.GetValue(AlignHorizontalCenterWithProperty) == null)
+						rect[0] = 0; //default fallback to 0
+				}
 
-				if (GetAlignTopWithPanel(child) ||
+				//Top side
+				if (GetAlignTopWithPanel(child))
+				{
+					rect[1] = 0;
+				}
+				else if(
 					child.GetValue(AlignTopWithProperty) == null && 
 					child.GetValue(BelowProperty) == null &&
 					child.GetValue(AlignVerticalCenterWithProperty) == null &&
 					!GetAlignVerticalCenterWithPanel(child))
-					rect[1] = 0;
+				{
+					if (GetAlignBottomWithPanel(child))
+						rect[1] = finalSize.Height - child.DesiredSize.Height;
+					else if (child.GetValue(AlignBottomWithProperty) == null && child.GetValue(AlignVerticalCenterWithProperty) == null)
+						rect[1] = 0; //default fallback to 0
+				}
 
+				//Right side
 				if (GetAlignRightWithPanel(child))
+				{
 					rect[2] = 0;
+				}
 				else if (!double.IsNaN(rect[0]) &&
 				 child.GetValue(AlignRightWithProperty) == null &&
 				 child.GetValue(LeftOfProperty) == null &&
-				 !GetAlignHorizontalCenterWithPanel(child) &&
-				 !GetAlignVerticalCenterWithPanel(child))
+				 child.GetValue(AlignHorizontalCenterWithProperty) == null &&
+				 !GetAlignHorizontalCenterWithPanel(child))
+				{
 					rect[2] = finalSize.Width - rect[0] - child.DesiredSize.Width;
+				}
 
+				//Bottom side
 				if (GetAlignBottomWithPanel(child))
 					rect[3] = 0;
 				else if (!double.IsNaN(rect[1]) &&
 					(child.GetValue(AlignBottomWithProperty) == null &&
 					child.GetValue(AboveProperty) == null) &&
-					child.GetValue(AlignVerticalCenterWithProperty) == null)
+					child.GetValue(AlignVerticalCenterWithProperty) == null &&
+					!GetAlignVerticalCenterWithPanel(child))
+				{
 					rect[3] = finalSize.Height - rect[1] - child.DesiredSize.Height;
+				}
 
 				if (!double.IsNaN(rect[0]) && !double.IsNaN(rect[1]) &&
 					!double.IsNaN(rect[2]) && !double.IsNaN(rect[3]))
@@ -193,7 +224,7 @@ namespace UniversalWPF
 							}
 							else if (!double.IsNaN(rect[3]))
 							{
-								rect[3] = finalSize.Height - rect[3] - child.DesiredSize.Height;
+								rect[1] = finalSize.Height - rect[3] - child.DesiredSize.Height;
 							}
 						}
 					}
@@ -254,7 +285,7 @@ namespace UniversalWPF
 							double[] r = (double[])alignHorizontalCenterWith.GetValue(ArrangeStateProperty);
 							if (!double.IsNaN(r[0]) && !double.IsNaN(r[2]))
 							{
-								rect[0] = r[0] + (finalSize.Width - r[1] - r[0]) * .5 - child.DesiredSize.Width * .5;
+								rect[0] = r[0] + (finalSize.Width - r[2] - r[0]) * .5 - child.DesiredSize.Width * .5;
 								rect[2] = finalSize.Width - rect[0] - child.DesiredSize.Width;
 							}
 						}
