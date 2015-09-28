@@ -48,16 +48,21 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdaptiveTrigger.cs" />
-    <Compile Include="StateTrigger.cs" />
-    <Compile Include="StateTriggerBase.cs" />
-    <Compile Include="VisualStateUwp.cs" />
+    <Compile Include="SplitView\SplitViewDisplayMode.cs" />
+    <Compile Include="SplitView\SplitViewPaneClosingEventArgs.cs" />
+    <Compile Include="SplitView\SplitViewPanePlacement.cs" />
+    <Compile Include="SplitView\SplitViewTemplateSettings.cs" />
+    <Compile Include="StateTriggers\AdaptiveTrigger.cs" />
+    <Compile Include="SplitView\SplitView.cs" />
+    <Compile Include="StateTriggers\StateTrigger.cs" />
+    <Compile Include="StateTriggers\StateTriggerBase.cs" />
+    <Compile Include="StateTriggers\VisualStateUwp.cs" />
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="RelativePanel.AttachedProperties.cs" />
-    <Compile Include="RelativePanel.cs">
+    <Compile Include="RelativePanel\RelativePanel.AttachedProperties.cs" />
+    <Compile Include="RelativePanel\RelativePanel.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
