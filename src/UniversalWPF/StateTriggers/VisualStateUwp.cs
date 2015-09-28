@@ -59,6 +59,8 @@ namespace UniversalWPF
 			}
 			foreach(var setter in _setters.OfType< System.Windows.Setter>())
 			{
+				((System.ComponentModel.ISupportInitialize)setter).EndInit(); //Evaluates 'setter.Value' - probably shouldn't do this until 'target' is found
+
 				System.Windows.DependencyProperty property = setter.Property;
 				object value = setter.Value; //Why doesn't this  return the actual value???
 				string targetName = setter.TargetName;
