@@ -6,18 +6,17 @@ using System.Threading.Tasks;
 
 namespace UniversalWPF
 {
-	// Summary:
-	//     Provides event data for the SplitView.PaneClosing event.
+	/// <summary>
+	/// Provides event data for the SplitView.PaneClosing event.
+	/// </summary>
 	public sealed class SplitViewPaneClosingEventArgs : EventArgs
 	{
 		internal SplitViewPaneClosingEventArgs() { }
-
-		// Summary:
-		//     Gets or sets a value that indicates whether the pane closing action should be
-		//     canceled.
-		//
-		// Returns:
-		//     true to cancel the pane closing action; otherwise, false.
-		public System.Boolean Cancel { get; set; }
+		/// <summary>
+		/// Gets or sets a value that indicates whether the pane closing action should be
+		/// canceled.
+		/// </summary>
+		/// <value>true to cancel the pane closing action; otherwise, false.</value>
+		public bool Cancel { get; set; }
 	}
 }

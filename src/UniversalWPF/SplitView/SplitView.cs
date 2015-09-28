@@ -22,25 +22,28 @@ namespace UniversalWPF
 		/// </summary>
 		public SplitView()
 		{
+			DefaultStyleKey = typeof(SplitView);
 		}
-		//
-		// Summary:
-		//     Gets or sets the width of the SplitView pane in its compact display mode.
-		//
-		// Returns:
-		//     The width of the pane in it's compact display mode. The default is 48 device-independent
-		//     pixel (DIP) (defined by the SplitViewCompactPaneThemeLength resource).
+
+		/// <summary>
+		/// Gets or sets the width of the SplitView pane in its compact display mode.
+		/// </summary>
+		/// <value>
+		/// The width of the pane in it's compact display mode. The default is 48 device-independent
+		/// pixel (DIP) (defined by the SplitViewCompactPaneThemeLength resource).
+		/// </value>
 		public double CompactPaneLength
 		{
 			get { return (double)GetValue(CompactPaneLengthProperty); }
 			set { SetValue(CompactPaneLengthProperty, value); }
 		}
 
-		// Summary:
-		//     Identifies the CompactPaneLength dependency property.
-		//
-		// Returns:
-		//     The identifier for the CompactPaneLength dependency property.
+		/// <summary>
+		/// Identifies the CompactPaneLength dependency property.
+		/// </summary>
+		/// <value>
+		/// The identifier for the CompactPaneLength dependency property.
+		/// </value>
 		public static readonly DependencyProperty CompactPaneLengthProperty =
 			DependencyProperty.Register("CompactPaneLength", typeof(double), typeof(SplitView), new PropertyMetadata(0));
 
