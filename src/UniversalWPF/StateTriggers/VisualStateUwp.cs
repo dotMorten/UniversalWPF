@@ -57,13 +57,20 @@ namespace UniversalWPF
 				else
 					Storyboard.Stop();
 			}
+
+			//var storyboard = new System.Windows.Media.Animation.Storyboard();
 			foreach(var setter in _setters.OfType< System.Windows.Setter>())
 			{
 				((System.ComponentModel.ISupportInitialize)setter).EndInit(); //Evaluates 'setter.Value' - probably shouldn't do this until 'target' is found
-
 				System.Windows.DependencyProperty property = setter.Property;
 				object value = setter.Value; //Why doesn't this  return the actual value???
 				string targetName = setter.TargetName;
+
+				//var s = new System.Windows.Media.Animation.DoubleAnimation() { };
+				//System.Windows.Media.Animation.Storyboard.SetTargetName(s, setter.TargetName);
+				//System.Windows.Media.Animation.Storyboard.SetTargetProperty(s, new System.Windows.PropertyPath(string.Format("({0}.{1})", setter.Property.OwnerType.Name, setter.Property.Name )));
+				//s.To = (double)setter.Value;
+				//storyboard.Children.Add(s);
 
 				//This isn't really working... need a better way
 				//if (System.Windows.Application.Current.MainWindow != null)
@@ -83,6 +90,7 @@ namespace UniversalWPF
 				//		};
 				//}
 			}
+			//storyboard.Begin()
 		}
 
 		/// <summary>
