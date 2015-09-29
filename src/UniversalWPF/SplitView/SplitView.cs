@@ -15,7 +15,7 @@ namespace UniversalWPF
 	/// view that is typically used for navigation commands.
 	/// </summary>
 	[ContentProperty("Content")]
-	internal class SplitView : Control
+	public partial class SplitView : Control
 	{
 		/// <summary>
 		/// Initializes a new instance of the SplitView class.
@@ -23,193 +23,95 @@ namespace UniversalWPF
 		public SplitView()
 		{
 			DefaultStyleKey = typeof(SplitView);
+			TemplateSettings = new SplitViewTemplateSettings() { OpenPaneLength = OpenPaneLength };
+			UpdateTemplateSettings();
 		}
 
-		/// <summary>
-		/// Gets or sets the width of the SplitView pane in its compact display mode.
-		/// </summary>
-		/// <value>
-		/// The width of the pane in it's compact display mode. The default is 48 device-independent
-		/// pixel (DIP) (defined by the SplitViewCompactPaneThemeLength resource).
-		/// </value>
-		public double CompactPaneLength
+		public override void OnApplyTemplate()
 		{
-			get { return (double)GetValue(CompactPaneLengthProperty); }
-			set { SetValue(CompactPaneLengthProperty, value); }
+			base.OnApplyTemplate();
+			var cl1 = GetTemplateChild("ColumnDefinition1");
+			var dismissLayer = GetTemplateChild("LightDismissLayer") as UIElement;
+			if(dismissLayer != null)
+				dismissLayer.MouseDown += DismissLayer_MouseDown;
+			ChangeVisualState(false);
 		}
 
-		/// <summary>
-		/// Identifies the CompactPaneLength dependency property.
-		/// </summary>
-		/// <value>
-		/// The identifier for the CompactPaneLength dependency property.
-		/// </value>
-		public static readonly DependencyProperty CompactPaneLengthProperty =
-			DependencyProperty.Register("CompactPaneLength", typeof(double), typeof(SplitView), new PropertyMetadata(0));
-
-		//
-		// Summary:
-		//     Gets or sets the contents of the main panel of a SplitView.
-		//
-		// Returns:
-		//     The contents of the main panel of a SplitView. The default is null.
-		public UIElement Content
+		private void DismissLayer_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
 		{
-			get { return (UIElement)GetValue(ContentProperty); }
-			set { SetValue(ContentProperty, value); }
+			IsPaneOpen = false;
 		}
 
-		// Summary:
-		//     Identifies the Content dependency property.
-		// Returns:
-		//     The identifier for the Content dependency property.
-		public static readonly DependencyProperty ContentProperty =
-			DependencyProperty.Register("Content", typeof(UIElement), typeof(SplitView), new PropertyMetadata(null));
-
-		//
-		// Summary:
-		//     Gets of sets a value that specifies how the pane and content areas of a SplitView
-		//     are shown.
-		//
-		// Returns:
-		//     A value of the enumeration that specifies how the pane and content areas of a
-		//     SplitView are shown. The default is Overlay.
-		public SplitViewDisplayMode DisplayMode
+		private void UpdateTemplateSettings()
 		{
-			get { return (SplitViewDisplayMode)GetValue(DisplayModeProperty); }
-			set { SetValue(DisplayModeProperty, value); }
-		}
+			if(TemplateSettings == null) return;
+            TemplateSettings.CompactPaneGridLength = new GridLength(CompactPaneLength, GridUnitType.Pixel);
+			TemplateSettings.OpenPaneGridLength = new GridLength(OpenPaneLength, GridUnitType.Pixel);
+			TemplateSettings.NegativeOpenPaneLength = -OpenPaneLength;
+			TemplateSettings.OpenPaneLengthMinusCompactLength = OpenPaneLength - CompactPaneLength;
+			TemplateSettings.NegativeOpenPaneLengthMinusCompactLength = -TemplateSettings.OpenPaneLengthMinusCompactLength;
+			var settings = TemplateSettings;
+			TemplateSettings = null;
+			TemplateSettings = settings; //Trigger rebind
+        }
 
-		// Summary:
-		//     Identifies the DisplayMode dependency property.
-		//
-		// Returns:
-		//     The identifier for the DisplayMode dependency property.
-		public static readonly DependencyProperty DisplayModeProperty =
-			DependencyProperty.Register("DisplayMode", typeof(SplitViewDisplayMode), typeof(SplitView), new PropertyMetadata(SplitViewDisplayMode.Overlay));
 
-		//
-		// Summary:
-		//     Gets or sets a value that specifies whether the SplitView pane is expanded to
-		//     its full width.
-		//
-		// Returns:
-		//     true if the pane is expanded to its full width; otherwise, false. The default
-		//     is true.
-		public bool IsPaneOpen
+		private void UpdateDisplayMode(SplitViewDisplayMode oldValue, SplitViewDisplayMode newValue)
 		{
-			get { return (bool)GetValue(IsPaneOpenProperty); }
-			set { SetValue(IsPaneOpenProperty, value); }
+			ChangeVisualState(true);
 		}
 
-		// Summary:
-		//     Identifies the IsPaneOpen dependency property.
-		//
-		// Returns:
-		//     The identifier for the IsPaneOpen dependency property.
-		public static readonly DependencyProperty IsPaneOpenProperty =
-			DependencyProperty.Register("IsPaneOpen", typeof(bool), typeof(SplitViewDisplayMode), new PropertyMetadata(false));
-
-		// Summary:
-		//     Gets or sets the width of the SplitView pane when it's fully expanded.
-		//
-		// Returns:
-		//     The width of the SplitView pane when it's fully expanded. The default is 320
-		//     device-independent pixel (DIP).
-		public double OpenPaneLength
+		private void UpdatePanePlacement()
 		{
-			get { return (double)GetValue(OpenPaneLengthProperty); }
-			set { SetValue(OpenPaneLengthProperty, value); }
+			ChangeVisualState(true);
 		}
 
-		// Summary:
-		//     Identifies the OpenPaneLength dependency property.
-		//
-		// Returns:
-		//     The identifier for the OpenPaneLength dependency property.
-		public static readonly DependencyProperty OpenPaneLengthProperty =
-			DependencyProperty.Register("OpenPaneLength", typeof(double), typeof(SplitView), new PropertyMetadata(0d));
-
-		// Summary:
-		//     Gets or sets the Brush to apply to the background of the Pane area of the control.
-		//
-		// Returns:
-		//     The Brush to apply to the background of the Pane area of the control.
-		public Brush PaneBackground
+		private void OpenPane()
 		{
-			get { return (Brush)GetValue(PaneBackgroundProperty); }
-			set { SetValue(PaneBackgroundProperty, value); }
+			ChangeVisualState(true);
 		}
 
-		// Summary:
-		//     Identifies the PaneBackground dependency property.
-		//
-		// Returns:
-		//     The identifier for the PaneBackground dependency property.
-		public static readonly DependencyProperty PaneBackgroundProperty =
-			DependencyProperty.Register("PaneBackground", typeof(Brush), typeof(SplitViewDisplayMode), new PropertyMetadata(null));
-
-		// Summary:
-		//     Gets or sets a value that specifies whether the pane is shown on the right or
-		//     left side of the SplitView.
-		//
-		// Returns:
-		//     A value of the enumeration that specifies whether the pane is shown on the right
-		//     or left side of the SplitView. The default is Left.
-		public SplitViewPanePlacement PanePlacement
+		private void ClosePane()
 		{
-			get { return (SplitViewPanePlacement)GetValue(PanePlacementProperty); }
-			set { SetValue(PanePlacementProperty, value); }
+			SplitViewPaneClosingEventArgs args = new SplitViewPaneClosingEventArgs();
+			PaneClosing?.Invoke(this, args);
+			if (args.Cancel)
+			{
+				//IsPaneOpen = true;
+				return;
+			}
+			ChangeVisualState(true);
+			PaneClosed?.Invoke(this, EventArgs.Empty);
 		}
 
-		//
-		// Summary:
-		//     Identifies the PanePlacement dependency property.
-		//
-		// Returns:
-		//     The identifier for the PanePlacement dependency property.
-		public static readonly DependencyProperty PanePlacementProperty =
-			DependencyProperty.Register("PanePlacement", typeof(SplitViewPanePlacement), typeof(SplitView), new PropertyMetadata(SplitViewPanePlacement.Left));
-
-		//
-		// Summary:
-		//     Gets or sets the contents of the pane of a SplitView.
-		//
-		// Returns:
-		//     The contents of the pane of a SplitView. The default is null.
-		public UIElement Pane
+		private void ChangeVisualState(bool useTransitions)
 		{
-			get { return (UIElement)GetValue(PaneProperty); }
-			set { SetValue(PaneProperty, value); }
-		}
+			if (!IsPaneOpen)
+			{
+				if(DisplayMode == SplitViewDisplayMode.CompactInline)
+				{
+					GoToState(useTransitions, "ClosedCompact" + PanePlacement.ToString());
+				}
+				else
+					GoToState(useTransitions, "Closed");
+			}
+			else {
+				switch(DisplayMode)
+				{
+					case SplitViewDisplayMode.Overlay:
+						GoToState(useTransitions, "OpenOverlay" + PanePlacement.ToString()); break;
+					case SplitViewDisplayMode.Inline:
+						GoToState(useTransitions, "OpenInline" + PanePlacement.ToString()); break;
+					case SplitViewDisplayMode.CompactOverlay:
+						GoToState(useTransitions, "OpenCompactOverlay" + PanePlacement.ToString()); break;
+				}
+			}
+        }
 
-		// Summary:
-		//     Identifies the Pane dependency property.
-		//
-		// Returns:
-		//     The identifier for the Pane dependency property.
-		public static readonly DependencyProperty PaneProperty =
-			DependencyProperty.Register("Pane", typeof(UIElement), typeof(SplitView), new PropertyMetadata(null));
-
-		// Summary:
-		//     Gets an object that provides calculated values that can be referenced as TemplateBinding
-		//     sources when defining templates for a SplitView control.
-		//
-		// Returns:
-		//     An object that provides calculated values for templates.
-		public SplitViewTemplateSettings TemplateSettings
+		private bool GoToState(bool useTransitions, string stateName)
 		{
-			get { return (SplitViewTemplateSettings)GetValue(TemplateSettingsProperty); }
-			set { SetValue(TemplateSettingsProperty, value); }
+			return VisualStateManager.GoToState(this, stateName, useTransitions);
 		}
-
-		// Summary:
-		//     Identifies the TemplateSettings dependency property.
-		//
-		// Returns:
-		//     The identifier for the TemplateSettings dependency property.
-		public static readonly DependencyProperty TemplateSettingsProperty =
-			DependencyProperty.Register("TemplateSettings", typeof(SplitViewTemplateSettings), typeof(SplitView), new PropertyMetadata(null));
 
 		/// <summary>
 		/// Occurs when the SplitView pane is closed.

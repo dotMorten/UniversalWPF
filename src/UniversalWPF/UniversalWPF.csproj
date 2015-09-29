@@ -48,6 +48,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SplitView\GridLengthAnimation.cs" />
     <Compile Include="SplitView\SplitViewDisplayMode.cs" />
     <Compile Include="SplitView\SplitViewPaneClosingEventArgs.cs" />
     <Compile Include="SplitView\SplitViewPanePlacement.cs" />
@@ -89,6 +90,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <Compile Include="SplitView\SplitView.Properties.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

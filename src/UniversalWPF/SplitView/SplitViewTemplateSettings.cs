@@ -13,21 +13,24 @@ namespace UniversalWPF
 	/// </summary>
 	public sealed class SplitViewTemplateSettings : DependencyObject
 	{
-		internal SplitViewTemplateSettings() { }
+		internal SplitViewTemplateSettings() {
+			CompactPaneGridLength = new GridLength(1, GridUnitType.Star);
+			OpenPaneGridLength = new GridLength(1, GridUnitType.Star);
+		}
 		/// <summary>
 		/// Gets the CompactPaneLength value as a GridLength.
 		/// </summary>
 		/// <value>
 		/// The CompactPaneLength value as a GridLength.
 		/// </value>
-		public GridLength CompactPaneGridLength { get; private set; }
+		public GridLength CompactPaneGridLength { get; internal set; }
 		/// <summary>
 		/// Gets the negative of the OpenPaneLength value.
 		/// </summary>
 		/// <value>
 		/// The negative of the OpenPaneLength value.
 		/// </value>
-		public double NegativeOpenPaneLength { get; private set; }
+		public double NegativeOpenPaneLength { get; internal set; }
 		/// <summary>
 		/// Gets the negative of the value calculated by subtracting the CompactPaneLength
 		/// value from the OpenPaneLength value.
@@ -35,21 +38,21 @@ namespace UniversalWPF
 		/// <value>
 		/// The negative of the OpenPaneLength value minus the CompactPaneLength value.
 		/// </value>
-		public double NegativeOpenPaneLengthMinusCompactLength { get; private set; }
+		public double NegativeOpenPaneLengthMinusCompactLength { get; internal set; }
 		/// <summary>
 		/// Gets the OpenPaneLength value as a GridLength.
 		/// </summary>
 		/// <value>
 		/// The OpenPaneLength value as a GridLength.
 		/// </value>
-		public GridLength OpenPaneGridLength { get; private set; }
+		public GridLength OpenPaneGridLength { get; internal set; }
 		/// <summary>
 		/// Gets the OpenPaneLength value.
 		/// </summary>
 		/// <value>
 		/// The OpenPaneLength value.
 		/// </value>
-		public double OpenPaneLength { get; private set; }
+		public double OpenPaneLength { get; internal set; }
 		/// <summary>
 		/// Gets a value calculated by subtracting the CompactPaneLength value from the OpenPaneLength
 		/// value.
@@ -58,7 +61,7 @@ namespace UniversalWPF
 		/// The value calculated by subtracting the CompactPaneLength value from the OpenPaneLength
 		/// value.
 		/// </value>
-		public double OpenPaneLengthMinusCompactLength { get; private set; }
+		public double OpenPaneLengthMinusCompactLength { get; internal set; }
 	}
 
 
