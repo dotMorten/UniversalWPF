@@ -9,35 +9,44 @@
     <Import_RootNamespace>TestApp.Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Page Include="$(MSBuildThisFileDirectory)Sample4.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)RelativePanel\Sample4.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Sample3.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)RelativePanel\Sample3.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Sample2.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)RelativePanel\Sample2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Sample1.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)RelativePanel\Sample1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Sample4.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)RelativePanel\Sample4.xaml.cs">
       <DependentUpon>Sample4.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Sample3.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)RelativePanel\Sample3.xaml.cs">
       <DependentUpon>Sample3.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Sample2.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)RelativePanel\Sample2.xaml.cs">
       <DependentUpon>Sample2.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Sample1.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)RelativePanel\Sample1.xaml.cs">
       <DependentUpon>Sample1.xaml</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)SplitView\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)RelativePanel\Sample1.xaml" />
+    <None Include="$(MSBuildThisFileDirectory)RelativePanel\Sample2.xaml" />
+    <None Include="$(MSBuildThisFileDirectory)RelativePanel\Sample3.xaml" />
+    <None Include="$(MSBuildThisFileDirectory)RelativePanel\Sample4.xaml" />
   </ItemGroup>
 </Project>
