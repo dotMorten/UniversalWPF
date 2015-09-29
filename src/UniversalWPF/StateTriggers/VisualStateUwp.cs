@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ using System.Windows.Markup;
 
 namespace UniversalWPF
 {
-	public class VisualStateUwp : System.Windows.VisualState
+	public class VisualStateUwp : System.Windows.VisualState, System.ComponentModel.ISupportInitialize
 	{
 		[System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
 		public class SetterBaseCollection : ObservableCollection<System.Windows.Setter> { }
@@ -48,8 +49,14 @@ namespace UniversalWPF
 			SetActive(_triggers.Where(t => t.IsTriggerActive).Any());
 		}
 
+        Action afterInit;
 		internal void SetActive(bool active)
 		{
+            if(_isInitializing)
+            {
+                afterInit = () => SetActive(active);
+                return;
+            }
 			if (Storyboard != null)
 			{
 				if (active)
@@ -61,7 +68,6 @@ namespace UniversalWPF
 			//var storyboard = new System.Windows.Media.Animation.Storyboard();
 			foreach(var setter in _setters.OfType< System.Windows.Setter>())
 			{
-				((System.ComponentModel.ISupportInitialize)setter).EndInit(); //Evaluates 'setter.Value' - probably shouldn't do this until 'target' is found
 				System.Windows.DependencyProperty property = setter.Property;
 				object value = setter.Value; //Why doesn't this  return the actual value???
 				string targetName = setter.TargetName;
@@ -92,6 +98,19 @@ namespace UniversalWPF
 			}
 			//storyboard.Begin()
 		}
+        private bool _isInitializing;
+
+        void ISupportInitialize.BeginInit()
+        {
+            _isInitializing = true;
+        }
+
+        void ISupportInitialize.EndInit()
+        {
+            _isInitializing = false;
+            if (afterInit != null)
+                afterInit();
+        }
 
 		/// <summary>
 		/// Gets a collection of Setter objects
