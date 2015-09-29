@@ -39,14 +39,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)RelativePanel\Sample1.xaml.cs">
       <DependentUpon>Sample1.xaml</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)SplitView\" />
+    <Compile Include="$(MSBuildThisFileDirectory)SplitView\SV_Sample1.xaml.cs">
+      <DependentUpon>SV_Sample1.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)RelativePanel\Sample1.xaml" />
     <None Include="$(MSBuildThisFileDirectory)RelativePanel\Sample2.xaml" />
     <None Include="$(MSBuildThisFileDirectory)RelativePanel\Sample3.xaml" />
     <None Include="$(MSBuildThisFileDirectory)RelativePanel\Sample4.xaml" />
+    <None Include="$(MSBuildThisFileDirectory)SplitView\SV_Sample1.xaml" />
   </ItemGroup>
 </Project>
