@@ -77,8 +77,11 @@ namespace UniversalWPF
 			PaneClosing?.Invoke(this, args);
 			if (args.Cancel)
 			{
-				//IsPaneOpen = true;
+				if (DisplayMode == SplitViewDisplayMode.Overlay || DisplayMode == SplitViewDisplayMode.CompactOverlay)
+				{
+					IsPaneOpen = true;
 				return;
+			}
 			}
 			ChangeVisualState(true);
 			PaneClosed?.Invoke(this, EventArgs.Empty);
