@@ -35,6 +35,7 @@ namespace UniversalWPF
 			if(dismissLayer != null)
 				dismissLayer.MouseDown += DismissLayer_MouseDown;
 			ChangeVisualState(false);
+			UpdateTemplateSettings();
 		}
 
 		private void DismissLayer_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -53,6 +54,12 @@ namespace UniversalWPF
 			var settings = TemplateSettings;
 			TemplateSettings = null;
 			TemplateSettings = settings; //Trigger rebind
+
+			var rg = GetTemplateChild("PaneClipRectangle") as RectangleGeometry;
+			if(rg != null)
+			{
+				rg.Rect = new Rect(0, 0, OpenPaneLength, Int16.MaxValue);
+			}
         }
 
 
