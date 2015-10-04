@@ -55,6 +55,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Samples\RelativePanel\Sample1.xaml.cs">
+      <DependentUpon>Sample1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Samples\RelativePanel\Sample2.xaml.cs">
+      <DependentUpon>Sample2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Samples\RelativePanel\Sample3.xaml.cs">
+      <DependentUpon>Sample3.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Samples\RelativePanel\Sample4.xaml.cs">
+      <DependentUpon>Sample4.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Samples\SplitView\SV_Sample1.xaml.cs">
+      <DependentUpon>SV_Sample1.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StateTriggers\SimpleStateSample.xaml.cs">
       <DependentUpon>SimpleStateSample.xaml</DependentUpon>
     </Compile>
@@ -70,6 +85,26 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Samples\RelativePanel\Sample1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Samples\RelativePanel\Sample2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Samples\RelativePanel\Sample3.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Samples\RelativePanel\Sample4.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Samples\SplitView\SV_Sample1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="StateTriggers\SimpleStateSample.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -108,7 +143,6 @@
       <Name>UniversalWPF</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="..\TestApp.Shared\TestApp.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

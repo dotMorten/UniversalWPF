@@ -9,16 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "TestApp\TestApp.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UwpTestApp", "UwpTestApp\UwpTestApp.csproj", "{E6400260-53D5-431C-B7CE-EFB5DC9E2ED9}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "TestApp.Shared", "TestApp.Shared\TestApp.Shared.shproj", "{7FAC99FD-32ED-40C9-8080-366BAD03364A}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E8744906-07B5-4C3C-BD76-D95972B7257A}"
 EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		TestApp.Shared\TestApp.Shared.projitems*{08fa4ad4-ab63-4f81-ab39-900f5d6a4462}*SharedItemsImports = 4
-		TestApp.Shared\TestApp.Shared.projitems*{e6400260-53d5-431c-b7ce-efb5dc9e2ed9}*SharedItemsImports = 4
-		TestApp.Shared\TestApp.Shared.projitems*{7fac99fd-32ed-40c9-8080-366bad03364a}*SharedItemsImports = 13
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|ARM = Debug|ARM
@@ -64,7 +57,6 @@ Global
 		{08FA4AD4-AB63-4F81-AB39-900F5D6A4462}.Release|x86.Build.0 = Release|Any CPU
 		{E6400260-53D5-431C-B7CE-EFB5DC9E2ED9}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{E6400260-53D5-431C-B7CE-EFB5DC9E2ED9}.Debug|Any CPU.Build.0 = Debug|x86
-		{E6400260-53D5-431C-B7CE-EFB5DC9E2ED9}.Debug|Any CPU.Deploy.0 = Debug|x86
 		{E6400260-53D5-431C-B7CE-EFB5DC9E2ED9}.Debug|ARM.ActiveCfg = Debug|ARM
 		{E6400260-53D5-431C-B7CE-EFB5DC9E2ED9}.Debug|ARM.Build.0 = Debug|ARM
 		{E6400260-53D5-431C-B7CE-EFB5DC9E2ED9}.Debug|ARM.Deploy.0 = Debug|ARM
@@ -91,6 +83,5 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{08FA4AD4-AB63-4F81-AB39-900F5D6A4462} = {E8744906-07B5-4C3C-BD76-D95972B7257A}
 		{E6400260-53D5-431C-B7CE-EFB5DC9E2ED9} = {E8744906-07B5-4C3C-BD76-D95972B7257A}
-		{7FAC99FD-32ED-40C9-8080-366BAD03364A} = {E8744906-07B5-4C3C-BD76-D95972B7257A}
 	EndGlobalSection
 EndGlobal

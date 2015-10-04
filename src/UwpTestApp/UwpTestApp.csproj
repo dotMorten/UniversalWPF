@@ -93,6 +93,26 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\TestApp\Samples\RelativePanel\Sample1.xaml.cs">
+      <Link>Samples\RelativePanel\Sample1.xaml.cs</Link>
+      <DependentUpon>Sample1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\TestApp\Samples\RelativePanel\Sample2.xaml.cs">
+      <Link>Samples\RelativePanel\Sample2.xaml.cs</Link>
+      <DependentUpon>Sample2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\TestApp\Samples\RelativePanel\Sample3.xaml.cs">
+      <Link>Samples\RelativePanel\Sample3.xaml.cs</Link>
+      <DependentUpon>Sample3.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\TestApp\Samples\RelativePanel\Sample4.xaml.cs">
+      <Link>Samples\RelativePanel\Sample4.xaml.cs</Link>
+      <DependentUpon>Sample4.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\TestApp\Samples\SplitView\SV_Sample1.xaml.cs">
+      <Link>Samples\SplitView\SV_Sample1.xaml.cs</Link>
+      <DependentUpon>SV_Sample1.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -122,12 +142,36 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="..\TestApp\Samples\RelativePanel\Sample1.xaml">
+      <Link>Samples\RelativePanel\Sample1.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\TestApp\Samples\RelativePanel\Sample2.xaml">
+      <Link>Samples\RelativePanel\Sample2.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\TestApp\Samples\RelativePanel\Sample3.xaml">
+      <Link>Samples\RelativePanel\Sample3.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\TestApp\Samples\RelativePanel\Sample4.xaml">
+      <Link>Samples\RelativePanel\Sample4.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\TestApp\Samples\SplitView\SV_Sample1.xaml">
+      <Link>Samples\SplitView\SV_Sample1.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <Import Project="..\TestApp.Shared\TestApp.Shared.projitems" Label="Shared" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
