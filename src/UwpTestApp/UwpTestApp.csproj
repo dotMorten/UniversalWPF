@@ -93,24 +93,24 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\TestApp\Samples\RelativePanel\Sample1.xaml.cs">
-      <Link>Samples\RelativePanel\Sample1.xaml.cs</Link>
+    <Compile Include="..\TestApp\Samples\RelativePanels\Sample1.xaml.cs">
+      <Link>Samples\RelativePanels\Sample1.xaml.cs</Link>
       <DependentUpon>Sample1.xaml</DependentUpon>
     </Compile>
-    <Compile Include="..\TestApp\Samples\RelativePanel\Sample2.xaml.cs">
-      <Link>Samples\RelativePanel\Sample2.xaml.cs</Link>
+    <Compile Include="..\TestApp\Samples\RelativePanels\Sample2.xaml.cs">
+      <Link>Samples\RelativePanels\Sample2.xaml.cs</Link>
       <DependentUpon>Sample2.xaml</DependentUpon>
     </Compile>
-    <Compile Include="..\TestApp\Samples\RelativePanel\Sample3.xaml.cs">
-      <Link>Samples\RelativePanel\Sample3.xaml.cs</Link>
+    <Compile Include="..\TestApp\Samples\RelativePanels\Sample3.xaml.cs">
+      <Link>Samples\RelativePanels\Sample3.xaml.cs</Link>
       <DependentUpon>Sample3.xaml</DependentUpon>
     </Compile>
-    <Compile Include="..\TestApp\Samples\RelativePanel\Sample4.xaml.cs">
-      <Link>Samples\RelativePanel\Sample4.xaml.cs</Link>
+    <Compile Include="..\TestApp\Samples\RelativePanels\Sample4.xaml.cs">
+      <Link>Samples\RelativePanels\Sample4.xaml.cs</Link>
       <DependentUpon>Sample4.xaml</DependentUpon>
     </Compile>
-    <Compile Include="..\TestApp\Samples\SplitView\SV_Sample1.xaml.cs">
-      <Link>Samples\SplitView\SV_Sample1.xaml.cs</Link>
+    <Compile Include="..\TestApp\Samples\SplitViews\SV_Sample1.xaml.cs">
+      <Link>Samples\SplitViews\SV_Sample1.xaml.cs</Link>
       <DependentUpon>SV_Sample1.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
@@ -142,28 +142,28 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="..\TestApp\Samples\RelativePanel\Sample1.xaml">
-      <Link>Samples\RelativePanel\Sample1.xaml</Link>
+    <Page Include="..\TestApp\Samples\RelativePanels\Sample1.xaml">
+      <Link>Samples\RelativePanels\Sample1.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="..\TestApp\Samples\RelativePanel\Sample2.xaml">
-      <Link>Samples\RelativePanel\Sample2.xaml</Link>
+    <Page Include="..\TestApp\Samples\RelativePanels\Sample2.xaml">
+      <Link>Samples\RelativePanels\Sample2.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="..\TestApp\Samples\RelativePanel\Sample3.xaml">
-      <Link>Samples\RelativePanel\Sample3.xaml</Link>
+    <Page Include="..\TestApp\Samples\RelativePanels\Sample3.xaml">
+      <Link>Samples\RelativePanels\Sample3.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="..\TestApp\Samples\RelativePanel\Sample4.xaml">
-      <Link>Samples\RelativePanel\Sample4.xaml</Link>
+    <Page Include="..\TestApp\Samples\RelativePanels\Sample4.xaml">
+      <Link>Samples\RelativePanels\Sample4.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="..\TestApp\Samples\SplitView\SV_Sample1.xaml">
-      <Link>Samples\SplitView\SV_Sample1.xaml</Link>
+    <Page Include="..\TestApp\Samples\SplitViews\SV_Sample1.xaml">
+      <Link>Samples\SplitViews\SV_Sample1.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

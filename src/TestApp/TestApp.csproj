@@ -55,19 +55,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Samples\RelativePanel\Sample1.xaml.cs">
+    <Compile Include="Samples\RelativePanels\Sample1.xaml.cs">
       <DependentUpon>Sample1.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Samples\RelativePanel\Sample2.xaml.cs">
+    <Compile Include="Samples\RelativePanels\Sample2.xaml.cs">
       <DependentUpon>Sample2.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Samples\RelativePanel\Sample3.xaml.cs">
+    <Compile Include="Samples\RelativePanels\Sample3.xaml.cs">
       <DependentUpon>Sample3.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Samples\RelativePanel\Sample4.xaml.cs">
+    <Compile Include="Samples\RelativePanels\Sample4.xaml.cs">
       <DependentUpon>Sample4.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Samples\SplitView\SV_Sample1.xaml.cs">
+    <Compile Include="Samples\SplitViews\SV_Sample1.xaml.cs">
       <DependentUpon>SV_Sample1.xaml</DependentUpon>
     </Compile>
     <Compile Include="StateTriggers\SimpleStateSample.xaml.cs">
@@ -85,23 +85,23 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Samples\RelativePanel\Sample1.xaml">
+    <Page Include="Samples\RelativePanels\Sample1.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Samples\RelativePanel\Sample2.xaml">
+    <Page Include="Samples\RelativePanels\Sample2.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Samples\RelativePanel\Sample3.xaml">
+    <Page Include="Samples\RelativePanels\Sample3.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Samples\RelativePanel\Sample4.xaml">
+    <Page Include="Samples\RelativePanels\Sample4.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Samples\SplitView\SV_Sample1.xaml">
+    <Page Include="Samples\SplitViews\SV_Sample1.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
