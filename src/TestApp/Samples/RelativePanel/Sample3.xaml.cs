@@ -4,7 +4,7 @@ using Windows.UI.Xaml.Controls;
 using System.Windows.Controls;
 #endif
 
-namespace TestApp.Shared
+namespace TestApp.Samples.RelativePanels
 {
     public sealed partial class Sample3 : UserControl
     {

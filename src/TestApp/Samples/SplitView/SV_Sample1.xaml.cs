@@ -4,7 +4,7 @@ using Windows.UI.Xaml.Controls;
 using System.Windows.Controls;
 #endif
 
-namespace TestApp.Shared.SplitViews
+namespace TestApp.Samples.SplitViews
 {
     public sealed partial class Sample1 : UserControl
     {

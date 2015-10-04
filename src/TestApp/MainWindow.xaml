@@ -2,13 +2,24 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:local="clr-namespace:TestApp"
-		xmlns:localShared="clr-namespace:TestApp.Shared"
+		xmlns:panelSamples="clr-namespace:TestApp.Samples.RelativePanels"
 		xmlns:sampleTriggers="clr-namespace:TestApp.StateTriggers"
-        Title="MainWindow" Height="350" Width="525">
-	<Grid>
-		<localShared:Sample2 Margin="20" BorderBrush="CornflowerBlue" BorderThickness="15" />
-		<!--<sampleTriggers:SimpleStateSample />-->
-	</Grid>
+        Title="MainWindow" Height="800" Width="1280">
+	<SplitView DisplayMode="Inline" IsPaneOpen="True">
+		<SplitView.Pane>
+			<StackPanel Margin="10">
+				<TextBlock Text="Samples" FontWeight="Bold" FontSize="20" />
+				<ListView>
+					
+				</ListView>
+			</StackPanel>
+		</SplitView.Pane>
+
+		<Grid>
+			<panelSamples:Sample2 Margin="20" BorderBrush="CornflowerBlue" BorderThickness="15" />
+			<!--<sampleTriggers:SimpleStateSample />-->
+		</Grid>
+	</SplitView>
 </Window>
 
 	
