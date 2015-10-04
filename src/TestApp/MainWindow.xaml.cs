@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Reflection;
 
 namespace TestApp
 {
@@ -23,6 +24,32 @@ namespace TestApp
 		public MainWindow()
 		{
 			InitializeComponent();
+			LoadSamples();
+		}
+
+		private void LoadSamples()
+		{
+			var samples = typeof(TestApp.MainWindow).GetTypeInfo().Assembly.GetTypes().Where(t => t.BaseType == typeof(UserControl) && t.FullName.Contains(".Samples."));
+
+			sampleList.ItemsSource = samples;
+		}
+
+		private void sampleList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			if (e.AddedItems != null)
+			{
+				var t = e.AddedItems[0] as Type;
+				var c = t.GetConstructor(new Type[] { });
+				var sampleinstance = c.Invoke(new object[] { }) as UserControl;
+				sampleView.Children.Clear();
+				try
+				{
+					sampleView.Children.Add(sampleinstance);
+				}
+				catch (System.Exception ex)
+				{
+				}
+			}
 		}
 	}
 }

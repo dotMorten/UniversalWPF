@@ -9,13 +9,13 @@
 		<SplitView.Pane>
 			<StackPanel Margin="10">
 				<TextBlock Text="Samples" FontWeight="Bold" FontSize="20" />
-				<ListView>
+				<ListView x:Name="sampleList" SelectionChanged="sampleList_SelectionChanged">
 					
 				</ListView>
 			</StackPanel>
 		</SplitView.Pane>
 
-		<Grid>
+		<Grid x:Name="sampleView">
 			<panelSamples:Sample2 Margin="20" BorderBrush="CornflowerBlue" BorderThickness="15" />
 			<!--<sampleTriggers:SimpleStateSample />-->
 		</Grid>
