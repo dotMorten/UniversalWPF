@@ -36,7 +36,7 @@ namespace TestApp
 
 		private void sampleList_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-			if (e.AddedItems != null)
+			if (e.AddedItems != null && e.AddedItems.Count > 0)
 			{
 				var t = e.AddedItems[0] as Type;
 				var c = t.GetConstructor(new Type[] { });
