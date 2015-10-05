@@ -65,12 +65,12 @@
 									RelativePanel.AlignVerticalCenterWithPanel="True"
 									RelativePanel.AlignHorizontalCenterWithPanel="True"
 									/>
-			
-			<TextBlock Text="Lorem Ipsom and so on to test text-wrapping etc etc." TextWrapping="Wrap"
+
+			<TextBlock Text="This text is supposed to be wrapping inside the lower-left white area." TextWrapping="Wrap"
 					   RelativePanel.AlignLeftWithPanel="True"
 					   RelativePanel.AlignTopWith="YellowRect"
 					   RelativePanel.AlignBottomWithPanel="True"
-					   VerticalAlignment="Center"
+					   VerticalAlignment="Center" 
 					   RelativePanel.LeftOf="YellowRect"
 					   />
 		</RelativePanel>

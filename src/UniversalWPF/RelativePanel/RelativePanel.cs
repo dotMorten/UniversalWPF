@@ -343,6 +343,11 @@ namespace UniversalWPF
 			foreach (var child in Children.OfType<UIElement>())
 			{
 				double[] rect = arranges[i++];
+				//Measure child again with the new calculated available size
+				//this helps for instance textblocks to reflow the text wrapping
+				//We should probably have done this during the measure step but it would cause a more expensive
+				//measure+arrange layout cycle
+				child.Measure(new Size(Math.Max(0, finalSize.Width - rect[2] - rect[0]), Math.Max(0, finalSize.Height - rect[3] - rect[1])));
 				child.Arrange(new Rect(rect[0], rect[1], Math.Max(0, finalSize.Width - rect[2] - rect[0]), Math.Max(0, finalSize.Height - rect[3] - rect[1])));
 			}
 			return base.ArrangeOverride(finalSize);
