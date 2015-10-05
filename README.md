@@ -1,7 +1,7 @@
 # UniversalWPF
 A set of WPF Controls ported from Windows Universal
 
-NOTE: This is a work in progress. State Triggers are not working yet. RelativePanel _should_ work but needs lots of testing (please help!)
+NOTE: This is a work in progress. State Triggers are not working yet. RelativePanel _should_ work but needs lots of testing (please help!), SplitView is partially working, but needs some work still.
 
 ### Controls
 
