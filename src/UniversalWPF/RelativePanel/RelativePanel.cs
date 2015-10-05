@@ -236,7 +236,16 @@ namespace UniversalWPF
 						{
 							double[] r = (double[])alignRightWith.GetValue(ArrangeStateProperty);
 							if (!double.IsNaN(r[2]))
+							{
 								rect[2] = r[2];
+								if (double.IsNaN(rect[0]))
+								{
+									if (child.GetValue(RelativePanel.AlignLeftWithProperty) == null)
+									{
+										rect[0] = rect[2] + child.DesiredSize.Width;
+									}
+								}
+							}
 						}
 						else
 						{
@@ -260,7 +269,16 @@ namespace UniversalWPF
 						{
 							double[] r = (double[])alignBottomWith.GetValue(ArrangeStateProperty);
 							if (!double.IsNaN(r[3]))
+							{
 								rect[3] = r[3];
+								if (double.IsNaN(rect[1]))
+								{
+									if (child.GetValue(RelativePanel.AlignTopWithProperty) == null)
+									{
+										rect[1] = rect[3] + child.DesiredSize.Height;
+									}
+								}	
+							}
 						}
 						else
 						{
