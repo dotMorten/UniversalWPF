@@ -44,12 +44,57 @@ namespace TestApp
 				sampleView.Children.Clear();
 				try
 				{
-					sampleView.Children.Add(sampleinstance);
+					var ctrl = new ControlExceptionHandler() { Content = sampleinstance };
+                    sampleView.Children.Add(ctrl);
 				}
 				catch (System.Exception ex)
 				{
 				}
 			}
 		}
+
+		private class ControlExceptionHandler : ContentControl
+		{
+			protected override Size ArrangeOverride(Size arrangeBounds)
+			{
+				try
+				{
+					return base.ArrangeOverride(arrangeBounds);
+				}
+				catch (System.Exception ex)
+				{
+					Content = new TextBlock()
+					{
+						Text = "Arrange failed:\n" + ex.Message,
+						FontSize = 20,
+						HorizontalAlignment = HorizontalAlignment.Center,
+						VerticalAlignment = VerticalAlignment.Center,
+						TextWrapping = TextWrapping.Wrap
+					};
+					return base.ArrangeOverride(arrangeBounds);
+				}
+			}
+
+			protected override Size MeasureOverride(Size constraint)
+			{
+				try
+				{
+					return base.MeasureOverride(constraint);
+				}
+				catch (System.Exception ex)
+				{
+					Content = new TextBlock()
+					{
+						Text = "Measure failed:\n" + ex.Message,
+						FontSize = 20,
+						HorizontalAlignment = HorizontalAlignment.Center,
+						VerticalAlignment = VerticalAlignment.Center,
+						TextWrapping = TextWrapping.Wrap
+					};
+					return base.MeasureOverride(constraint);
+				}
+			}
+		}
+
 	}
 }

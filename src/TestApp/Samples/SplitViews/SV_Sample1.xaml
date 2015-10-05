@@ -18,25 +18,30 @@
 			<TextBlock Text="Is Open:" VerticalAlignment="Center" />
 			<CheckBox IsChecked="{Binding IsPaneOpen, ElementName=splitview, Mode=TwoWay}" VerticalAlignment="Center" />
 			<TextBlock Text="Display Mode:" VerticalAlignment="Center" Margin="10,0,0,0" />
-			<ComboBox SelectedItem="{Binding DisplayMode, ElementName=splitview, Mode=TwoWay}" >
+			<ComboBox SelectedItem="{Binding DisplayMode, ElementName=splitview, Mode=TwoWay}" MaxWidth="200" >
 				<SplitViewDisplayMode>Inline</SplitViewDisplayMode>
 				<SplitViewDisplayMode>Overlay</SplitViewDisplayMode>
 				<SplitViewDisplayMode>CompactInline</SplitViewDisplayMode>
 				<SplitViewDisplayMode>CompactOverlay</SplitViewDisplayMode>
 			</ComboBox>
 			<TextBlock Text="Pane placement:" VerticalAlignment="Center" Margin="10,0,0,0"/>
-			<ComboBox SelectedItem="{Binding PanePlacement, ElementName=splitview, Mode=TwoWay}" >
+			<ComboBox SelectedItem="{Binding PanePlacement, ElementName=splitview, Mode=TwoWay}" MaxWidth="200" >
 				<SplitViewPanePlacement>Left</SplitViewPanePlacement>
 				<SplitViewPanePlacement>Right</SplitViewPanePlacement>
 			</ComboBox>
+			<TextBlock Text="Cancel close:" VerticalAlignment="Center" Margin="10,0,0,0"/>
+			<CheckBox  VerticalAlignment="Center" x:Name="cancelClose" />
 
 		</StackPanel>
 
-		<SplitView DisplayMode="Inline" IsPaneOpen="True" OpenPaneLength="150" Grid.Row="1" x:Name="splitview">
+		<SplitView DisplayMode="Inline" IsPaneOpen="True" OpenPaneLength="150" Grid.Row="1" x:Name="splitview"
+				   PaneBackground="Red"
+				   PaneClosing="splitview_PaneClosing"
+				   >
 			<SplitView.Pane>
-				<Grid Background="LightGreen">
-					<TextBlock Text="This is the pane content area and should be green"
-						   TextWrapping="Wrap" Margin="20"
+				<Grid Background="LightGreen" Margin="48,0,0,0">
+					<TextBlock Text="This is the pane content area and should be green, and compact area red"
+						   TextWrapping="Wrap" Margin="10"
 						   FontSize="20" Foreground="White"
 						   HorizontalAlignment="Center"
 						   VerticalAlignment="Center"
