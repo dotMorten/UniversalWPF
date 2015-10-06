@@ -9,7 +9,7 @@ NOTE: This is a work in progress. State Triggers are not working yet. RelativePa
  
  ![capture-3](https://cloud.githubusercontent.com/assets/1378165/10120048/b76250f0-645e-11e5-9b4d-2a0d7026a467.gif)
 
- - SplitView (Very much work in progress - doesn't animate in/out or render the side pane)
+ - SplitView (Very much work in progress - doesn't animate in/out and closed compact mode isn't rendering)
 
  - StateTrigger / AdaptiveTrigger (API complete, functionality not so much)
  
