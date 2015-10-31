@@ -57,6 +57,7 @@
     <Compile Include="SplitView\SplitView.cs" />
     <Compile Include="StateTriggers\StateTrigger.cs" />
     <Compile Include="StateTriggers\StateTriggerBase.cs" />
+    <Compile Include="StateTriggers\VisualStateManagerHook.cs" />
     <Compile Include="StateTriggers\VisualStateUwp.cs" />
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:TestApp.StateTriggers"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-	<Grid Background="White">
+	<Grid Background="White" VisualStateUwp.EnableStateTriggers="true">
 		<VisualStateManager.VisualStateGroups>
 			<VisualStateGroup>
 				<VisualStateUwp>
@@ -25,7 +25,17 @@
 						</Storyboard>
 					</VisualStateUwp.Storyboard>
 				</VisualStateUwp>
-			</VisualStateGroup>
+            </VisualStateGroup>
+            <VisualStateGroup>
+                <VisualStateUwp>
+                    <VisualStateUwp.StateTriggers>
+                        <local:TimerStateTrigger Delay="0:0:2" />
+                    </VisualStateUwp.StateTriggers>
+                    <VisualStateUwp.Setters>
+                        <Setter TargetName="bottomPanel" Property="Rectangle.Fill" Value="Green" />
+                    </VisualStateUwp.Setters>
+                </VisualStateUwp>
+            </VisualStateGroup>
 		</VisualStateManager.VisualStateGroups>
 
 		<!--This panel should render green if the VisualState.Trigger is working-->
@@ -34,6 +44,8 @@
 		<!--This panel should render green if the VisualState.Storyboard is working-->
 		<Rectangle x:Name="rightPanel" Fill="Red" Width="100" HorizontalAlignment="Right" />
 
-		<TextBlock Text="This page should have two green sides" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Rectangle x:Name="bottomPanel" Fill="Red" Height="100" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"/>
+        
+		<TextBlock Text="This page should have three green sides. Bottom side should change after two seconds." HorizontalAlignment="Center" VerticalAlignment="Center" />
 	</Grid>
 </UserControl>

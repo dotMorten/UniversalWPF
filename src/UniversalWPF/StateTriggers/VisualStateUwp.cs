@@ -1,127 +1,169 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Markup;
+using System.Windows;
+using UniversalWPF.StateTriggers;
 
 namespace UniversalWPF
 {
-	public class VisualStateUwp : System.Windows.VisualState, System.ComponentModel.ISupportInitialize
-	{
-		[System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
-		public class SetterBaseCollection : ObservableCollection<System.Windows.Setter> { }
-        private SetterBaseCollection _setters;
-		private ObservableCollection<StateTriggerBase> _triggers;
+    public class VisualStateUwp : VisualState
+    {
+        private FrameworkElement element;
+
+        public static readonly DependencyProperty EnableStateTriggersProperty = DependencyProperty.RegisterAttached(
+            "EnableStateTriggers",
+            typeof(bool),
+            typeof(VisualStateUwp),
+            new PropertyMetadata(false, EnableStateTriggersChanged));
 
         public VisualStateUwp()
-		{
-			_setters = new SetterBaseCollection();
-			_triggers = new ObservableCollection<StateTriggerBase>();
-			_triggers.CollectionChanged += triggers_CollectionChanged;
-			_setters.CollectionChanged += _setters_CollectionChanged;
-		}
+        {
+            // Make sure the state has a name, if the user forgot to assign one
+            this.Name = Guid.NewGuid().ToString();
 
-		private void _setters_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-		{
-			SetActive(_triggers.Where(t => t.IsTriggerActive).Any());
-		}
+            this.Setters = new ObservableCollection<Setter>();
+            this.StateTriggers = new ObservableCollection<StateTriggerBase>();
+            this.StateTriggers.CollectionChanged += this.Triggers_CollectionChanged;
+            this.Setters.CollectionChanged += this.Setters_CollectionChanged;
+        }
 
-		private void triggers_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-		{
-			if (e.NewItems != null)
-			{
-				foreach (var item in e.NewItems.OfType<StateTriggerBase>())
-				{
-					item.Owner = this;
-				}
-			}
-			if (e.OldItems != null)
-			{
-				foreach (var item in e.OldItems.OfType<StateTriggerBase>())
-				{
-					if (item.Owner == this)
-						item.Owner = null;
-				}
-			}
-			SetActive(_triggers.Where(t => t.IsTriggerActive).Any());
-		}
+        /// <summary>
+        /// Gets a collection of Setter objects
+        /// </summary>
+        /// <returns>A collection of Setter objects. The default is an empty collection.</returns>
+        public ObservableCollection<Setter> Setters { get; }
 
-        Action afterInit;
-		internal void SetActive(bool active)
-		{
-            if(_isInitializing)
+        /// <summary>
+        /// Gets a collection of StateTriggerBase objects.
+        /// </summary>
+        /// <returns>A collection of StateTriggerBase objects. The default is an empty collection.</returns>
+        public ObservableCollection<StateTriggerBase> StateTriggers { get; }
+
+        /// <summary>
+        /// Gets or sets the the UI element the VisualStateManager is bound to
+        /// </summary>
+        internal FrameworkElement Element
+        {
+            get
             {
-                afterInit = () => SetActive(active);
+                return this.element;
+            }
+
+            set
+            {
+                this.element = value;
+
+                if (this.element.IsLoaded)
+                {
+                    this.SetActive();
+                }
+                else
+                {
+                    this.element.Loaded += this.Element_Loaded;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Sets the value indicating whether state triggers should be enabled for the given element
+        /// </summary>
+        /// <param name="element">Element to enable state triggers on</param>
+        /// <param name="value">Value indicating whether state triggers should be enabled</param>
+        public static void SetEnableStateTriggers(FrameworkElement element, bool value)
+        {
+            element.SetValue(EnableStateTriggersProperty, value);
+        }
+
+        /// <summary>
+        /// Gets the value indicating whether state triggers are enabled for the given element
+        /// </summary>
+        /// <param name="element">Element to enable state triggers on</param>
+        /// <returns>True if the state triggers are enabled on the given element, False otherwise</returns>
+        public static bool GetEnableStateTriggers(FrameworkElement element)
+        {
+            return (bool)element.GetValue(EnableStateTriggersProperty);
+        }
+        
+        private static void EnableStateTriggersChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
+        {
+            var element = obj as FrameworkElement;
+
+            if (element == null)
+            {
+                throw new NotSupportedException("EnableStateTriggers can only be applied on elements of type System.Windows.FrameworkElement");
+            }
+
+            if ((bool)e.NewValue)
+            {
+                VisualStateManagerHook.Set(element);
+            }
+            else
+            {
+                VisualStateManagerHook.UnSet(element);
+            }
+        }
+
+        private void Element_Loaded(object sender, RoutedEventArgs e)
+        {
+            ((FrameworkElement)sender).Loaded -= this.Element_Loaded;
+
+            this.SetActive();
+        }
+
+        private void Setters_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            this.SetActive();
+        }
+
+        private void Triggers_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (var item in e.NewItems.OfType<StateTriggerBase>())
+                {
+                    item.Owner = this;
+                }
+            }
+
+            if (e.OldItems != null)
+            {
+                foreach (var item in e.OldItems.OfType<StateTriggerBase>())
+                {
+                    if (item.Owner == this)
+                    {
+                        item.Owner = null;
+                    }
+                }
+            }
+
+            this.SetActive(this.StateTriggers.Any(t => t.IsTriggerActive));
+        }
+        
+        internal void SetActive(bool active)
+        {
+            if (this.Element == null || !active)
+            {
                 return;
             }
-			if (Storyboard != null)
-			{
-				if (active)
-					Storyboard.Begin();
-				else
-					Storyboard.Stop();
-			}
+            
+            // TODO: Not sure whether the transitions should be enabled. Need to check the behavior of UWP state triggers
+            VisualStateManager.GoToElementState(this.Element, this.Name, false);
 
-			//var storyboard = new System.Windows.Media.Animation.Storyboard();
-			foreach(var setter in _setters.OfType< System.Windows.Setter>())
-			{
-				System.Windows.DependencyProperty property = setter.Property;
-				object value = setter.Value; //Why doesn't this  return the actual value???
-				string targetName = setter.TargetName;
+            foreach (var setter in this.Setters)
+            {
+                var property = setter.Property;
+                var value = setter.Value; // Why doesn't this  return the actual value???
+                var targetName = setter.TargetName;
 
-				//var s = new System.Windows.Media.Animation.DoubleAnimation() { };
-				//System.Windows.Media.Animation.Storyboard.SetTargetName(s, setter.TargetName);
-				//System.Windows.Media.Animation.Storyboard.SetTargetProperty(s, new System.Windows.PropertyPath(string.Format("({0}.{1})", setter.Property.OwnerType.Name, setter.Property.Name )));
-				//s.To = (double)setter.Value;
-				//storyboard.Children.Add(s);
+                var target = this.Element.FindName(targetName) as DependencyObject;
 
-				//This isn't really working... need a better way
-				//if (System.Windows.Application.Current.MainWindow != null)
-				//{
-				//	if (System.Windows.Application.Current.MainWindow.IsLoaded)
-				//	{
-				//		var target = System.Windows.Application.Current.MainWindow.FindName(targetName) as System.Windows.DependencyObject;
-				//		if (target != null)
-				//			target.SetValue(property, value);
-				//	}
-				//	else
-				//		System.Windows.Application.Current.MainWindow.Loaded += (s, e) =>
-				//		{
-				//			var target = System.Windows.Application.Current.MainWindow.FindName(targetName) as System.Windows.DependencyObject;
-				//			if (target != null)
-				//				target.SetValue(property, value);
-				//		};
-				//}
-			}
-			//storyboard.Begin()
-		}
-        private bool _isInitializing;
-
-        void ISupportInitialize.BeginInit()
-        {
-            _isInitializing = true;
+                target?.SetValue(property, value);
+            }
         }
 
-        void ISupportInitialize.EndInit()
+        private void SetActive()
         {
-            _isInitializing = false;
-            if (afterInit != null)
-                afterInit();
+            this.SetActive(this.StateTriggers.Any(t => t.IsTriggerActive));
         }
-
-		/// <summary>
-		/// Gets a collection of Setter objects
-		/// </summary>
-		/// <returns>A collection of Setter objects. The default is an empty collection.</returns>
-		public SetterBaseCollection Setters { get { return _setters; } }
-		
-		/// <summary>
-		/// Gets a collection of StateTriggerBase objects.
-		/// </summary>
-		/// <returns>A collection of StateTriggerBase objects. The default is an empty collection.</returns>
-		public ObservableCollection<StateTriggerBase> StateTriggers { get { return _triggers; } }
-	}
+    }
 }
