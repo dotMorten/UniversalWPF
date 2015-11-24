@@ -240,9 +240,9 @@ namespace UniversalWPF
 								rect[2] = r[2];
 								if (double.IsNaN(rect[0]))
 								{
-									if (child.GetValue(RelativePanel.AlignLeftWithProperty) == null)
+									if (!IsLeftConstrained(child))
 									{
-										rect[0] = rect[2] + child.DesiredSize.Width;
+										rect[0] = finalSize.Width - rect[2] - child.DesiredSize.Width;
 									}
 								}
 							}
@@ -273,9 +273,9 @@ namespace UniversalWPF
 								rect[3] = r[3];
 								if (double.IsNaN(rect[1]))
 								{
-									if (child.GetValue(RelativePanel.AlignTopWithProperty) == null)
+									if (!IsTopConstrained(child))
 									{
-										rect[1] = rect[3] + child.DesiredSize.Height;
+										rect[1] = finalSize.Height - rect[3] - child.DesiredSize.Height;
 									}
 								}	
 							}
@@ -392,5 +392,19 @@ namespace UniversalWPF
 
 			throw new ArgumentException("RelativePanel error: Value must be of type UIElement");
 		}
+
+	    private bool IsLeftConstrained(DependencyObject obj)
+	    {
+	        return RelativePanel.GetAlignLeftWithPanel(obj) ||
+	               RelativePanel.GetAlignLeftWith(obj) != null ||
+	               RelativePanel.GetRightOf(obj) != null;
+	    }
+
+	    private bool IsTopConstrained(DependencyObject obj)
+	    {
+	        return RelativePanel.GetAlignTopWithPanel(obj) ||
+	               RelativePanel.GetAlignTopWith(obj) != null ||
+	               RelativePanel.GetBelow(obj) != null;
+	    }
 	}
 }
