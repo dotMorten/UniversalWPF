@@ -48,7 +48,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SplitView\GridLengthAnimation.cs" />
+    <Compile Include="Animations\GridLengthAnimation.cs" />
     <Compile Include="SplitView\SplitViewDisplayMode.cs" />
     <Compile Include="SplitView\SplitViewPaneClosingEventArgs.cs" />
     <Compile Include="SplitView\SplitViewPanePlacement.cs" />
