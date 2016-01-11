@@ -75,10 +75,6 @@
             HackBindingAnimations(); // FIX ME: Remove this hack when it is possible to bind value of animations.
 
             _paneClipRectangle = GetTemplateChild("PART_PaneClipRectangle") as RectangleGeometry;
-            if (_paneClipRectangle != null)
-            {
-                _paneClipRectangle.Rect = new Rect(0, 0, OpenPaneLength, ActualHeight);
-            }
 
             _lightDismissLayer = GetTemplateChild("PART_LightDismissLayer") as Rectangle;
             if (_lightDismissLayer != null)
