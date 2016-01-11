@@ -110,7 +110,7 @@
         {
             if (_paneClipRectangle != null)
             {
-                _paneClipRectangle.Rect = new Rect(0, 0, OpenPaneLength, ActualHeight);
+                _paneClipRectangle.Rect = new Rect(0, 0, OpenPaneLength, Int16.MaxValue); // We could also use ActualHeight and subscribe to the SizeChanged property
             }
 
             var state = string.Empty;
