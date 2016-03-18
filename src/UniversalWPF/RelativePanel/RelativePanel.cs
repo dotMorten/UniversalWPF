@@ -84,11 +84,6 @@ namespace UniversalWPF
 		/// <returns>The actual size used.</returns>
 		protected override Size ArrangeOverride(Size finalSize)
 		{
-			Dictionary<string, UIElement> elements = new Dictionary<string, UIElement>();
-			foreach (var child in Children.OfType<FrameworkElement>().Where(c => c.Name != null))
-			{
-				elements[child.Name] = child;
-			}
 			//List of margins for each element between the element and panel (left, top, right, bottom)
 			List<double[]> arranges = new List<double[]>(Children.Count);
 			//First pass aligns all sides that aren't constrained by other elements
@@ -111,7 +106,7 @@ namespace UniversalWPF
 					child.GetValue(AlignLeftWithProperty) == null &&
 					child.GetValue(RightOfProperty) == null &&
 					child.GetValue(AlignHorizontalCenterWithProperty) == null &&
-                    !GetAlignHorizontalCenterWithPanel(child))
+					!GetAlignHorizontalCenterWithPanel(child))
 				{
 					if (GetAlignRightWithPanel(child))
 						rect[0] = finalSize.Width - child.DesiredSize.Width;
@@ -183,7 +178,7 @@ namespace UniversalWPF
 					//Calculate left side
 					if (double.IsNaN(rect[0]))
 					{
-						var alignLeftWith = GetDependencyElement(RelativePanel.AlignLeftWithProperty, child, elements);
+						var alignLeftWith = GetDependencyElement(RelativePanel.AlignLeftWithProperty, child);
 						if (alignLeftWith != null)
 						{
 							double[] r = (double[])alignLeftWith.GetValue(ArrangeStateProperty);
@@ -192,7 +187,7 @@ namespace UniversalWPF
 						}
 						else
 						{
-							var rightOf = GetDependencyElement(RelativePanel.RightOfProperty, child, elements);
+							var rightOf = GetDependencyElement(RelativePanel.RightOfProperty, child);
 							if (rightOf != null)
 							{
 								double[] r = (double[])rightOf.GetValue(ArrangeStateProperty);
@@ -207,7 +202,7 @@ namespace UniversalWPF
 					//Calculate top side
 					if (double.IsNaN(rect[1]))
 					{
-						var alignTopWith = GetDependencyElement(RelativePanel.AlignTopWithProperty, child, elements);
+						var alignTopWith = GetDependencyElement(RelativePanel.AlignTopWithProperty, child);
 						if (alignTopWith != null)
 						{
 							double[] r = (double[])alignTopWith.GetValue(ArrangeStateProperty);
@@ -216,7 +211,7 @@ namespace UniversalWPF
 						}
 						else
 						{
-							var below = GetDependencyElement(RelativePanel.BelowProperty, child, elements);
+							var below = GetDependencyElement(RelativePanel.BelowProperty, child);
 							if (below != null)
 							{
 								double[] r = (double[])below.GetValue(ArrangeStateProperty);
@@ -231,7 +226,7 @@ namespace UniversalWPF
 					//Calculate right side
 					if (double.IsNaN(rect[2]))
 					{
-						var alignRightWith = GetDependencyElement(RelativePanel.AlignRightWithProperty, child, elements);
+						var alignRightWith = GetDependencyElement(RelativePanel.AlignRightWithProperty, child);
 						if (alignRightWith != null)
 						{
 							double[] r = (double[])alignRightWith.GetValue(ArrangeStateProperty);
@@ -240,16 +235,16 @@ namespace UniversalWPF
 								rect[2] = r[2];
 								if (double.IsNaN(rect[0]))
 								{
-									if (child.GetValue(RelativePanel.AlignLeftWithProperty) == null)
+									if (!IsLeftConstrained(child))
 									{
-										rect[0] = rect[2] + child.DesiredSize.Width;
+										rect[0] = finalSize.Width - rect[2] - child.DesiredSize.Width;
 									}
 								}
 							}
 						}
 						else
 						{
-							var leftOf = GetDependencyElement(RelativePanel.LeftOfProperty, child, elements);
+							var leftOf = GetDependencyElement(RelativePanel.LeftOfProperty, child);
 							if (leftOf != null)
 							{
 								double[] r = (double[])leftOf.GetValue(ArrangeStateProperty);
@@ -264,7 +259,7 @@ namespace UniversalWPF
 					//Calculate bottom side
 					if (double.IsNaN(rect[3]))
 					{
-						var alignBottomWith = GetDependencyElement(RelativePanel.AlignBottomWithProperty, child, elements);
+						var alignBottomWith = GetDependencyElement(RelativePanel.AlignBottomWithProperty, child);
 						if (alignBottomWith != null)
 						{
 							double[] r = (double[])alignBottomWith.GetValue(ArrangeStateProperty);
@@ -273,16 +268,16 @@ namespace UniversalWPF
 								rect[3] = r[3];
 								if (double.IsNaN(rect[1]))
 								{
-									if (child.GetValue(RelativePanel.AlignTopWithProperty) == null)
+									if (!IsTopConstrained(child))
 									{
-										rect[1] = rect[3] + child.DesiredSize.Height;
+										rect[1] = finalSize.Height - rect[3] - child.DesiredSize.Height;
 									}
 								}	
 							}
 						}
 						else
 						{
-							var above = GetDependencyElement(RelativePanel.AboveProperty, child, elements);
+							var above = GetDependencyElement(RelativePanel.AboveProperty, child);
 							if (above != null)
 							{
 								double[] r = (double[])above.GetValue(ArrangeStateProperty);
@@ -297,7 +292,7 @@ namespace UniversalWPF
 					//Calculate horizontal alignment
 					if (double.IsNaN(rect[0]) && double.IsNaN(rect[2]))
 					{
-						var alignHorizontalCenterWith = GetDependencyElement(RelativePanel.AlignHorizontalCenterWithProperty, child, elements);
+						var alignHorizontalCenterWith = GetDependencyElement(RelativePanel.AlignHorizontalCenterWithProperty, child);
 						if (alignHorizontalCenterWith != null)
 						{
 							double[] r = (double[])alignHorizontalCenterWith.GetValue(ArrangeStateProperty);
@@ -321,7 +316,7 @@ namespace UniversalWPF
 					//Calculate vertical alignment
 					if (double.IsNaN(rect[1]) && double.IsNaN(rect[3]))
 					{
-						var alignVerticalCenterWith = GetDependencyElement(RelativePanel.AlignVerticalCenterWithProperty, child, elements);
+						var alignVerticalCenterWith = GetDependencyElement(RelativePanel.AlignVerticalCenterWithProperty, child);
 						if (alignVerticalCenterWith != null)
 						{
 							double[] r = (double[])alignVerticalCenterWith.GetValue(ArrangeStateProperty);
@@ -371,18 +366,11 @@ namespace UniversalWPF
 		}
 
 		//Gets the element that's referred to in the alignment attached properties
-		private UIElement GetDependencyElement(DependencyProperty property, DependencyObject child, Dictionary<string, UIElement> elements)
+		private UIElement GetDependencyElement(DependencyProperty property, DependencyObject child)
 		{
 			var dependency = child.GetValue(property);
 			if (dependency == null)
 				return null;
-			if (dependency is string)
-			{
-				string name = (string)dependency;
-				if (!elements.ContainsKey(name))
-					throw new ArgumentException(string.Format("RelativePanel error: The name '{0}' does not exist in the current context", name));
-				return elements[name];
-			}
 			if (dependency is UIElement)
 			{
 				if (Children.Contains((UIElement)dependency))
@@ -391,6 +379,20 @@ namespace UniversalWPF
 			}
 
 			throw new ArgumentException("RelativePanel error: Value must be of type UIElement");
+		}
+
+		private bool IsLeftConstrained(DependencyObject obj)
+		{
+			return RelativePanel.GetAlignLeftWithPanel(obj) ||
+				   RelativePanel.GetAlignLeftWith(obj) != null ||
+				   RelativePanel.GetRightOf(obj) != null;
+		}
+
+		private bool IsTopConstrained(DependencyObject obj)
+		{
+			return RelativePanel.GetAlignTopWithPanel(obj) ||
+				   RelativePanel.GetAlignTopWith(obj) != null ||
+				   RelativePanel.GetBelow(obj) != null;
 		}
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -32,6 +34,7 @@ namespace UniversalWPF
 		/// The RelativePanel.Above XAML attached property value of the specified object.
 		/// (The element to position this element above.)
 		/// </returns>
+		[TypeConverter(typeof(NameReferenceConverter))]
 		public static object GetAbove(DependencyObject obj)
 		{
 			return (object)obj.GetValue(AboveProperty);
@@ -95,6 +98,7 @@ namespace UniversalWPF
 		/// The RelativePanel.AlignBottomWith XAML attached property value of the specified object.
 		/// (The element to align this element's bottom edge with.)
 		/// </returns>
+		[TypeConverter(typeof(NameReferenceConverter))]
 		public static object GetAlignBottomWith(DependencyObject obj)
 		{
 			return (object)obj.GetValue(AlignBottomWithProperty);
@@ -157,6 +161,7 @@ namespace UniversalWPF
 		/// The RelativePanel.AlignHorizontalCenterWith XAML attached property value of the
 		/// specified object. (The element to align this element's horizontal center with.)
 		/// </returns>
+		[TypeConverter(typeof(NameReferenceConverter))]
 		public static object GetAlignHorizontalCenterWith(DependencyObject obj)
 		{
 			return (object)obj.GetValue(AlignHorizontalCenterWithProperty);
@@ -220,6 +225,7 @@ namespace UniversalWPF
 		/// The RelativePanel.AlignLeftWith XAML attached property value of the specified
 		/// object. (The element to align this element's left edge with.)
 		/// </returns>
+		[TypeConverter(typeof(NameReferenceConverter))]
 		public static object GetAlignLeftWith(DependencyObject obj)
 		{
 			return (object)obj.GetValue(AlignLeftWithProperty);
@@ -283,6 +289,7 @@ namespace UniversalWPF
 		/// The RelativePanel.AlignRightWith XAML attached property value of the specified
 		/// object. (The element to align this element's right edge with.)
 		/// </returns>
+		[TypeConverter(typeof(NameReferenceConverter))]
 		public static object GetAlignRightWith(DependencyObject obj)
 		{
 			return (object)obj.GetValue(AlignRightWithProperty);
@@ -342,6 +349,7 @@ namespace UniversalWPF
 		/// </summary>
 		/// <param name="obj">The object from which the property value is read.</param>
 		/// <returns>The value to set. (The element to align this element's top edge with.)</returns>
+		[TypeConverter(typeof(NameReferenceConverter))]
 		public static object GetAlignTopWith(DependencyObject obj)
 		{
 			return (object)obj.GetValue(AlignTopWithProperty);
@@ -401,6 +409,7 @@ namespace UniversalWPF
 		/// </summary>
 		/// <param name="obj">The object from which the property value is read.</param>
 		/// <returns>The value to set. (The element to align this element's vertical center with.)</returns>
+		[TypeConverter(typeof(NameReferenceConverter))]
 		public static object GetAlignVerticalCenterWith(DependencyObject obj)
 		{
 			return (object)obj.GetValue(AlignVerticalCenterWithProperty);
@@ -430,6 +439,7 @@ namespace UniversalWPF
 		/// The RelativePanel.Below XAML attached property value of the specified object.
 		/// (The element to position this element below.)								
 		/// </returns>
+		[TypeConverter(typeof(NameReferenceConverter))]
 		public static object GetBelow(DependencyObject obj)
 		{
 			return (object)obj.GetValue(BelowProperty);
@@ -459,6 +469,7 @@ namespace UniversalWPF
 		/// The RelativePanel.LeftOf XAML attached property value of the specified object.
 		/// (The element to position this element to the left of.)								 
 		/// </returns>
+		[TypeConverter(typeof(NameReferenceConverter))]
 		public static object GetLeftOf(DependencyObject obj)
 		{
 			return (object)obj.GetValue(LeftOfProperty);
@@ -488,6 +499,7 @@ namespace UniversalWPF
 		/// The RelativePanel.RightOf XAML attached property value of the specified object.
 		/// (The element to position this element to the right of.)								   
 		/// </returns>
+		[TypeConverter(typeof(NameReferenceConverter))]
 		public static object GetRightOf(DependencyObject obj)
 		{
 			return (object)obj.GetValue(RightOfProperty);
