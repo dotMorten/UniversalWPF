@@ -16,85 +16,85 @@ using System.Reflection;
 
 namespace TestApp
 {
-	/// <summary>
-	/// Interaction logic for MainWindow.xaml
-	/// </summary>
-	public partial class MainWindow : Window
-	{
-		public MainWindow()
-		{
-			InitializeComponent();
-			LoadSamples();
-		}
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        public MainWindow()
+        {
+            InitializeComponent();
+            LoadSamples();
+        }
 
-		private void LoadSamples()
-		{
-			var samples = typeof(TestApp.MainWindow).GetTypeInfo().Assembly.GetTypes().Where(t => t.BaseType == typeof(UserControl) && t.FullName.Contains(".Samples."));
+        private void LoadSamples()
+        {
+            var samples = typeof(TestApp.MainWindow).GetTypeInfo().Assembly.GetTypes().Where(t => t.BaseType == typeof(UserControl) && t.FullName.Contains("Sample"));
 
-			sampleList.ItemsSource = samples;
-		}
+            sampleList.ItemsSource = samples;
+        }
 
-		private void sampleList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			if (e.AddedItems != null && e.AddedItems.Count > 0)
-			{
-				var t = e.AddedItems[0] as Type;
-				var c = t.GetConstructor(new Type[] { });
-				var sampleinstance = c.Invoke(new object[] { }) as UserControl;
-				sampleView.Children.Clear();
-				try
-				{
-					var ctrl = new ControlExceptionHandler() { Content = sampleinstance };
+        private void sampleList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems != null && e.AddedItems.Count > 0)
+            {
+                var t = e.AddedItems[0] as Type;
+                var c = t.GetConstructor(new Type[] { });
+                var sampleinstance = c.Invoke(new object[] { }) as UserControl;
+                sampleView.Children.Clear();
+                try
+                {
+                    var ctrl = new ControlExceptionHandler() { Content = sampleinstance };
                     sampleView.Children.Add(ctrl);
-				}
-				catch (System.Exception ex)
-				{
-				}
-			}
-		}
+                }
+                catch (System.Exception ex)
+                {
+                }
+            }
+        }
 
-		private class ControlExceptionHandler : ContentControl
-		{
-			protected override Size ArrangeOverride(Size arrangeBounds)
-			{
-				try
-				{
-					return base.ArrangeOverride(arrangeBounds);
-				}
-				catch (System.Exception ex)
-				{
-					Content = new TextBlock()
-					{
-						Text = "Arrange failed:\n" + ex.Message,
-						FontSize = 20,
-						HorizontalAlignment = HorizontalAlignment.Center,
-						VerticalAlignment = VerticalAlignment.Center,
-						TextWrapping = TextWrapping.Wrap
-					};
-					return base.ArrangeOverride(arrangeBounds);
-				}
-			}
+        private class ControlExceptionHandler : ContentControl
+        {
+            protected override Size ArrangeOverride(Size arrangeBounds)
+            {
+                try
+                {
+                    return base.ArrangeOverride(arrangeBounds);
+                }
+                catch (System.Exception ex)
+                {
+                    Content = new TextBlock()
+                    {
+                        Text = "Arrange failed:\n" + ex.Message,
+                        FontSize = 20,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        TextWrapping = TextWrapping.Wrap
+                    };
+                    return base.ArrangeOverride(arrangeBounds);
+                }
+            }
 
-			protected override Size MeasureOverride(Size constraint)
-			{
-				try
-				{
-					return base.MeasureOverride(constraint);
-				}
-				catch (System.Exception ex)
-				{
-					Content = new TextBlock()
-					{
-						Text = "Measure failed:\n" + ex.Message,
-						FontSize = 20,
-						HorizontalAlignment = HorizontalAlignment.Center,
-						VerticalAlignment = VerticalAlignment.Center,
-						TextWrapping = TextWrapping.Wrap
-					};
-					return base.MeasureOverride(constraint);
-				}
-			}
-		}
+            protected override Size MeasureOverride(Size constraint)
+            {
+                try
+                {
+                    return base.MeasureOverride(constraint);
+                }
+                catch (System.Exception ex)
+                {
+                    Content = new TextBlock()
+                    {
+                        Text = "Measure failed:\n" + ex.Message,
+                        FontSize = 20,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        TextWrapping = TextWrapping.Wrap
+                    };
+                    return base.MeasureOverride(constraint);
+                }
+            }
+        }
 
-	}
+    }
 }
