@@ -348,8 +348,6 @@
 																   To="*" BeginTime="0:0:0"/>
                                 <local:GridLengthAnimation Storyboard.TargetProperty="(ColumnDefinition.Width)" Storyboard.TargetName="ColumnDefinition2" 
 																   To="{Binding DataContext.CompactPaneGridLength, FallbackValue=0, ElementName=ProxyElement}" BeginTime="0:0:0"/>
-                                <Int32Animation Storyboard.TargetProperty="Width" Storyboard.TargetName="ColumnDefinition2"
-											BeginTime="0:0:0" To="{Binding DataContext.CompactPaneGridLength, FallbackValue=0, ElementName=ProxyElement}" />
                                 <Int32Animation Storyboard.TargetProperty="(Grid.ColumnSpan)" Storyboard.TargetName="ContentRoot"
 											 BeginTime="0:0:0" To="1"/>
                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="PaneRoot">
