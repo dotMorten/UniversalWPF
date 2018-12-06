@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>TestApp</AssemblyName>
+    <RootNamespace>TestApp</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\TestApp\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)">
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Include="..\TestApp\**\*.xaml" Link="%(RecursiveDir)%(Filename)%(Extension)">
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="..\TestApp\obj\Debug\**" />
+    <Compile Remove="obj\**" />
+    <EmbeddedResource Remove="obj\**" />
+    <None Remove="obj\**" />
+    <Page Remove="obj\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="..\TestApp\Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="..\TestApp\App.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ApplicationDefinition Include="..\TestApp\App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\UniversalWPF\UniversalWPF.csproj" />
+  </ItemGroup>
+
+</Project>
