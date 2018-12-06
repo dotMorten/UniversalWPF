@@ -106,6 +106,10 @@
       <Link>Samples\RelativePanels\Sample4.xaml.cs</Link>
       <DependentUpon>Sample4.xaml</DependentUpon>
     </Compile>
+    <Compile Include="..\TestApp\Samples\RelativePanels\Sample5.xaml.cs">
+      <Link>Samples\RelativePanels\Sample5.xaml.cs</Link>
+      <DependentUpon>Sample5.xaml</DependentUpon>
+    </Compile>
     <Compile Include="..\TestApp\Samples\SplitViews\SV_Sample1.xaml.cs">
       <Link>Samples\SplitViews\SV_Sample1.xaml.cs</Link>
       <DependentUpon>SV_Sample1.xaml</DependentUpon>
@@ -156,6 +160,11 @@
     </Page>
     <Page Include="..\TestApp\Samples\RelativePanels\Sample4.xaml">
       <Link>Samples\RelativePanels\Sample4.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\TestApp\Samples\RelativePanels\Sample5.xaml">
+      <Link>Samples\RelativePanels\Sample5.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

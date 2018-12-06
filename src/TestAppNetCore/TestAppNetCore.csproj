@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <Page Include="..\TestApp\**\*.xaml" Link="%(RecursiveDir)%(Filename)%(Extension)">
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
 

@@ -127,7 +127,7 @@ namespace UniversalWPF
                 {
                     if (GetAlignRightWithPanel(child))
                         rect[0] = finalSize.Width - child.DesiredSize.Width;
-                    else if (child.GetValue(AlignRightWithProperty) == null && child.GetValue(AlignHorizontalCenterWithProperty) == null)
+                    else if (child.GetValue(AlignRightWithProperty) == null && child.GetValue(AlignHorizontalCenterWithProperty) == null && child.GetValue(LeftOfProperty) == null)
                         rect[0] = 0; //default fallback to 0
                 }
 
@@ -144,7 +144,7 @@ namespace UniversalWPF
                 {
                     if (GetAlignBottomWithPanel(child))
                         rect[1] = finalSize.Height - child.DesiredSize.Height;
-                    else if (child.GetValue(AlignBottomWithProperty) == null && child.GetValue(AlignVerticalCenterWithProperty) == null)
+                    else if (child.GetValue(AlignBottomWithProperty) == null && child.GetValue(AlignVerticalCenterWithProperty) == null && child.GetValue(AboveProperty) == null)
                         rect[1] = 0; //default fallback to 0
                 }
 
@@ -182,7 +182,7 @@ namespace UniversalWPF
             //Run iterative layout passes
             while (arrangedCount < Children.Count)
             {
-                int lastArrangeCount = arrangedCount;
+                bool valueChanged = false;
                 i = 0;
                 foreach (var child in Children.OfType<UIElement>())
                 {
@@ -200,7 +200,10 @@ namespace UniversalWPF
                         {
                             double[] r = (double[])alignLeftWith.GetValue(ArrangeStateProperty);
                             if (!double.IsNaN(r[0]))
+                            {
                                 rect[0] = r[0];
+                                valueChanged = true;
+                            }
                         }
                         else
                         {
@@ -208,11 +211,16 @@ namespace UniversalWPF
                             if (rightOf != null)
                             {
                                 double[] r = (double[])rightOf.GetValue(ArrangeStateProperty);
-                                rect[0] = finalSize.Width - r[2];
+                                if (!double.IsNaN(r[2]))
+                                {
+                                    rect[0] = finalSize.Width - r[2];
+                                    valueChanged = true;
+                                }
                             }
                             else if (!double.IsNaN(rect[2]))
                             {
                                 rect[0] = finalSize.Width - rect[2] - child.DesiredSize.Width;
+                                valueChanged = true;
                             }
                         }
                     }
@@ -224,7 +232,10 @@ namespace UniversalWPF
                         {
                             double[] r = (double[])alignTopWith.GetValue(ArrangeStateProperty);
                             if (!double.IsNaN(r[1]))
+                            {
                                 rect[1] = r[1];
+                                valueChanged = true;
+                            }
                         }
                         else
                         {
@@ -232,11 +243,16 @@ namespace UniversalWPF
                             if (below != null)
                             {
                                 double[] r = (double[])below.GetValue(ArrangeStateProperty);
-                                rect[1] = finalSize.Height - r[3];
+                                if (!double.IsNaN(r[3]))
+                                {
+                                    rect[1] = finalSize.Height - r[3];
+                                    valueChanged = true;
+                                }
                             }
                             else if (!double.IsNaN(rect[3]))
                             {
                                 rect[1] = finalSize.Height - rect[3] - child.DesiredSize.Height;
+                                valueChanged = true;
                             }
                         }
                     }
@@ -255,6 +271,7 @@ namespace UniversalWPF
                                     if (child.GetValue(RelativePanel.AlignLeftWithProperty) == null)
                                     {
                                         rect[0] = rect[2] + child.DesiredSize.Width;
+                                        valueChanged = true;
                                     }
                                 }
                             }
@@ -265,11 +282,16 @@ namespace UniversalWPF
                             if (leftOf != null)
                             {
                                 double[] r = (double[])leftOf.GetValue(ArrangeStateProperty);
-                                rect[2] = finalSize.Width - r[0];
+                                if (!double.IsNaN(r[0]))
+                                {
+                                    rect[2] = finalSize.Width - r[0];
+                                    valueChanged = true;
+                                }
                             }
                             else if (!double.IsNaN(rect[0]))
                             {
                                 rect[2] = finalSize.Width - rect[0] - child.DesiredSize.Width;
+                                valueChanged = true;
                             }
                         }
                     }
@@ -283,6 +305,7 @@ namespace UniversalWPF
                             if (!double.IsNaN(r[3]))
                             {
                                 rect[3] = r[3];
+                                valueChanged = true;
                                 if (double.IsNaN(rect[1]))
                                 {
                                     if (child.GetValue(RelativePanel.AlignTopWithProperty) == null)
@@ -298,11 +321,16 @@ namespace UniversalWPF
                             if (above != null)
                             {
                                 double[] r = (double[])above.GetValue(ArrangeStateProperty);
-                                rect[3] = finalSize.Height - r[1];
+                                if (!double.IsNaN(r[1]))
+                                {
+                                    rect[3] = finalSize.Height - r[1];
+                                    valueChanged = true;
+                                }
                             }
                             else if (!double.IsNaN(rect[1]))
                             {
                                 rect[3] = finalSize.Height - rect[1] - child.DesiredSize.Height;
+                                valueChanged = true;
                             }
                         }
                     }
@@ -317,6 +345,7 @@ namespace UniversalWPF
                             {
                                 rect[0] = r[0] + (finalSize.Width - r[2] - r[0]) * .5 - child.DesiredSize.Width * .5;
                                 rect[2] = finalSize.Width - rect[0] - child.DesiredSize.Width;
+                                valueChanged = true;
                             }
                         }
                         else
@@ -326,6 +355,7 @@ namespace UniversalWPF
                                 var roomToSpare = finalSize.Width - child.DesiredSize.Width;
                                 rect[0] = roomToSpare * .5;
                                 rect[2] = roomToSpare * .5;
+                                valueChanged = true;
                             }
                         }
                     }
@@ -341,6 +371,7 @@ namespace UniversalWPF
                             {
                                 rect[1] = r[1] + (finalSize.Height - r[3] - r[1]) * .5 - child.DesiredSize.Height * .5;
                                 rect[3] = finalSize.Height - rect[1] - child.DesiredSize.Height;
+                                valueChanged = true;
                             }
                         }
                         else
@@ -350,6 +381,7 @@ namespace UniversalWPF
                                 var roomToSpare = finalSize.Height - child.DesiredSize.Height;
                                 rect[1] = roomToSpare * .5;
                                 rect[3] = roomToSpare * .5;
+                                valueChanged = true;
                             }
                         }
                     }
@@ -360,7 +392,7 @@ namespace UniversalWPF
                         !double.IsNaN(rect[2]) && !double.IsNaN(rect[3]))
                         arrangedCount++;
                 }
-                if (lastArrangeCount == arrangedCount)
+                if (!valueChanged)
                 {
                     //If a layout pass didn't increase number of arranged elements,
                     //there must be a circular dependency

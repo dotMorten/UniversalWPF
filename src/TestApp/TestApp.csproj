@@ -64,6 +64,9 @@
     <Compile Include="Samples\RelativePanels\Sample3.xaml.cs">
       <DependentUpon>Sample3.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Samples\RelativePanels\Sample5.xaml.cs">
+      <DependentUpon>Sample5.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Samples\RelativePanels\Sample4.xaml.cs">
       <DependentUpon>Sample4.xaml</DependentUpon>
     </Compile>
@@ -94,6 +97,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Samples\RelativePanels\Sample3.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Samples\RelativePanels\Sample5.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
