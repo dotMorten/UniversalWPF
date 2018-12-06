@@ -275,7 +275,7 @@ namespace UniversalWPF
 								{
 									if (child.GetValue(RelativePanel.AlignTopWithProperty) == null)
 									{
-										rect[1] = rect[3] + child.DesiredSize.Height;
+										rect[1] = finalSize.Height - rect[3] - child.DesiredSize.Height;
 									}
 								}	
 							}
