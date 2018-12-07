@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <PropertyGroup  Condition="$(MSBuildProjectName.StartsWith('UniversalWPF.'))">
+    <RootNamespace>UniversalWPF</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Morten Nielsen</Authors>
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>https://github.com/dotMorten/UniversalWPF</PackageProjectUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/dotMorten/UniversalWPF/master/LICENSE</PackageLicenseUrl>
+    <PackageTags>WPF</PackageTags>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <ItemGroup Condition="$(MSBuildProjectName.StartsWith('UniversalWPF.'))">
+      <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta-63127-02" PrivateAssets="All"/>
+      <None Include="$(MSBuildThisFileDirectory)\..\LICENSE" Link="LICENSE" Pack="true" PackagePath="" />
+  </ItemGroup>
+</Project>

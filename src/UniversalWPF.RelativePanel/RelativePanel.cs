@@ -49,7 +49,7 @@ namespace UniversalWPF
     {
         // Dependency property for storing intermediate arrange state on the children
         private static readonly DependencyProperty ArrangeStateProperty =
-            DependencyProperty.Register("ArrangeState", typeof(double[]), typeof(StateTrigger), new PropertyMetadata(null));
+            DependencyProperty.Register("ArrangeState", typeof(double[]), typeof(RelativePanel), new PropertyMetadata(null));
 
         /// <summary>
         /// When overridden in a derived class, measures the size in layout required for
