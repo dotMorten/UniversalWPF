@@ -13,16 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace TestApp.StateTriggers
+namespace TestApp.Samples.StateTriggers
 {
-	/// <summary>
-	/// Interaction logic for SimpleStateSample.xaml
-	/// </summary>
-	public partial class SimpleStateSample : UserControl
-	{
-		public SimpleStateSample()
-		{
-			InitializeComponent();
-		}
-	}
+    /// <summary>
+    /// Interaction logic for SimpleStateSample.xaml
+    /// </summary>
+    public partial class AdaptiveTriggerSample : UserControl
+    {
+        public AdaptiveTriggerSample()
+        {
+            InitializeComponent();
+        }
+    }
 }

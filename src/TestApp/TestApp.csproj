@@ -73,7 +73,10 @@
     <Compile Include="Samples\SplitViews\SV_Sample1.xaml.cs">
       <DependentUpon>SV_Sample1.xaml</DependentUpon>
     </Compile>
-    <Compile Include="StateTriggers\SimpleStateSample.xaml.cs">
+    <Compile Include="Samples\StateTriggers\AdaptiveTriggerSample.xaml.cs">
+      <DependentUpon>AdaptiveTriggerSample.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Samples\StateTriggers\SimpleStateSample.xaml.cs">
       <DependentUpon>SimpleStateSample.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
@@ -112,7 +115,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="StateTriggers\SimpleStateSample.xaml">
+    <Page Include="Samples\StateTriggers\AdaptiveTriggerSample.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Samples\StateTriggers\SimpleStateSample.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

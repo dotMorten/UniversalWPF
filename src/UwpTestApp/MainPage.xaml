@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:UwpTestApp"
 	xmlns:localShared="using:TestApp.Samples.RelativePanels"
+    xmlns:localTriggers="using:TestApp.Samples.StateTriggers"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:uwp="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
