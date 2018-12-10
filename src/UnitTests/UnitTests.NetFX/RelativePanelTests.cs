@@ -20,10 +20,10 @@ namespace UnitTests.NetFX
             {
                 var panel = new RelativePanel() { Width = 100, Height = 75, Background = new SolidColorBrush(Colors.Red) };
                 container.Content = panel;
-                var blobs = await ImageAnalysis.FindConnectedPixelsAsync(container, info.ScaleFactor, (c) => c.ToArgb() == System.Drawing.Color.Red.ToArgb());
+                var blobs = await ImageAnalysis.FindConnectedPixelsAsync(panel, info.ScaleFactor, (c) => c.ToArgb() == System.Drawing.Color.Red.ToArgb());
                 Assert.AreEqual(1, blobs.Count);
-                Assert.AreEqual(100, blobs[0].Width);
-                Assert.AreEqual(75, blobs[0].Height);
+                Assert.AreEqual(100, blobs[0].Width, 1);
+                Assert.AreEqual(75, blobs[0].Height, 1);
             });
         }
         [TestMethod]
@@ -31,12 +31,12 @@ namespace UnitTests.NetFX
         {
             await UIHelpers.RunUITest(async (container, info) =>
             {
-                var panel = new RelativePanel() { Background = new SolidColorBrush(Colors.Red) };
+                var panel = new RelativePanel() { Background = new SolidColorBrush(Colors.Red), Margin = new Thickness(20) };
                 container.Content = panel;
-                var blobs = await ImageAnalysis.FindConnectedPixelsAsync(container, info.ScaleFactor, (c) => c.ToArgb() == System.Drawing.Color.Red.ToArgb());
+                var blobs = await ImageAnalysis.FindConnectedPixelsAsync(panel, info.ScaleFactor, (c) => c.ToArgb() == System.Drawing.Color.Red.ToArgb());
                 Assert.AreEqual(1, blobs.Count);
-                Assert.AreEqual(info.Width, blobs[0].Width, 1);
-                Assert.AreEqual(info.Height, blobs[0].Height, 1);
+                Assert.AreEqual(info.Width - 40, blobs[0].Width, 1);
+                Assert.AreEqual(info.Height - 40, blobs[0].Height, 1);
             });
         }
 

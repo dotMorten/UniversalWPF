@@ -28,7 +28,12 @@ namespace UnitTests
                 await tcs.Task;
             }
 
-            Rect bounds = VisualTreeHelper.GetContentBounds(visual);
+            //visual.InvalidateMeasure();
+            //visual.InvalidateVisual();
+            //tcs = new TaskCompletionSource<object>();
+            //visual.LayoutUpdated += (s, e) => tcs.TrySetResult(null);
+            //await tcs.Task;
+            
             RenderTargetBitmap rtb = new RenderTargetBitmap((int)(visual.ActualWidth ),
                                                                 (int)(visual.ActualHeight),
                                                                 96, // * scaleFactor,

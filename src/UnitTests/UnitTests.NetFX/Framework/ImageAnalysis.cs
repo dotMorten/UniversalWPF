@@ -9,11 +9,21 @@ using System.Windows.Media.Imaging;
 
 namespace UnitTests
 {
+    // Method for finding pixels connected to each other. Great for finding UI Elements on the screen
+    // based on pixel color filter.
+    // A good explanation of the Connected Component Analysis can be seen here: https://www.youtube.com/watch?v=ticZclUYy88
+    // Uses a 4-connectivity 2-pass Hoshen-Kopelman algorithm
     public static class ImageAnalysis
     {
+        /// <summary>
+        /// Finds a set of pixels that are connected to each other, Looks at any pixels that are not black and/or transparent
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="scaleFactor"></param>
+        /// <returns></returns>
         public static IList<Blob> FindConnectedPixels(BitmapSource image, double scaleFactor)
         {
-            return FindConnectedPixels(image, scaleFactor, (c) => c.R > 0 || c.G > 0 || c.B > 0);
+            return FindConnectedPixels(image, scaleFactor, (c) => (c.R > 0 || c.G > 0 || c.B > 0) && c.A > 0);
         }
 
         public static async Task<IList<Blob>> FindConnectedPixelsAsync(FrameworkElement element, double scaleFactor, Func<Color, bool> includePixelFunction)
@@ -22,8 +32,6 @@ namespace UnitTests
             return FindConnectedPixels(bitmap, scaleFactor, includePixelFunction);
         }
 
-        // Good explanation of Connected Component Analysis: https://www.youtube.com/watch?v=ticZclUYy88
-        // Uses a 4-connectivity 2-pass Hoshen-Kopelman algorithm
         public static IList<Blob> FindConnectedPixels(BitmapSource image, double scaleFactor, Func<Color, bool> includePixelFunction)
         {
             int width = image.PixelWidth;
@@ -33,7 +41,6 @@ namespace UnitTests
             int bitsPerPixel = 32;
             int stride = image.PixelWidth * bitsPerPixel / 8;
             byte[] pixelbuffer = new byte[image.PixelHeight * stride];
-
             image.CopyPixels(pixelbuffer, stride, 0);
 
             for (int row = 0; row < image.Height; row++)

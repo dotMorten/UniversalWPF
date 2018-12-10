@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace UnitTests
 {
@@ -28,6 +29,7 @@ namespace UnitTests
                     application.Dispatcher.Invoke(() =>
                     {
                       application.MainWindow = window = new System.Windows.Window();
+                      application.MainWindow.Background = new SolidColorBrush(Colors.Black);
                       window.Content = new System.Windows.Controls.ContentControl();
                       window.Show();
                       waitForApplicationRun.SetResult(true);
