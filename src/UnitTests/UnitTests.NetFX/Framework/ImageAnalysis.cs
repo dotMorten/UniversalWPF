@@ -32,6 +32,11 @@ namespace UnitTests
             return FindConnectedPixels(bitmap, scaleFactor, includePixelFunction);
         }
 
+        public static IList<Blob> FindConnectedPixels(BitmapSource image, double scaleFactor, Color color)
+        {
+            return FindConnectedPixels(image, scaleFactor, c => c.ToArgb() == color.ToArgb());
+        }
+
         public static IList<Blob> FindConnectedPixels(BitmapSource image, double scaleFactor, Func<Color, bool> includePixelFunction)
         {
             int width = image.PixelWidth;

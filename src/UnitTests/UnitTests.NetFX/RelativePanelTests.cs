@@ -66,8 +66,8 @@ namespace UnitTests.NetFX
 
                 container.Content = panel;
                 var bitmap = await UIHelpers.RenderAsync(container, info.ScaleFactor);
-                var redblobs = ImageAnalysis.FindConnectedPixels(bitmap, info.ScaleFactor, (c) => c.ToArgb() == System.Drawing.Color.Red.ToArgb());
-                var blueblobs = ImageAnalysis.FindConnectedPixels(bitmap, info.ScaleFactor, (c) => c.ToArgb() == System.Drawing.Color.Blue.ToArgb());
+                var redblobs = ImageAnalysis.FindConnectedPixels(bitmap, info.ScaleFactor, System.Drawing.Color.Red);
+                var blueblobs = ImageAnalysis.FindConnectedPixels(bitmap, info.ScaleFactor, System.Drawing.Color.Blue);
                 Assert.AreEqual(1, redblobs.Count);
                 Assert.AreEqual(150, redblobs[0].Width);
                 Assert.AreEqual(100, redblobs[0].Height);
@@ -79,6 +79,39 @@ namespace UnitTests.NetFX
                 Assert.AreEqual(100, redblobs[0].MinColumn);
                 Assert.AreEqual(0, redblobs[0].MinRow);
                 Assert.AreEqual(399, blueblobs[0].MaxColumn);
+            });
+        }
+        [TestMethod]
+        public async Task RelativePanelXamlTest()
+        {
+            await UIHelpers.RunUITest(async (container, info) =>
+            {
+                container.Content = new TestPages.RelativePanel1() { Width = 600, Height = 400 };
+                var bitmap = await UIHelpers.RenderAsync(container, info.ScaleFactor);
+                var redblobs = ImageAnalysis.FindConnectedPixels(bitmap, info.ScaleFactor, System.Drawing.Color.Red);
+                var blueblobs = ImageAnalysis.FindConnectedPixels(bitmap, info.ScaleFactor, System.Drawing.Color.Blue);
+                var greenblobs = ImageAnalysis.FindConnectedPixels(bitmap, info.ScaleFactor, System.Drawing.Color.Green);
+                var cyanblobs = ImageAnalysis.FindConnectedPixels(bitmap, info.ScaleFactor, System.Drawing.Color.Cyan);
+                var orangeblobs = ImageAnalysis.FindConnectedPixels(bitmap, info.ScaleFactor, System.Drawing.Color.Orange);
+                var purpleblobs = ImageAnalysis.FindConnectedPixels(bitmap, info.ScaleFactor, System.Drawing.Color.Purple);
+                var yellowblobs = ImageAnalysis.FindConnectedPixels(bitmap, info.ScaleFactor, System.Drawing.Color.Yellow);
+                var textblobs = ImageAnalysis.FindConnectedPixels(bitmap, info.ScaleFactor, System.Drawing.Color.CornflowerBlue);
+                Assert.AreEqual(1, redblobs.Count, "Red blob count");
+                Assert.AreEqual(1, blueblobs.Count, "Blue blob count");
+                Assert.AreEqual(1, greenblobs.Count, "Green blob count");
+                Assert.AreEqual(1, cyanblobs.Count, "Cyan blob count");
+                Assert.AreEqual(1, orangeblobs.Count, "Orange blob count");
+                Assert.AreEqual(1, purpleblobs.Count, "Purple blob count");
+                Assert.AreEqual(1, yellowblobs.Count, "Yellow blob count");
+                Assert.IsTrue(textblobs.Count > 1, "Text blob count");
+                var textblob = textblobs.Union(); //Generate bounding box of all text blobs
+                Assert.IsTrue(textblob.MaxColumn < yellowblobs[0].MinColumn, "Text left of yellow");
+                Assert.IsTrue(textblob.MinColumn < yellowblobs[0].MinRow, "Text below yellow top");
+
+                Assert.AreEqual(0, redblobs[0].MinRow, "Red left side");
+                Assert.AreEqual(0, redblobs[0].MinColumn, "Red top side");
+                Assert.AreEqual(100, redblobs[0].Width, "Red width");
+                Assert.AreEqual(100, redblobs[0].Height, "Red height");
             });
         }
     }

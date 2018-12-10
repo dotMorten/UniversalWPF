@@ -1,0 +1,50 @@
+﻿<UserControl
+    x:Class="UnitTests.TestPages.RelativePanel1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+    
+    <Grid Background="White">
+		<RelativePanel Background="White" >
+			<Rectangle x:Name="RedRect" Fill="Red" MinHeight="100" MinWidth="100"/>
+			<Rectangle x:Name="BlueRect" Fill="Blue" MinHeight="100" MinWidth="100"
+									RelativePanel.RightOf="RedRect" />
+			<Rectangle x:Name="GreenRect" Fill="Green" MinHeight="100" Margin="0,5,0,0"
+									RelativePanel.Below="RedRect"
+									RelativePanel.AlignLeftWith="RedRect"
+									RelativePanel.AlignRightWith="BlueRect"/>
+			<Rectangle Fill="Yellow" MinHeight="100" x:Name="YellowRect"
+									RelativePanel.Below="GreenRect"
+									RelativePanel.AlignLeftWith="BlueRect"
+									RelativePanel.AlignRightWithPanel="True"
+									RelativePanel.AlignBottomWithPanel="True"/>
+			
+			<Rectangle x:Name="PurpleRect" Fill="Purple" MinHeight="50"
+								    RelativePanel.AlignBottomWith="GreenRect"
+									RelativePanel.RightOf="BlueRect"
+									RelativePanel.AlignRightWithPanel="True" />
+
+			<Rectangle x:Name="OrangeRect" Fill="Orange" MinHeight="50" MinWidth="50"
+								    RelativePanel.AlignTopWith="GreenRect"
+									RelativePanel.AlignRightWithPanel="True" />
+
+			<Rectangle x:Name="CyanRect" Fill="Cyan" MinHeight="50" MinWidth="50"
+								    RelativePanel.AlignVerticalCenterWith="BlueRect"
+								    RelativePanel.AlignHorizontalCenterWith="PurpleRect"
+									/>
+
+			<TextBlock Text="This text is supposed to be wrapping inside the lower-left white area." TextWrapping="Wrap"
+					   RelativePanel.AlignLeftWithPanel="True"
+					   RelativePanel.AlignTopWith="YellowRect"
+					   RelativePanel.AlignBottomWithPanel="True"
+					   VerticalAlignment="Center"  Foreground="CornflowerBlue"
+					   RelativePanel.LeftOf="YellowRect"
+					   />
+		</RelativePanel>
+
+	</Grid>
+</UserControl>
