@@ -55,6 +55,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="KeyValuePanel.cs" />
+    <Compile Include="Samples\EnumValuesConverter.cs" />
     <Compile Include="Samples\RelativePanels\Sample1.xaml.cs">
       <DependentUpon>Sample1.xaml</DependentUpon>
     </Compile>
