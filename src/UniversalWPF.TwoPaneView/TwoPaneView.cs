@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -10,6 +8,14 @@ namespace UniversalWPF
     /// <summary>
     /// Represents a container with two views that size and position content in the available space, either side-by-side or top-bottom.
     /// </summary>
+    [TemplatePart(Name = c_columnLeftName, Type = typeof(ColumnDefinition))]
+    [TemplatePart(Name = c_columnMiddleName, Type = typeof(ColumnDefinition))]
+    [TemplatePart(Name = c_columnRightName, Type = typeof(ColumnDefinition))]
+    [TemplatePart(Name = c_rowTopName, Type = typeof(RowDefinition))]
+    [TemplatePart(Name = c_rowMiddleName, Type = typeof(RowDefinition))]
+    [TemplatePart(Name = c_rowBottomName, Type = typeof(RowDefinition))]
+    [TemplatePart(Name = c_pane1ScrollViewerName, Type = typeof(ScrollViewer))]
+    [TemplatePart(Name = c_pane2ScrollViewerName, Type = typeof(ScrollViewer))]
     public class TwoPaneView : Control
     {
         private const string c_pane1ScrollViewerName = "PART_Pane1ScrollViewer";
@@ -20,19 +26,19 @@ namespace UniversalWPF
         private const string c_rowTopName       = "PART_RowTop";
         private const string c_rowMiddleName    = "PART_RowMiddle";
         private const string c_rowBottomName    = "PART_RowBottom";
-
-        private const double c_defaultMinWideModeWidth = 641.0 ;
+        private const double c_defaultMinWideModeWidth = 641.0;
         private const double c_defaultMinTallModeHeight = 641.0;
-        static readonly GridLength c_pane1LengthDefault = new GridLength(1, GridUnitType.Star);
-        static readonly GridLength c_pane2LengthDefault = new GridLength(1, GridUnitType.Star);
+
+        private static readonly GridLength c_pane1LengthDefault = new GridLength(1, GridUnitType.Star);
+        private static readonly GridLength c_pane2LengthDefault = new GridLength(1, GridUnitType.Star);
         private bool m_loaded = false;
         private ViewMode m_currentMode = ViewMode.None;
-        ColumnDefinition m_columnLeft;
-        ColumnDefinition m_columnMiddle;
-        ColumnDefinition m_columnRight;
-        RowDefinition m_rowTop;
-        RowDefinition m_rowMiddle;
-        RowDefinition m_rowBottom;
+        private ColumnDefinition m_columnLeft;
+        private ColumnDefinition m_columnMiddle;
+        private ColumnDefinition m_columnRight;
+        private RowDefinition m_rowTop;
+        private RowDefinition m_rowMiddle;
+        private RowDefinition m_rowBottom;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TwoPaneView"/> class.
