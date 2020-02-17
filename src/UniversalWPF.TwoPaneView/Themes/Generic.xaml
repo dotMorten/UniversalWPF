@@ -1,0 +1,187 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:local="clr-namespace:UniversalWPF">
+
+    <Style x:Key="DefaultTwoPaneViewStyle" TargetType="{x:Type local:TwoPaneView}">
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="MinWideModeWidth" Value="641"/>
+        <Setter Property="MinTallModeHeight" Value="641"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:TwoPaneView}">
+                    <Grid x:Name="RootGrid" Background="{TemplateBinding Background}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="ModeStates">
+                                <VisualState x:Name="ViewMode_LeftRight"/>
+
+                                <VisualState x:Name="ViewMode_RightLeft">
+                                    <Storyboard>
+                                        <local:Int32Animation Storyboard.TargetName="PART_Pane1ScrollViewer" Storyboard.TargetProperty="(Grid.Column)" Value="2" />
+                                        <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Pane1ScrollViewer" Storyboard.TargetProperty="(Grid.Column)">
+                                            <DiscreteObjectKeyFrame Value="2" />
+                                        </ObjectAnimationUsingKeyFrames>-->
+                                        <local:Int32Animation Storyboard.TargetName="PART_Pane2ScrollViewer" Storyboard.TargetProperty="(Grid.Column)" Value="1" />
+                                        <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Pane2ScrollViewer" Storyboard.TargetProperty="(Grid.Column)">
+                                            <DiscreteObjectKeyFrame Value="1" />
+                                        </ObjectAnimationUsingKeyFrames>-->
+                                    </Storyboard>
+                                    <!--<VisualState.Setters>
+                                        <contract7NotPresent:Setter Target="PART_Pane1.(Grid.Column)" Value="2"/>
+                                        <contract7NotPresent:Setter Target="PART_Pane2.(Grid.Column)" Value="0"/>
+
+                                        <contract7Present:Setter Target="PART_Pane1ScrollViewer.(Grid.Column)" Value="2"/>
+                                        <contract7Present:Setter Target="PART_Pane2ScrollViewer.(Grid.Column)" Value="0"/>
+                                    </VisualState.Setters>-->
+                                </VisualState>
+
+                                <VisualState x:Name="ViewMode_TopBottom">
+                                    <Storyboard>
+                                        <local:Int32Animation Storyboard.TargetName="PART_Pane1ScrollViewer" Storyboard.TargetProperty="(Grid.Column)" Value="0" />
+                                        <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Pane1ScrollViewer" Storyboard.TargetProperty="(Grid.Column)">
+                                            <DiscreteObjectKeyFrame Value="0" />
+                                        </ObjectAnimationUsingKeyFrames>-->
+                                        <local:Int32Animation Storyboard.TargetName="PART_Pane1ScrollViewer" Storyboard.TargetProperty="(Grid.Row)" Value="0" />
+                                        <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Pane1ScrollViewer" Storyboard.TargetProperty="(Grid.Row)">
+                                            <DiscreteObjectKeyFrame Value="0" />
+                                        </ObjectAnimationUsingKeyFrames>-->
+                                        <local:Int32Animation Storyboard.TargetName="PART_Pane2ScrollViewer" Storyboard.TargetProperty="(Grid.Column)" Value="0" />
+                                        <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Pane2ScrollViewer" Storyboard.TargetProperty="(Grid.Column)">
+                                            <DiscreteObjectKeyFrame Value="0" />
+                                        </ObjectAnimationUsingKeyFrames>-->
+                                        <local:Int32Animation Storyboard.TargetName="PART_Pane2ScrollViewer" Storyboard.TargetProperty="(Grid.Row)" Value="2" />
+                                        <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Pane2ScrollViewer" Storyboard.TargetProperty="(Grid.Row)">
+                                            <DiscreteObjectKeyFrame Value="2" />
+                                        </ObjectAnimationUsingKeyFrames>-->
+                                    </Storyboard>
+                                    <!--<VisualState.Setters>
+                                        <contract7NotPresent:Setter Target="PART_Pane1.(Grid.Column)" Value="0"/>
+                                        <contract7NotPresent:Setter Target="PART_Pane1.(Grid.Row)" Value="0"/>
+
+                                        <contract7NotPresent:Setter Target="PART_Pane2.(Grid.Column)" Value="0"/>
+                                        <contract7NotPresent:Setter Target="PART_Pane2.(Grid.Row)" Value="2"/>
+
+                                        <contract7Present:Setter Target="PART_Pane1ScrollViewer.(Grid.Column)" Value="0"/>
+                                        <contract7Present:Setter Target="PART_Pane1ScrollViewer.(Grid.Row)" Value="0"/>
+
+                                        <contract7Present:Setter Target="PART_Pane2ScrollViewer.(Grid.Column)" Value="0"/>
+                                        <contract7Present:Setter Target="PART_Pane2ScrollViewer.(Grid.Row)" Value="2"/>
+                                    </VisualState.Setters>-->
+                                </VisualState>
+
+                                <VisualState x:Name="ViewMode_BottomTop">
+                                    <Storyboard>
+                                        <local:Int32Animation Storyboard.TargetName="PART_Pane1ScrollViewer" Storyboard.TargetProperty="(Grid.Column)" Value="0" />
+                                        <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Pane1ScrollViewer" Storyboard.TargetProperty="(Grid.Column)">
+                                            <DiscreteObjectKeyFrame Value="0" />
+                                        </ObjectAnimationUsingKeyFrames>-->
+                                        <local:Int32Animation Storyboard.TargetName="PART_Pane1ScrollViewer" Storyboard.TargetProperty="(Grid.Row)" Value="2" />
+                                        <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Pane1ScrollViewer" Storyboard.TargetProperty="(Grid.Row)">
+                                            <DiscreteObjectKeyFrame Value="2" />
+                                        </ObjectAnimationUsingKeyFrames>-->
+                                        <local:Int32Animation Storyboard.TargetName="PART_Pane2ScrollViewer" Storyboard.TargetProperty="(Grid.Column)" Value="0" />
+                                        <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Pane2ScrollViewer" Storyboard.TargetProperty="(Grid.Column)">
+                                            <DiscreteObjectKeyFrame Value="0" />
+                                        </ObjectAnimationUsingKeyFrames>-->
+                                        <local:Int32Animation Storyboard.TargetName="PART_Pane2ScrollViewer" Storyboard.TargetProperty="(Grid.Row)" Value="0" />
+                                        <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Pane2ScrollViewer" Storyboard.TargetProperty="(Grid.Row)">
+                                            <DiscreteObjectKeyFrame Value="0" />
+                                        </ObjectAnimationUsingKeyFrames>-->
+                                    </Storyboard>
+                                    <!--<VisualState.Setters>
+                                        <contract7NotPresent:Setter Target="PART_Pane1.(Grid.Column)" Value="0"/>
+                                        <contract7NotPresent:Setter Target="PART_Pane1.(Grid.Row)" Value="2"/>
+
+                                        <contract7NotPresent:Setter Target="PART_Pane2.(Grid.Column)" Value="0"/>
+                                        <contract7NotPresent:Setter Target="PART_Pane2.(Grid.Row)" Value="0"/>
+
+                                        <contract7Present:Setter Target="PART_Pane1ScrollViewer.(Grid.Column)" Value="0"/>
+                                        <contract7Present:Setter Target="PART_Pane1ScrollViewer.(Grid.Row)" Value="2"/>
+
+                                        <contract7Present:Setter Target="PART_Pane2ScrollViewer.(Grid.Column)" Value="0"/>
+                                        <contract7Present:Setter Target="PART_Pane2ScrollViewer.(Grid.Row)" Value="0"/>
+                                    </VisualState.Setters>-->
+                                </VisualState>
+
+                                <VisualState x:Name="ViewMode_OneOnly">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Pane2ScrollViewer" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame Value="Collapsed" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                    <!--<VisualState.Setters>
+                                        <contract7NotPresent:Setter Target="PART_Pane2.Visibility" Value="Collapsed"/>
+
+                                        <contract7Present:Setter Target="PART_Pane2ScrollViewer.Visibility" Value="Collapsed"/>
+                                    </VisualState.Setters>-->
+                                </VisualState>
+
+                                <VisualState x:Name="ViewMode_TwoOnly">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Pane1ScrollViewer" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame Value="Collapsed" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <local:Int32Animation Storyboard.TargetName="PART_Pane2ScrollViewer" Storyboard.TargetProperty="(Grid.Column)" Value="0" />
+                                        <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Pane2ScrollViewer" Storyboard.TargetProperty="(Grid.Column)">
+                                            <DiscreteObjectKeyFrame Value="0" />
+                                        </ObjectAnimationUsingKeyFrames>-->
+                                    </Storyboard>
+                                    <!--<VisualState.Setters>
+                                        <contract7NotPresent:Setter Target="PART_Pane1.Visibility" Value="Collapsed"/>
+                                        <contract7NotPresent:Setter Target="PART_Pane2.(Grid.Column)" Value="0"/>
+
+                                        <contract7Present:Setter Target="PART_Pane1ScrollViewer.Visibility" Value="Collapsed"/>
+                                        <contract7Present:Setter Target="PART_Pane2ScrollViewer.(Grid.Column)" Value="0"/>
+                                    </VisualState.Setters>-->
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition x:Name="PART_ColumnLeft" Width="Auto"/>
+                            <ColumnDefinition x:Name="PART_ColumnMiddle" Width="0"/>
+                            <ColumnDefinition x:Name="PART_ColumnRight" Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition x:Name="PART_RowTop" Height="*"/>
+                            <RowDefinition x:Name="PART_RowMiddle" Height="0"/>
+                            <RowDefinition x:Name="PART_RowBottom" Height="0"/>
+                        </Grid.RowDefinitions>
+
+                        <ScrollViewer
+                                x:Name="PART_Pane1ScrollViewer"
+                                Grid.Column="0"
+                                VerticalScrollBarVisibility="Auto">
+                            <!--<Border Child="{TemplateBinding Pane1}" />-->
+                            <ContentControl Content="{TemplateBinding Pane1}" />
+                        </ScrollViewer>
+
+                        <ScrollViewer
+                                x:Name="PART_Pane2ScrollViewer"
+                                Grid.Column="2"
+                                VerticalScrollBarVisibility="Auto">
+                            <!--<Border Child="{TemplateBinding Pane2}" />-->
+                            <ContentControl Content="{TemplateBinding Pane2}" />
+                        </ScrollViewer>
+
+                        <!--<contract7NotPresent:Border
+                            x:Name="PART_Pane1"
+                            Grid.Column="0"
+                            Child="{TemplateBinding Pane1}"/>
+
+                        <contract7NotPresent:Border
+                            x:Name="PART_Pane2"
+                            Grid.Column="2"
+                            Child="{TemplateBinding Pane2}"/>-->
+
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:TwoPaneView}" BasedOn="{StaticResource DefaultTwoPaneViewStyle}" />
+</ResourceDictionary>

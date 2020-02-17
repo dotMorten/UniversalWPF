@@ -79,6 +79,9 @@
     <Compile Include="Samples\StateTriggers\SimpleStateSample.xaml.cs">
       <DependentUpon>SimpleStateSample.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Samples\TwoPaneViews\Sample1.xaml.cs">
+      <DependentUpon>Sample1.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -123,6 +126,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Samples\TwoPaneViews\Sample1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -163,6 +170,10 @@
     <ProjectReference Include="..\UniversalWPF.StateTriggers\UniversalWPF.StateTriggers.csproj">
       <Project>{601a0fba-133a-4e0e-9955-1eb01fc8eb11}</Project>
       <Name>UniversalWPF.StateTriggers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UniversalWPF.TwoPaneView\UniversalWPF.TwoPaneView.csproj">
+      <Project>{ec3b68c6-065e-4911-a1c6-70f3aed91722}</Project>
+      <Name>UniversalWPF.TwoPaneView</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
