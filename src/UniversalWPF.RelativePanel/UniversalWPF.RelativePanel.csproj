@@ -4,6 +4,7 @@
     <TargetFrameworks>netcoreapp3.0;net452</TargetFrameworks>
     <OutputType>Library</OutputType>
     <PackageTags>$(PackageTags) RelativePanel</PackageTags>
+    <UseWpf>true</UseWpf>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)'=='net452'">

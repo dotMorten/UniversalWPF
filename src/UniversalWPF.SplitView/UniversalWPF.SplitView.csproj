@@ -4,6 +4,7 @@
     <TargetFrameworks>netcoreapp3.0;net452</TargetFrameworks>
     <OutputType>Library</OutputType>
     <PackageTags>$(PackageTags) SplitView</PackageTags>
+    <UseWpf>true</UseWpf>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)'=='net452'">
@@ -13,20 +14,6 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="Themes\Generic.xaml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Include="Themes\Generic.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-   
   </ItemGroup>
 
 </Project>

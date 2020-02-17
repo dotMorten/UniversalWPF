@@ -4,6 +4,7 @@
     <TargetFrameworks>netcoreapp3.0;net452</TargetFrameworks>
     <OutputType>Library</OutputType>
     <PackageTags>$(PackageTags) AdaptiveTriggers StateTriggers</PackageTags>
+    <UseWpf>true</UseWpf>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)'=='net452'">
@@ -13,12 +14,6 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="Themes\**" />
-    <EmbeddedResource Remove="Themes\**" />
-    <None Remove="Themes\**" />
   </ItemGroup>
 
   <ItemGroup>
