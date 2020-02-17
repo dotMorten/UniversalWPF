@@ -8,34 +8,6 @@ using System.Windows.Media;
 namespace UniversalWPF
 {
     /// <summary>
-    /// Internal use. Probably use Int32AnimationUsingKeyFrames instead
-    /// </summary>
-    [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
-    public class Int32Animation : System.Windows.Media.Animation.AnimationTimeline
-    {
-        /// <inheritdoc/>
-        protected override Freezable CreateInstanceCore() => new Int32Animation();
-        /// <inheritdoc/>
-        public override Type TargetPropertyType => typeof(int);
-        /// <inheritdoc/>
-        public override object GetCurrentValue(object defaultOriginValue, object defaultDestinationValue, System.Windows.Media.Animation.AnimationClock animationClock)
-        {
-            return Value;
-        }
-
-        /// Gets or sets the value to set
-        public int Value
-        {
-            get { return (int)GetValue(ValueProperty); }
-            set { SetValue(ValueProperty, value); }
-        }
-
-        /// <inheritdoc/>
-        public static readonly DependencyProperty ValueProperty =
-            DependencyProperty.Register("Value", typeof(int), typeof(TwoPaneView), new PropertyMetadata(0));
-    }
-
-    /// <summary>
     /// Represents a container with two views that size and position content in the available space, either side-by-side or top-bottom.
     /// </summary>
     public class TwoPaneView : Control
