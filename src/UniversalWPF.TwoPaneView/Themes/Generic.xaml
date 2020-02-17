@@ -19,10 +19,10 @@
 
                                 <VisualState x:Name="ViewMode_RightLeft">
                                     <Storyboard>
-                                        <Int32AnimationUsingKeyFrames Storyboard.TargetName="PART_Pane1ScrollViewer" Storyboard.TargetProperty="(Grid.Column)">
+                                        <Int32AnimationUsingKeyFrames Storyboard.TargetName="PART_Pane1" Storyboard.TargetProperty="(Grid.Column)">
                                             <DiscreteInt32KeyFrame Value="2" KeyTime="0" />
                                         </Int32AnimationUsingKeyFrames>
-                                        <Int32AnimationUsingKeyFrames Storyboard.TargetName="PART_Pane2ScrollViewer" Storyboard.TargetProperty="(Grid.Column)">
+                                        <Int32AnimationUsingKeyFrames Storyboard.TargetName="PART_Pane2" Storyboard.TargetProperty="(Grid.Column)">
                                             <DiscreteInt32KeyFrame Value="0" KeyTime="0" />
                                         </Int32AnimationUsingKeyFrames>
                                     </Storyboard>
@@ -30,16 +30,16 @@
 
                                 <VisualState x:Name="ViewMode_TopBottom">
                                     <Storyboard>
-                                        <Int32AnimationUsingKeyFrames Storyboard.TargetName="PART_Pane1ScrollViewer" Storyboard.TargetProperty="(Grid.Column)">
+                                        <Int32AnimationUsingKeyFrames Storyboard.TargetName="PART_Pane1" Storyboard.TargetProperty="(Grid.Column)">
                                             <DiscreteInt32KeyFrame Value="0" KeyTime="0" />
                                         </Int32AnimationUsingKeyFrames>
-                                        <Int32AnimationUsingKeyFrames Storyboard.TargetName="PART_Pane1ScrollViewer" Storyboard.TargetProperty="(Grid.Row)">
+                                        <Int32AnimationUsingKeyFrames Storyboard.TargetName="PART_Pane1" Storyboard.TargetProperty="(Grid.Row)">
                                             <DiscreteInt32KeyFrame Value="0" KeyTime="0" />
                                         </Int32AnimationUsingKeyFrames>
-                                        <Int32AnimationUsingKeyFrames Storyboard.TargetName="PART_Pane2ScrollViewer" Storyboard.TargetProperty="(Grid.Column)">
+                                        <Int32AnimationUsingKeyFrames Storyboard.TargetName="PART_Pane2" Storyboard.TargetProperty="(Grid.Column)">
                                             <DiscreteInt32KeyFrame Value="0" KeyTime="0" />
                                         </Int32AnimationUsingKeyFrames>
-                                        <Int32AnimationUsingKeyFrames Storyboard.TargetName="PART_Pane2ScrollViewer" Storyboard.TargetProperty="(Grid.Row)">
+                                        <Int32AnimationUsingKeyFrames Storyboard.TargetName="PART_Pane2" Storyboard.TargetProperty="(Grid.Row)">
                                             <DiscreteInt32KeyFrame Value="2" KeyTime="0" />
                                         </Int32AnimationUsingKeyFrames>
                                     </Storyboard>
@@ -47,16 +47,16 @@
 
                                 <VisualState x:Name="ViewMode_BottomTop">
                                     <Storyboard>
-                                        <Int32AnimationUsingKeyFrames Storyboard.TargetName="PART_Pane1ScrollViewer" Storyboard.TargetProperty="(Grid.Column)">
+                                        <Int32AnimationUsingKeyFrames Storyboard.TargetName="PART_Pane1" Storyboard.TargetProperty="(Grid.Column)">
                                             <DiscreteInt32KeyFrame Value="0" KeyTime="0" />
                                         </Int32AnimationUsingKeyFrames>
-                                        <Int32AnimationUsingKeyFrames Storyboard.TargetName="PART_Pane1ScrollViewer" Storyboard.TargetProperty="(Grid.Row)">
+                                        <Int32AnimationUsingKeyFrames Storyboard.TargetName="PART_Pane1" Storyboard.TargetProperty="(Grid.Row)">
                                             <DiscreteInt32KeyFrame Value="2" KeyTime="0" />
                                         </Int32AnimationUsingKeyFrames>
-                                        <Int32AnimationUsingKeyFrames Storyboard.TargetName="PART_Pane2ScrollViewer" Storyboard.TargetProperty="(Grid.Column)">
+                                        <Int32AnimationUsingKeyFrames Storyboard.TargetName="PART_Pane2" Storyboard.TargetProperty="(Grid.Column)">
                                             <DiscreteInt32KeyFrame Value="0" KeyTime="0" />
                                         </Int32AnimationUsingKeyFrames>
-                                        <Int32AnimationUsingKeyFrames Storyboard.TargetName="PART_Pane2ScrollViewer" Storyboard.TargetProperty="(Grid.Row)">
+                                        <Int32AnimationUsingKeyFrames Storyboard.TargetName="PART_Pane2" Storyboard.TargetProperty="(Grid.Row)">
                                             <DiscreteInt32KeyFrame Value="0" KeyTime="0" />
                                         </Int32AnimationUsingKeyFrames>
                                     </Storyboard>
@@ -64,7 +64,7 @@
 
                                 <VisualState x:Name="ViewMode_OneOnly">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Pane2ScrollViewer" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Pane2" Storyboard.TargetProperty="(UIElement.Visibility)">
                                             <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" KeyTime="0" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
@@ -72,10 +72,10 @@
 
                                 <VisualState x:Name="ViewMode_TwoOnly">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Pane1ScrollViewer" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Pane1" Storyboard.TargetProperty="(UIElement.Visibility)">
                                             <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" KeyTime="0" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <Int32AnimationUsingKeyFrames Storyboard.TargetName="PART_Pane2ScrollViewer" Storyboard.TargetProperty="(Grid.Column)">
+                                        <Int32AnimationUsingKeyFrames Storyboard.TargetName="PART_Pane2" Storyboard.TargetProperty="(Grid.Column)">
                                             <DiscreteInt32KeyFrame Value="0" KeyTime="0" />
                                         </Int32AnimationUsingKeyFrames>
                                     </Storyboard>
@@ -95,19 +95,17 @@
                             <RowDefinition x:Name="PART_RowBottom" Height="0"/>
                         </Grid.RowDefinitions>
 
-                        <ScrollViewer
-                                x:Name="PART_Pane1ScrollViewer"
-                                Grid.Column="0"
-                                VerticalScrollBarVisibility="Auto">
+                        <Border
+                                x:Name="PART_Pane1"
+                                Grid.Column="0">
                             <ContentControl Content="{TemplateBinding Pane1}" />
-                        </ScrollViewer>
+                        </Border>
 
-                        <ScrollViewer
-                                x:Name="PART_Pane2ScrollViewer"
-                                Grid.Column="2"
-                                VerticalScrollBarVisibility="Auto">
+                        <Border
+                                x:Name="PART_Pane2"
+                                Grid.Column="2">
                             <ContentControl Content="{TemplateBinding Pane2}" />
-                        </ScrollViewer>
+                        </Border>
 
                     </Grid>
                 </ControlTemplate>

@@ -14,12 +14,8 @@ namespace UniversalWPF
     [TemplatePart(Name = c_rowTopName, Type = typeof(RowDefinition))]
     [TemplatePart(Name = c_rowMiddleName, Type = typeof(RowDefinition))]
     [TemplatePart(Name = c_rowBottomName, Type = typeof(RowDefinition))]
-    [TemplatePart(Name = c_pane1ScrollViewerName, Type = typeof(ScrollViewer))]
-    [TemplatePart(Name = c_pane2ScrollViewerName, Type = typeof(ScrollViewer))]
     public class TwoPaneView : Control
     {
-        private const string c_pane1ScrollViewerName = "PART_Pane1ScrollViewer";
-        private const string c_pane2ScrollViewerName = "PART_Pane2ScrollViewer";
         private const string c_columnLeftName   = "PART_ColumnLeft";
         private const string c_columnMiddleName = "PART_ColumnMiddle";
         private const string c_columnRightName  = "PART_ColumnRight";
@@ -58,25 +54,12 @@ namespace UniversalWPF
             m_loaded = true;
             base.OnApplyTemplate();
 
-            // SetScrollViewerProperties(c_pane1ScrollViewerName, m_pane1LoadedRevoker);
-            // SetScrollViewerProperties(c_pane2ScrollViewerName, m_pane2LoadedRevoker);
-
             m_columnLeft = GetTemplateChild(c_columnLeftName) as ColumnDefinition;
             m_columnMiddle = GetTemplateChild(c_columnMiddleName) as ColumnDefinition;
             m_columnRight = GetTemplateChild(c_columnRightName) as ColumnDefinition;
             m_rowTop = GetTemplateChild(c_rowTopName) as RowDefinition;
             m_rowMiddle = GetTemplateChild(c_rowMiddleName) as RowDefinition;
             m_rowBottom = GetTemplateChild(c_rowBottomName) as RowDefinition;
-        }
-
-        private void SetScrollViewerProperties(string scrollViewerName, object revoker)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void OnScrollViewerLoaded(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
         }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs e)
