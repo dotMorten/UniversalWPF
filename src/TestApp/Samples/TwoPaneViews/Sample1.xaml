@@ -33,6 +33,14 @@
         </TwoPaneView>
 
         <testapp:KeyValuePanel>
+            <testapp:KeyValuePanel.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Margin" Value="5,0,5,5" />
+                </Style>
+                <Style TargetType="ComboBox">
+                    <Setter Property="Margin" Value="5,0,0,5" />
+                </Style>
+            </testapp:KeyValuePanel.Resources>
             <TextBlock Text="WideModeConfig" />
             <ComboBox ItemsSource="{Binding Converter={StaticResource enumSource}, ConverterParameter={x:Type TwoPaneViewWideModeConfiguration}}" 
                       SelectedValue="{Binding WideModeConfiguration, Mode=TwoWay, ElementName=twoPaneView}"
@@ -40,6 +48,10 @@
             <TextBlock Text="TallModeConfig" />
             <ComboBox ItemsSource="{Binding Converter={StaticResource enumSource}, ConverterParameter={x:Type TwoPaneViewTallModeConfiguration}}"
                       SelectedValue="{Binding TallModeConfiguration, Mode=TwoWay, ElementName=twoPaneView}"
+                      />
+            <TextBlock Text="Priority" />
+            <ComboBox ItemsSource="{Binding Converter={StaticResource enumSource}, ConverterParameter={x:Type TwoPaneViewPriority}}"
+                      SelectedValue="{Binding PanePriority, Mode=TwoWay, ElementName=twoPaneView}"
                       />
         </testapp:KeyValuePanel>
     </Grid>
