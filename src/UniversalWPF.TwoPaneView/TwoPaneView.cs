@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Interop;
 using System.Windows.Media;
 
 namespace UniversalWPF
@@ -24,6 +25,9 @@ namespace UniversalWPF
         private const string c_rowBottomName    = "PART_RowBottom";
         private const double c_defaultMinWideModeWidth = 641.0;
         private const double c_defaultMinTallModeHeight = 641.0;
+        private const UInt32 WM_SIZE = 0x0005;
+        private const UInt32 WM_WINDOWPOSCHANGED = 0x0047;
+        private const UInt32 WM_WINDOWPOSCHANGING = 0x0046;
 
         private static readonly GridLength c_pane1LengthDefault = new GridLength(1, GridUnitType.Star);
         private static readonly GridLength c_pane2LengthDefault = new GridLength(1, GridUnitType.Star);
@@ -35,6 +39,9 @@ namespace UniversalWPF
         private RowDefinition m_rowTop;
         private RowDefinition m_rowMiddle;
         private RowDefinition m_rowBottom;
+        private Window currentWindow;
+        private HwndSourceHook hwndHook;
+        private HwndSource hwndSource;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TwoPaneView"/> class.
@@ -43,9 +50,39 @@ namespace UniversalWPF
         {
             DefaultStyleKey = typeof(TwoPaneView);
             SizeChanged += OnSizeChanged;
-            //TODO Listen for Window Changed on the correct Window:
-            //TODO: Make weak
-            Application.Current.MainWindow.SizeChanged += OnWindowSizeChanged;
+            Loaded += TwoPaneView_Loaded;
+            Unloaded += TwoPaneView_Unloaded;
+        }
+
+        private void TwoPaneView_Loaded(object sender, RoutedEventArgs e)
+        {
+            currentWindow = Window.GetWindow(this);
+            if (currentWindow != null)
+            {
+                hwndSource = HwndSource.FromHwnd(new WindowInteropHelper(currentWindow).Handle);
+                hwndHook = new HwndSourceHook(WndProc);
+                hwndSource.AddHook(hwndHook);
+            }
+        }
+
+        private IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
+        {
+            if(msg == WM_SIZE || msg == WM_WINDOWPOSCHANGING || msg == WM_WINDOWPOSCHANGED)
+            {
+                UpdateMode();
+            }
+            return IntPtr.Zero;
+        }
+
+        private void TwoPaneView_Unloaded(object sender, RoutedEventArgs e)
+        {
+            if (currentWindow != null)
+            {           
+                currentWindow = null;
+                hwndSource.RemoveHook(hwndHook);
+                hwndSource = null;
+                hwndHook = null;
+            }
         }
 
         /// <inheritdoc />
@@ -62,15 +99,7 @@ namespace UniversalWPF
             m_rowBottom = GetTemplateChild(c_rowBottomName) as RowDefinition;
         }
 
-        private void OnSizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            UpdateMode();
-        }
-        
-        private void OnWindowSizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            UpdateMode();
-        }
+        private void OnSizeChanged(object sender, SizeChangedEventArgs e) => UpdateMode();
 
         private void UpdateMode()
         {
@@ -83,7 +112,7 @@ namespace UniversalWPF
             ViewMode newMode = (PanePriority == TwoPaneViewPriority.Pane1) ? ViewMode.Pane1Only : ViewMode.Pane2Only;
 
             // Calculate new mode
-            DisplayRegionHelperInfo info = DisplayRegionHelper.GetRegionInfo();
+            DisplayRegionHelperInfo info = DisplayRegionHelper.GetRegionInfo(hwndSource?.Handle ?? IntPtr.Zero);
             Rect rcControl = GetControlRect();
             bool isInMultipleRegions = IsInMultipleRegions(info, rcControl);
 
@@ -186,7 +215,7 @@ namespace UniversalWPF
                 {
                     Rect rc1 = info.Regions[0];
                     Rect rc2 = info.Regions[1];
-                    Rect rcWindow = DisplayRegionHelper.WindowRect;
+                    Rect rcWindow = DisplayRegionHelper.WindowRect(hwndSource?.Handle ?? IntPtr.Zero);
 
                     if (info.Mode == TwoPaneViewMode.Wide)
                     {
@@ -208,24 +237,10 @@ namespace UniversalWPF
 
         private Rect GetControlRect()
         {
-            var root = GetRoot();
-            if (root == null)
+            if (currentWindow == null)
                 return Rect.Empty;
-            var rect = VisualTreeHelper.GetContentBounds(root);
+            var rect = VisualTreeHelper.GetContentBounds(currentWindow);
             return rect;
-        }
-
-        private UIElement GetRoot()
-        {
-            UIElement result = this;
-            while(true)
-            {
-                var parent = VisualTreeHelper.GetParent(result) as UIElement;
-                if (parent == null)
-                    break;
-                result = parent;
-            }
-            return result;
         }
 
         private bool IsInMultipleRegions(DisplayRegionHelperInfo info, Rect rcControl)
@@ -236,7 +251,7 @@ namespace UniversalWPF
             {
                 Rect rc1 = info.Regions[0];
                 Rect rc2 = info.Regions[1];
-                Rect rcWindow = DisplayRegionHelper.WindowRect;
+                Rect rcWindow = DisplayRegionHelper.WindowRect(hwndSource?.Handle ?? IntPtr.Zero);
 
                 if (info.Mode == TwoPaneViewMode.Wide)
                 {
