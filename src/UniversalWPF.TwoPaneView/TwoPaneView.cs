@@ -143,7 +143,7 @@ namespace UniversalWPF
 
                 if (newViewMode != Mode)
                 {
-                    SetValue(ModeProperty, newViewMode);
+                    SetValue(ModeKey, newViewMode);
                     ModeChanged?.Invoke(this, EventArgs.Empty);
                 }
             }
@@ -338,11 +338,13 @@ namespace UniversalWPF
             get { return (TwoPaneViewMode)GetValue(ModeProperty); }
         }
 
+        private static readonly DependencyPropertyKey ModeKey = 
+            DependencyProperty.RegisterReadOnly(nameof(Mode), typeof(TwoPaneViewMode), typeof(TwoPaneView), new PropertyMetadata(TwoPaneViewMode.Wide));
+
         /// <summary>
         /// Identifies the <see cref="Mode"/> dependency property.
         /// </summary>
-        public static readonly DependencyProperty ModeProperty =
-            DependencyProperty.Register(nameof(Mode), typeof(TwoPaneViewMode), typeof(TwoPaneView), new PropertyMetadata(TwoPaneViewMode.Wide));
+        public static readonly DependencyProperty ModeProperty = ModeKey.DependencyProperty;
 
         /// <summary>
         /// Gets or sets a value that indicates which pane has priority.
