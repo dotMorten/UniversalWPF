@@ -2,16 +2,17 @@
 
 namespace UniversalWPF
 {
-    internal class DisplayRegionHelperInfo
+    internal struct DisplayRegionHelperInfo
     {
-        private TwoPaneViewMode wide;
+        private const int c_maxRegions = 2;
 
-        public DisplayRegionHelperInfo(TwoPaneViewMode mode)
+        public DisplayRegionHelperInfo(TwoPaneViewMode mode = TwoPaneViewMode.SinglePane)
         {
-            Mode = wide;
+            Regions = new Rect[c_maxRegions];
+            Mode = mode;
         }
 
-        public TwoPaneViewMode Mode { get; }
-        public Rect[] Regions { get; private set; }
+        public TwoPaneViewMode Mode { get; set; }
+        public Rect[] Regions { get; set; }
     }
 }

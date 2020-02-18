@@ -211,7 +211,7 @@ namespace UniversalWPF
             var root = GetRoot();
             if (root == null)
                 return Rect.Empty;
-            var rect = System.Windows.Media.VisualTreeHelper.GetContentBounds(root);
+            var rect = VisualTreeHelper.GetContentBounds(root);
             return rect;
         }
 
@@ -230,7 +230,33 @@ namespace UniversalWPF
 
         private bool IsInMultipleRegions(DisplayRegionHelperInfo info, Rect rcControl)
         {
-            return false; // TODO
+            bool isInMultipleRegions = false;
+
+            if (info.Mode != TwoPaneViewMode.SinglePane)
+            {
+                Rect rc1 = info.Regions[0];
+                Rect rc2 = info.Regions[1];
+                Rect rcWindow = DisplayRegionHelper.WindowRect;
+
+                if (info.Mode == TwoPaneViewMode.Wide)
+                {
+                    // Check that the control is over the split
+                    if (rcControl.X < rc1.Width && rcControl.X + rcControl.Width > rc2.X)
+                    {
+                        isInMultipleRegions = true;
+                    }
+                }
+                else if (info.Mode == TwoPaneViewMode.Tall)
+                {
+                    // Check that the control is over the split
+                    if (rcControl.Y < rc1.Height && rcControl.Y + rcControl.Height > rc2.Y)
+                    {
+                        isInMultipleRegions = true;
+                    }
+                }
+            }
+
+            return isInMultipleRegions;
         }
 
         /// <summary>
