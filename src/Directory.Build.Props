@@ -6,9 +6,10 @@
     <Authors>Morten Nielsen</Authors>
     <RepositoryType>git</RepositoryType>
     <PackageProjectUrl>https://github.com/dotMorten/UniversalWPF</PackageProjectUrl>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/dotMorten/UniversalWPF/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/dotMorten/UniversalWPF</RepositoryUrl>
     <Description>Universal WPF - A set of WPF controls and APIs built to match UWP counterparts.</Description>
-    <Copyright>2018 - Morten Nielsen</Copyright>
+    <Copyright>2018-2020 - Morten Nielsen</Copyright>
     <PackageTags>WPF</PackageTags>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
@@ -18,7 +19,6 @@
   </PropertyGroup>
 
   <ItemGroup Condition="$(MSBuildProjectName.StartsWith('UniversalWPF.'))">
-      <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta-63127-02" PrivateAssets="All"/>
-      <None Include="$(MSBuildThisFileDirectory)\..\LICENSE" Link="LICENSE" Pack="true" PackagePath="" />
+      <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All"/>
   </ItemGroup>
 </Project>
