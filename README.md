@@ -12,9 +12,11 @@ See here for details: https://github.com/sponsors/dotMorten
 ### Controls
  - TwoPaneView - A full port of UWP's TwoPaneView control, including support the Windows X Dual-screen devices.
  
+![TwoPaneView](https://user-images.githubusercontent.com/1378165/74808461-c238c700-529f-11ea-93c5-33ca1063f8fd.gif)
+
  - RelativePanel - Fully implemented but needs more testing (please help and report any rendering differences between this and Universal's RelativePanel). Want to see this built-in in WPF? [Vote here](http://visualstudio.uservoice.com/forums/121579-visual-studio/suggestions/7164912-bring-relativepanel-to-wpf-vnext)
  
- ![capture-3](https://cloud.githubusercontent.com/assets/1378165/10120048/b76250f0-645e-11e5-9b4d-2a0d7026a467.gif)
+ ![RelativePanel](https://cloud.githubusercontent.com/assets/1378165/10120048/b76250f0-645e-11e5-9b4d-2a0d7026a467.gif)
 
  - SplitView (Very much work in progress - doesn't animate in/out and closed compact mode isn't rendering)
 
