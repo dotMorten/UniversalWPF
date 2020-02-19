@@ -11,7 +11,7 @@ If you like this library and use it a lot, consider sponsoring me. Anything help
 See here for details: https://github.com/sponsors/dotMorten
 
 ### Controls
- - TwoPaneView - A full port of UWP's TwoPaneView control, including support the Windows X Dual-screen devices.
+ - [TwoPaneView](https://www.nuget.org/packages/UniversalWPF.TwoPaneView) - A full port of UWP's TwoPaneView control, including support the Windows X Dual-screen devices.
  
 ![TwoPaneView](https://user-images.githubusercontent.com/1378165/74808461-c238c700-529f-11ea-93c5-33ca1063f8fd.gif)
 
