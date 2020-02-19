@@ -9,35 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\TestApp\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)">
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Include="..\TestApp\**\*.xaml" Link="%(RecursiveDir)%(Filename)%(Extension)">
-      <Generator>MSBuild:Compile</Generator>
+    <Compile Include="..\TestApp\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" Exclude="..\TestApp\obj\**\*.cs;..\TestApp\Properties\AssemblyInfo.cs" />
+    <Page Include="..\TestApp\**\*.xaml" Link="%(RecursiveDir)%(Filename)%(Extension)" Exclude="..\TestApp\obj\**\*.xaml;..\TestApp\App.xaml">
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="..\TestApp\obj\**" />
-    <Compile Remove="obj\**" />
-    <EmbeddedResource Remove="obj\**" />
-    <None Remove="obj\**" />
-    <Page Remove="obj\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="..\TestApp\Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Remove="..\TestApp\App.xaml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ApplicationDefinition Include="..\TestApp\App.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <ApplicationDefinition Include="..\TestApp\App.xaml" Link="App.xaml">
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ApplicationDefinition>
   </ItemGroup>
 
@@ -47,5 +26,6 @@
     <ProjectReference Include="..\UniversalWPF.StateTriggers\UniversalWPF.StateTriggers.csproj" />
     <ProjectReference Include="..\UniversalWPF.TwoPaneView\UniversalWPF.TwoPaneView.csproj" />
   </ItemGroup>
+
 
 </Project>

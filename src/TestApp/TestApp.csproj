@@ -81,8 +81,8 @@
     <Compile Include="Samples\StateTriggers\SimpleStateSample.xaml.cs">
       <DependentUpon>SimpleStateSample.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Samples\TwoPaneViews\Sample1.xaml.cs">
-      <DependentUpon>Sample1.xaml</DependentUpon>
+    <Compile Include="Samples\TwoPaneViews\TPSample1.xaml.cs">
+      <DependentUpon>TPSample1.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -128,7 +128,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Samples\TwoPaneViews\Sample1.xaml">
+    <Page Include="Samples\TwoPaneViews\TPSample1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
