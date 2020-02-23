@@ -12,6 +12,7 @@ namespace UniversalWPF
         Operator,
         Parenthesis,
     }
+
     struct MathToken
     {
         public MathTokenType Type;
@@ -29,12 +30,12 @@ namespace UniversalWPF
             Value = value;
         }
     }
+
     internal static class NumberBoxParser
     {
         const string c_numberBoxOperators = "+-*/^";
 
-
-        private static List<MathToken> GetTokens(string input, IFormatProvider numberParser)
+        private static List<MathToken> GetTokens(string input, INumberParser numberParser)
         {
             var tokens = new List<MathToken>();
 
@@ -99,7 +100,7 @@ namespace UniversalWPF
         }
 
         // Attempts to parse a number from the beginning of the given input string. Returns the character size of the matched string.
-        private static Tuple<double, int> GetNextNumber(string input, IFormatProvider numberParser)
+        private static Tuple<double, int> GetNextNumber(string input, INumberParser numberParser)
         {
             // Attempt to parse anything before an operator or space as a number
             string regex = "^-?([^-+/*\\(\\)\\^\\s]+)";
@@ -107,10 +108,11 @@ namespace UniversalWPF
             if (match.Success)
             {
                 // Might be a number
-                if (double.TryParse(match.Value, NumberStyles.Any, numberParser, out double parsedNum))
+                var parsedNum = numberParser.ParseDouble(match.Value);
+                if (parsedNum.HasValue)
                 {
                     // Parsing was successful
-                    return new Tuple<double, int>(parsedNum, match.Length);
+                    return new Tuple<double, int>(parsedNum.Value, match.Length);
                 }
             }
 
@@ -271,7 +273,7 @@ namespace UniversalWPF
             return stack.Peek();
         }
 
-        public static double? Compute(string expr, IFormatProvider numberParser)
+        public static double? Compute(string expr, INumberParser numberParser)
         {
             // Tokenize the input string
             var tokens = GetTokens(expr, numberParser);

@@ -1,8 +1,8 @@
 <FileList>
-  <File Reference="UniversalWPF.TwoPaneView.dll">
+  <File Reference="UniversalWPF.dll">
     <ToolboxItems VSCategory="Universal WPF" BlendCategory="Universal WPF">
       <Item Type="UniversalWPF.TwoPaneView" />
-	    <Item Type="UniversalWPF.NumberBox" />
+      <Item Type="UniversalWPF.NumberBox" />
       <Item Type="UniversalWPF.RelativePanel" />
     </ToolboxItems>
   </File>

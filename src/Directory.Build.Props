@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project>
-  <PropertyGroup  Condition="$(MSBuildProjectName.StartsWith('UniversalWPF.'))">
+  <PropertyGroup  Condition="$(MSBuildProjectName.StartsWith('UniversalWPF.')) OR '$(MSBuildProjectName)' == 'UniversalWPF'">
     <RootNamespace>UniversalWPF</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Morten Nielsen</Authors>
