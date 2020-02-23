@@ -42,18 +42,17 @@
 
             <TextBlock Text="Maximum" />
             <TextBox Text="{Binding Maximum, ElementName=numberbox, Mode=TwoWay}" />
-            
+            <TextBlock Text="Header" />
+            <TextBox Text="{Binding Header, ElementName=numberbox, Mode=TwoWay}" />
             <TextBlock Text="Description" />
-                <TextBox Text="{Binding Text, ElementName=desc, Mode=TwoWay}" />
+            <TextBox Text="{Binding Description, ElementName=numberbox, Mode=TwoWay}" />
+            
             </testapp:KeyValuePanel>
         </Border>
 
         <NumberBox x:Name="numberbox" Minimum="0" Maximum="100" AcceptsExpression="True"
-                    
+                    Header="Numberbox:" Description="Some description goes here..."
                    Value="1" Margin="10" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" >
-            <NumberBox.Description>
-                <TextBlock Text="Some description goes here..." x:Name="desc" />
-            </NumberBox.Description>
         </NumberBox>
 
     </StackPanel>
