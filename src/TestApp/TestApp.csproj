@@ -57,6 +57,9 @@
     </ApplicationDefinition>
     <Compile Include="KeyValuePanel.cs" />
     <Compile Include="Samples\EnumValuesConverter.cs" />
+    <Compile Include="Samples\Numberboxes\NumberBoxSample1.xaml.cs">
+      <DependentUpon>NumberBoxSample1.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Samples\RelativePanels\Sample1.xaml.cs">
       <DependentUpon>Sample1.xaml</DependentUpon>
     </Compile>
@@ -96,6 +99,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Samples\Numberboxes\NumberBoxSample1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Samples\RelativePanels\Sample1.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -161,6 +168,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\UniversalWPF.NumberBox\UniversalWPF.NumberBox.csproj">
+      <Project>{772521be-445e-45c4-b44c-f1f21f261141}</Project>
+      <Name>UniversalWPF.NumberBox</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UniversalWPF.RelativePanel\UniversalWPF.RelativePanel.csproj">
       <Project>{24032014-1da5-43e4-936e-5b7d0eea8a15}</Project>
       <Name>UniversalWPF.RelativePanel</Name>
