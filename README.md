@@ -23,6 +23,8 @@ See here for details: https://github.com/sponsors/dotMorten
  
  ![RelativePanel](https://cloud.githubusercontent.com/assets/1378165/10120048/b76250f0-645e-11e5-9b4d-2a0d7026a467.gif)
 
+### In Progress
+
  - SplitView (Very much work in progress - doesn't animate in/out and closed compact mode isn't rendering)
 
  - StateTrigger / AdaptiveTrigger (API complete, functionality not so much)
