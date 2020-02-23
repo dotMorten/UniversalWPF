@@ -11,15 +11,15 @@ If you like this library and use it a lot, consider sponsoring me. Anything help
 See here for details: https://github.com/sponsors/dotMorten
 
 ### Controls
- - [TwoPaneView](https://www.nuget.org/packages/UniversalWPF.TwoPaneView) - A full port of UWP's TwoPaneView control, including support the Windows X Dual-screen devices.
+ - [TwoPaneView](https://docs.microsoft.com/en-us/windows/uwp/design/controls-and-patterns/two-pane-view) - A full port of UWP's TwoPaneView control, including support the Windows X Dual-screen devices.
  
 ![TwoPaneView](https://user-images.githubusercontent.com/1378165/74808461-c238c700-529f-11ea-93c5-33ca1063f8fd.gif)
 
- - [NumberBox] - A full port of UWP's NumberBox control.
+ - [NumberBox](https://docs.microsoft.com/en-us/windows/uwp/design/controls-and-patterns/number-box) - A full port of UWP's NumberBox control.
 
 ![numberbox](https://user-images.githubusercontent.com/1378165/75103965-70ea4980-55b7-11ea-843d-57dcc021053f.gif)
 
- - RelativePanel - Fully implemented but needs more testing (please help and report any rendering differences between this and Universal's RelativePanel). Want to see this built-in in WPF? [Vote here](https://github.com/dotnet/wpf/issues/112)
+ - [RelativePanel](https://docs.microsoft.com/en-us/uwp/api/Windows.UI.Xaml.Controls.RelativePanel) - Fully implemented but needs more testing (please help and report any rendering differences between this and Universal's RelativePanel). Want to see this built-in in WPF? [Vote here](https://github.com/dotnet/wpf/issues/112)
  
  ![RelativePanel](https://cloud.githubusercontent.com/assets/1378165/10120048/b76250f0-645e-11e5-9b4d-2a0d7026a467.gif)
 
