@@ -4,6 +4,24 @@ A set of WPF Controls ported from Windows Universal
 NOTE: This is mostly a work in progress. TwoPaneView is fully working, but might have issues on Windows X, as the necessary APIs there to do screen spanning are not yet exposed.
 State Triggers are not working yet. RelativePanel _should_ work but needs lots of testing (please help!), SplitView is partially working, but needs some work still.
 
+# NuGet / Usage
+
+Install this from NuGet:
+
+> `Install-Package UniversalWPF`
+
+No xmlns registration needed in your xaml files! You can just use the controls prefix-less like the built-in controls. Example:
+
+```xml
+<TwoPaneView>
+  <TwoPaneView.Pane1>
+    <RelativePanel>
+      <NumberBox />
+    </RelativePanel>
+  </TwoPaneView.Pane1>
+</TwoPaneView>
+```
+
 ## Sponsoring
 
 If you like this library and use it a lot, consider sponsoring me. Anything helps and encourages me to keep going.
