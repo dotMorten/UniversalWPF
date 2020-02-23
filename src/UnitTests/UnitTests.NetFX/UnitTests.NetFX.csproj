@@ -74,16 +74,16 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\UniversalWPF.RelativePanel\UniversalWPF.RelativePanel.csproj">
-      <Project>{24032014-1DA5-43E4-936E-5B7D0EEA8A15}</Project>
-      <Name>UniversalWPF.RelativePanel</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Page Include="TestPages\RelativePanel1.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\UniversalWPF\UniversalWPF.csproj">
+      <Project>{08527b7c-04bc-4d92-8546-bee72d8a53d2}</Project>
+      <Name>UniversalWPF</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

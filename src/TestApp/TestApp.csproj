@@ -168,14 +168,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\UniversalWPF.NumberBox\UniversalWPF.NumberBox.csproj">
-      <Project>{772521be-445e-45c4-b44c-f1f21f261141}</Project>
-      <Name>UniversalWPF.NumberBox</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\UniversalWPF.RelativePanel\UniversalWPF.RelativePanel.csproj">
-      <Project>{24032014-1da5-43e4-936e-5b7d0eea8a15}</Project>
-      <Name>UniversalWPF.RelativePanel</Name>
-    </ProjectReference>
     <ProjectReference Include="..\UniversalWPF.SplitView\UniversalWPF.SplitView.csproj">
       <Project>{f3bad196-2f0c-4302-ab89-8c7f1362568d}</Project>
       <Name>UniversalWPF.SplitView</Name>
@@ -184,9 +176,9 @@
       <Project>{601a0fba-133a-4e0e-9955-1eb01fc8eb11}</Project>
       <Name>UniversalWPF.StateTriggers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\UniversalWPF.TwoPaneView\UniversalWPF.TwoPaneView.csproj">
-      <Project>{ec3b68c6-065e-4911-a1c6-70f3aed91722}</Project>
-      <Name>UniversalWPF.TwoPaneView</Name>
+    <ProjectReference Include="..\UniversalWPF\UniversalWPF.csproj">
+      <Project>{08527b7c-04bc-4d92-8546-bee72d8a53d2}</Project>
+      <Name>UniversalWPF</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

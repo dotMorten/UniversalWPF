@@ -3,8 +3,10 @@
   <PropertyGroup>
     <TargetFrameworks>netcoreapp3.0;net452</TargetFrameworks>
     <OutputType>Library</OutputType>
-    <PackageTags>$(PackageTags) RelativePanel</PackageTags>
+    <PackageTags>$(PackageTags)</PackageTags>
     <UseWpf>true</UseWpf>
+    <Version>0.9.0</Version>
+    <Description>$(Description)</Description>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)'=='net452'">
@@ -17,13 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Themes\**" />
-    <EmbeddedResource Remove="Themes\**" />
-    <None Remove="Themes\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="..\..\LICENSE" Link="LICENSE" Pack="true" PackagePath="" />
+    <None Include="VisualStudioToolsManifest.xml" Pack="true" PackagePath="tools" />
   </ItemGroup>
 
 </Project>

@@ -21,11 +21,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\UniversalWPF.NumberBox\UniversalWPF.NumberBox.csproj" />
-    <ProjectReference Include="..\UniversalWPF.RelativePanel\UniversalWPF.RelativePanel.csproj" />
     <ProjectReference Include="..\UniversalWPF.SplitView\UniversalWPF.SplitView.csproj" />
     <ProjectReference Include="..\UniversalWPF.StateTriggers\UniversalWPF.StateTriggers.csproj" />
-    <ProjectReference Include="..\UniversalWPF.TwoPaneView\UniversalWPF.TwoPaneView.csproj" />
+    <ProjectReference Include="..\UniversalWPF\UniversalWPF.csproj" />
   </ItemGroup>
 
 
