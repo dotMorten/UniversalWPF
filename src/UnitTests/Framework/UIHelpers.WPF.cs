@@ -40,7 +40,7 @@ namespace UnitTests
                 ctx.DrawRectangle(vb, null, new Rect(0, 0, visual.ActualWidth, visual.ActualHeight));
             }
             rtb.Render(dv);
-
+/*
             var encoder = new PngBitmapEncoder();
             encoder.Frames.Add(BitmapFrame.Create(rtb));
 
@@ -48,6 +48,7 @@ namespace UnitTests
             {
                 encoder.Save(file);
             }
+*/
             return rtb;
         }
 
