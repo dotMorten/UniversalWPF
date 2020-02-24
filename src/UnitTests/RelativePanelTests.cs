@@ -112,7 +112,7 @@ namespace UnitTests
                 Assert.IsTrue(textblob.MinColumn < yellowblobs[0].MinRow, "Text below yellow top");
 
                 Assert.AreEqual(0, redblobs[0].MinRow, "Red top side");
-                Assert.AreEqual(0, redblobs[0].MinColumn, "Red left side");
+                Assert.AreEqual(0, redblobs[0].MinColumn, "Red left side", 2);
                 Assert.AreEqual(100, redblobs[0].Width, "Red width", 1);
                 Assert.AreEqual(100, redblobs[0].Height, "Red height", 1);
             });
