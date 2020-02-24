@@ -1,0 +1,40 @@
+name: CI
+
+on: 
+ push:
+    branches:
+    - master
+    - release/*
+    paths-ignore:
+    - 'docs/**'
+ pull_request:
+    branches:
+    - master
+    paths-ignore:
+    - 'docs/**'
+      
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - name: Clone NmeaParser
+      uses: actions/checkout@v1
+    
+    - name: Setup Visual Studio Command Prompt
+      uses: warrenbuckley/Setup-MSBuild@v1
+      
+    - name: Build
+      run: |
+        msbuild /restore /t:Build src/UniversalWPF.sln /p:Configuration=Release
+      
+#    - name: Tests
+#      run: |
+#          dotnet test src/UnitTests/NmeaParser.Tests.NET/bin/Release/netcoreapp3.1/NmeaParser.Tests.Net.dll -v normal
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v1
+      with:
+        name: NuGet Packages
+        path: artifacts/NuGet/Release
