@@ -8,7 +8,7 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
     
-    <Grid Background="White">
+    <Grid Background="White" >
 		<RelativePanel Background="White" >
 			<Rectangle x:Name="RedRect" Fill="Red" MinHeight="100" MinWidth="100"/>
 			<Rectangle x:Name="BlueRect" Fill="Blue" MinHeight="100" MinWidth="100"

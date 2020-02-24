@@ -27,17 +27,11 @@ namespace UnitTests
                 visual.Loaded += (s, e) => tcs.TrySetResult(null);
                 await tcs.Task;
             }
-
-            //visual.InvalidateMeasure();
-            //visual.InvalidateVisual();
-            //tcs = new TaskCompletionSource<object>();
-            //visual.LayoutUpdated += (s, e) => tcs.TrySetResult(null);
-            //await tcs.Task;
             
-            RenderTargetBitmap rtb = new RenderTargetBitmap((int)(visual.ActualWidth ),
-                                                                (int)(visual.ActualHeight),
-                                                                96, // * scaleFactor,
-                                                                96, // * scaleFactor,
+            RenderTargetBitmap rtb = new RenderTargetBitmap((int)(visual.ActualWidth * scaleFactor ),
+                                                                (int)(visual.ActualHeight * scaleFactor),
+                                                                96 * scaleFactor,
+                                                                96 * scaleFactor,
                                                                 PixelFormats.Pbgra32);
             DrawingVisual dv = new DrawingVisual();
             using (DrawingContext ctx = dv.RenderOpen())
@@ -46,6 +40,14 @@ namespace UnitTests
                 ctx.DrawRectangle(vb, null, new Rect(0, 0, visual.ActualWidth, visual.ActualHeight));
             }
             rtb.Render(dv);
+
+            var encoder = new PngBitmapEncoder();
+            encoder.Frames.Add(BitmapFrame.Create(rtb));
+
+            using (var file = System.IO.File.OpenWrite("e:\\temp\\test.png"))
+            {
+                encoder.Save(file);
+            }
             return rtb;
         }
 

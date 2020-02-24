@@ -25,7 +25,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{6EEBFF80-CA81-4664-BD51-ED975915ED11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests.NetFX", "UnitTests\UnitTests.NetFX\UnitTests.NetFX.csproj", "{014537EB-BCB4-44D9-AA5B-3FD2EA88F8BD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{014537EB-BCB4-44D9-AA5B-3FD2EA88F8BD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniversalWPF", "UniversalWPF\UniversalWPF.csproj", "{08527B7C-04BC-4D92-8546-BEE72D8A53D2}"
 EndProject

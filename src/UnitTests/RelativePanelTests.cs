@@ -8,7 +8,7 @@ using System.Windows.Media.Imaging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using UniversalWPF;
 
-namespace UnitTests.NetFX
+namespace UnitTests
 {
     [TestClass]
     public class RelativePanelTests
@@ -26,6 +26,7 @@ namespace UnitTests.NetFX
                 Assert.AreEqual(75, blobs[0].Height, 1);
             });
         }
+
         [TestMethod]
         public async Task EmptyPanel_NoSize()
         {
@@ -69,25 +70,27 @@ namespace UnitTests.NetFX
                 var redblobs = ImageAnalysis.FindConnectedPixels(bitmap, info.ScaleFactor, System.Drawing.Color.Red);
                 var blueblobs = ImageAnalysis.FindConnectedPixels(bitmap, info.ScaleFactor, System.Drawing.Color.Blue);
                 Assert.AreEqual(1, redblobs.Count);
-                Assert.AreEqual(150, redblobs[0].Width);
-                Assert.AreEqual(100, redblobs[0].Height);
+                Assert.AreEqual(150, redblobs[0].Width, 1);
+                Assert.AreEqual(100, redblobs[0].Height, 1);
                 Assert.AreEqual(1, blueblobs.Count);
-                Assert.AreEqual(150, blueblobs[0].Width);
-                Assert.AreEqual(100, blueblobs[0].Height);
-                Assert.AreEqual(redblobs[0].MaxColumn + 1, blueblobs[0].MinColumn);
-                Assert.AreEqual(0, blueblobs[0].MinRow);
-                Assert.AreEqual(100, redblobs[0].MinColumn);
-                Assert.AreEqual(0, redblobs[0].MinRow);
-                Assert.AreEqual(399, blueblobs[0].MaxColumn);
+                Assert.AreEqual(150, blueblobs[0].Width, 1);
+                Assert.AreEqual(100, blueblobs[0].Height, 1);
+                Assert.AreEqual(redblobs[0].MaxColumn + 1, blueblobs[0].MinColumn, 1);
+                Assert.AreEqual(0, blueblobs[0].MinRow, 1);
+                Assert.AreEqual(100, redblobs[0].MinColumn, 1);
+                Assert.AreEqual(0, redblobs[0].MinRow, 1);
+                Assert.AreEqual(399, blueblobs[0].MaxColumn, 1);
             });
         }
+
         [TestMethod]
         public async Task RelativePanelXamlTest()
         {
             await UIHelpers.RunUITest(async (container, info) =>
             {
-                container.Content = new TestPages.RelativePanel1() { Width = 600, Height = 400 };
-                var bitmap = await UIHelpers.RenderAsync(container, info.ScaleFactor);
+                var panel = new TestPages.RelativePanel1() { Width = 600, Height = 400 };
+                container.Content = panel;
+                var bitmap = await UIHelpers.RenderAsync(panel, info.ScaleFactor);
                 var redblobs = ImageAnalysis.FindConnectedPixels(bitmap, info.ScaleFactor, System.Drawing.Color.Red);
                 var blueblobs = ImageAnalysis.FindConnectedPixels(bitmap, info.ScaleFactor, System.Drawing.Color.Blue);
                 var greenblobs = ImageAnalysis.FindConnectedPixels(bitmap, info.ScaleFactor, System.Drawing.Color.Green);
@@ -108,10 +111,10 @@ namespace UnitTests.NetFX
                 Assert.IsTrue(textblob.MaxColumn < yellowblobs[0].MinColumn, "Text left of yellow");
                 Assert.IsTrue(textblob.MinColumn < yellowblobs[0].MinRow, "Text below yellow top");
 
-                Assert.AreEqual(0, redblobs[0].MinRow, "Red left side");
-                Assert.AreEqual(0, redblobs[0].MinColumn, "Red top side");
-                Assert.AreEqual(100, redblobs[0].Width, "Red width");
-                Assert.AreEqual(100, redblobs[0].Height, "Red height");
+                Assert.AreEqual(0, redblobs[0].MinRow, "Red top side");
+                Assert.AreEqual(0, redblobs[0].MinColumn, "Red left side");
+                Assert.AreEqual(100, redblobs[0].Width, "Red width", 1);
+                Assert.AreEqual(100, redblobs[0].Height, "Red height", 1);
             });
         }
     }

@@ -41,23 +41,23 @@ namespace UnitTests
         {
             int width = image.PixelWidth;
             int height = image.PixelHeight;
-            Color[] pixels = new Color[width * height];
+            bool[] pixels = new bool[width * height];
 
             int bitsPerPixel = 32;
             int stride = image.PixelWidth * bitsPerPixel / 8;
             byte[] pixelbuffer = new byte[image.PixelHeight * stride];
             image.CopyPixels(pixelbuffer, stride, 0);
 
-            for (int row = 0; row < image.Height; row++)
+            for (int row = 0; row < height; row++)
             {
-                for (int col = 0; col < image.Width; col++)
+                for (int col = 0; col < width; col++)
                 {
                     byte b = pixelbuffer[row * stride + col * 4];
                     byte g = pixelbuffer[row * stride + col * 4 + 1];
                     byte r = pixelbuffer[row * stride + col * 4 + 2];
                     byte a = pixelbuffer[row * stride + col * 4 + 3];
 
-                    pixels[col + row * image.PixelWidth] = Color.FromArgb(a, r, g, b);
+                    pixels[col + row * width] = includePixelFunction(Color.FromArgb(a, r, g, b));
                 }
             }
 
@@ -71,7 +71,7 @@ namespace UnitTests
                 for (int j = 0; j < width; j++)
                 {
                     var idx = j + i * width;
-                    bool v = ismatch(pixels[idx]);
+                    bool v = pixels[idx];
                     if (v)
                     {
                         var l1 = i == 0 ? 0 : labels[j + (i - 1) * width];
@@ -137,13 +137,13 @@ namespace UnitTests
                     }
                 }
             }
-            //foreach(var b in blobs)
-            //{
-            //    b.MinColumn /= scaleFactor;
-            //    b.MaxColumn /= scaleFactor;
-            //    b.MinRow /= scaleFactor;
-            //    b.MaxRow /= scaleFactor;
-            //}
+            foreach(var b in blobs)
+            {
+                b.MinColumn /= scaleFactor;
+                b.MaxColumn /= scaleFactor;
+                b.MinRow /= scaleFactor;
+                b.MaxRow /= scaleFactor;
+            }
             return blobs;
         }
 
