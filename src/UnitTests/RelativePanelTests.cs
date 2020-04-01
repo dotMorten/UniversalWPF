@@ -111,10 +111,40 @@ namespace UnitTests
                 Assert.IsTrue(textblob.MaxColumn < yellowblobs[0].MinColumn, "Text left of yellow");
                 Assert.IsTrue(textblob.MinColumn < yellowblobs[0].MinRow, "Text below yellow top");
 
-                Assert.AreEqual(0, redblobs[0].MinRow, "Red top side");
-                Assert.AreEqual(0, redblobs[0].MinColumn, "Red left side");
-                Assert.AreEqual(100, redblobs[0].Width, "Red width", 1);
-                Assert.AreEqual(100, redblobs[0].Height, "Red height", 1);
+                Assert.AreEqual(0, redblobs[0].MinRow, 1, "Red top side");
+                Assert.AreEqual(0, redblobs[0].MinColumn, 1, "Red left side");
+                Assert.AreEqual(100, redblobs[0].Width, 1, "Red width");
+                Assert.AreEqual(100, redblobs[0].Height, 1, "Red height");
+
+                Assert.AreEqual(0, blueblobs[0].MinRow, 1, "Blue top side");
+                Assert.AreEqual(100, blueblobs[0].MinColumn, 1, "Blue left side");
+                Assert.AreEqual(100, blueblobs[0].Width, 1, "Blue width");
+                Assert.AreEqual(100, blueblobs[0].Height, 1, "Blue height");
+
+                Assert.AreEqual(105, greenblobs[0].MinRow, 1, "Green top side");
+                Assert.AreEqual(0, greenblobs[0].MinColumn, 1, "Green left side");
+                Assert.AreEqual(200, greenblobs[0].Width, 1, "Green width");
+                Assert.AreEqual(100, greenblobs[0].Height, 1, "Green height");
+
+                Assert.AreEqual(155, purpleblobs[0].MinRow, 1, "Purple top side");
+                Assert.AreEqual(200, purpleblobs[0].MinColumn, 1, "Purple left side");
+                Assert.AreEqual(400, purpleblobs[0].Width, 1, "Purple width");
+                Assert.AreEqual(50, purpleblobs[0].Height, 1, "Purple height"); 
+                
+                Assert.AreEqual(100, orangeblobs[0].MinRow, 1, "Orange top side");
+                Assert.AreEqual(600, orangeblobs[0].MaxColumn, 1, "Orange right side");
+                Assert.AreEqual(50, orangeblobs[0].Width, 1, "Orange width");
+                Assert.AreEqual(50, orangeblobs[0].Height, 1, "Orange height");
+
+                Assert.AreEqual(50, cyanblobs[0].CenterRow, 1, "Cyan center row");
+                Assert.AreEqual(400, cyanblobs[0].CenterColumn, 1, "Cyan center column");
+                Assert.AreEqual(50, cyanblobs[0].Width, 1, "Cyan width");
+                Assert.AreEqual(50, cyanblobs[0].Height, 1, "Cyan height");
+
+                Assert.AreEqual(205, yellowblobs[0].MinRow, 1, "Yellow top side");
+                Assert.AreEqual(100, yellowblobs[0].MinColumn, 1, "Yellow left side");
+                Assert.AreEqual(500, yellowblobs[0].Width, 1, "Yellow width");
+                Assert.AreEqual(195, yellowblobs[0].Height, 1, "Yellow height");
             });
         }
     }

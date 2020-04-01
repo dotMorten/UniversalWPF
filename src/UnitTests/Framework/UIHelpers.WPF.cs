@@ -44,10 +44,11 @@ namespace UnitTests
             var encoder = new PngBitmapEncoder();
             encoder.Frames.Add(BitmapFrame.Create(rtb));
 
-            using (var file = System.IO.File.OpenWrite("e:\\temp\\test.png"))
-            {
-                encoder.Save(file);
-            }
+            // For debugging purposes:
+            // using (var file = System.IO.File.OpenWrite("e:\\temp\\test.png"))
+            // {
+            //     encoder.Save(file);
+            // }
             return rtb;
         }
 

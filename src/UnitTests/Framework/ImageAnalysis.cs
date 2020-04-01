@@ -223,6 +223,8 @@ namespace UnitTests
             public double MaxRow;
             public double Width => MaxColumn - MinColumn + 1;
             public double Height => MaxRow - MinRow + 1;
+            public double CenterRow => MinRow + Height / 2;
+            public double CenterColumn => MinColumn + Width / 2;
             public List<System.Drawing.Point> Pixels { get; } = new List<System.Drawing.Point>();
         }
 
