@@ -55,5 +55,15 @@
                    Value="1" Margin="10" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" >
         </NumberBox>
 
+
+        <Rectangle Fill="Black" Height="1" HorizontalAlignment="Stretch" Margin="10" />
+
+        <!-- NumberBox two way binding with x:Bind -->
+        <Button x:Name="SetTwoWayBoundValueNaNButton" AutomationProperties.Name="SetTwoWayBoundValueNaNButton" 
+                Content="Set two way bound value to NaN" Click="SetTwoWayBoundNaNButton_Click" Margin="0,4,0,0"/>
+        <NumberBox Header="TwoWayBinding" x:Name="TwoWayBoundNumberBox"
+                              Value="{Binding DataModelWithINPC.Value, Mode=TwoWay}" />
+        <TextBlock x:Name="TwoWayBoundNumberBoxValue" AutomationProperties.Name="TwoWayBoundNumberBoxValue" />
+
     </StackPanel>
 </UserControl>
