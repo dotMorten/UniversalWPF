@@ -3,10 +3,10 @@
   <PropertyGroup>
     <TargetFrameworks>netcoreapp3.0;net452</TargetFrameworks>
     <OutputType>Library</OutputType>
-    <PackageTags>$(PackageTags)</PackageTags>
+    <PackageTags>$(PackageTags), RelativePanel, NumberBox, TwoPaneView</PackageTags>
     <UseWpf>true</UseWpf>
     <Version>0.9.0</Version>
-    <Description>$(Description)</Description>
+    <Description>$(Description). Contains the RelativePanel, NumberBox and TwoPaneView controls</Description>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)'=='net452'">
