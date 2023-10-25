@@ -1,7 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp3.0;net452</TargetFrameworks>
+    <TargetFrameworks>net6.0-windows10.0.19041.0;net452</TargetFrameworks>
     <OutputType>Library</OutputType>
     <PackageTags>$(PackageTags), RelativePanel, NumberBox, TwoPaneView</PackageTags>
     <UseWpf>true</UseWpf>
