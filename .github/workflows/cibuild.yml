@@ -23,7 +23,7 @@ jobs:
       uses: actions/checkout@v1
     
     - name: Setup Visual Studio Command Prompt
-      uses: warrenbuckley/Setup-MSBuild@v1
+      uses: microsoft/setup-msbuild@v1.0.2
       
     - name: Build
       run: |
@@ -31,7 +31,7 @@ jobs:
       
     - name: Tests
       run: |
-          dotnet test src/UnitTests/bin/Release/netcoreapp3.0/UnitTests.dll -v normal
+          dotnet test src/UnitTests/bin/Release/net6.0-windows10.0.19041.0/UnitTests.dll -v normal
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v1
