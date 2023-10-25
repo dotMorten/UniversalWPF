@@ -203,7 +203,7 @@ namespace UniversalWPF
                     if (node.Element == element)
                         return node;
             }
-            throw new InvalidOperationException("Element {value} not found in RelativePanel"); //TODO: Better error here
+            throw new InvalidOperationException($"Element {value} not found in RelativePanel"); //TODO: Better error here
         }
 
         // Starting off with the space that is available to the entire panel
