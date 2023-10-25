@@ -7,6 +7,7 @@
     <UseWpf>true</UseWpf>
     <Version>0.9.0</Version>
     <Description>$(Description). Contains the RelativePanel, NumberBox and TwoPaneView controls</Description>
+    <LangVersion>10</LangVersion>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)'=='net452'">
