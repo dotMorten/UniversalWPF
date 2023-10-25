@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project>
-  <PropertyGroup  Condition="$(MSBuildProjectName.StartsWith('UniversalWPF.')) OR '$(MSBuildProjectName)' == 'UniversalWPF'">
+  <PropertyGroup Condition="$(MSBuildProjectName.StartsWith('UniversalWPF.')) OR '$(MSBuildProjectName)' == 'UniversalWPF'">
     <RootNamespace>UniversalWPF</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageOutputPath>$(MSBuildThisFileDirectory)..\artifacts\NuGet\$(Configuration)\</PackageOutputPath>
     <Authors>Morten Nielsen</Authors>
+    <Company>Morten Nielsen - https://xaml.dev</Company>
     <RepositoryType>git</RepositoryType>
     <PackageProjectUrl>https://github.com/dotMorten/UniversalWPF</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/dotMorten/UniversalWPF</RepositoryUrl>
     <Description>Universal WPF - A set of WPF controls and APIs built to match UWP counterparts.</Description>
-    <Copyright>2018-2020 - Morten Nielsen</Copyright>
+    <Copyright>Copyright © 2021-$([System.DateTime]::Now.ToString('yyyy')) - Morten Nielsen</Copyright>
     <PackageTags>WPF</PackageTags>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
@@ -18,7 +20,7 @@
     <Version>1.0.0</Version>
   </PropertyGroup>
 
-  <ItemGroup Condition="$(MSBuildProjectName.StartsWith('UniversalWPF.'))">
+  <ItemGroup Condition="$(MSBuildProjectName.StartsWith('UniversalWPF.')) OR '$(MSBuildProjectName)' == 'UniversalWPF'">
       <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All"/>
   </ItemGroup>
 </Project>
