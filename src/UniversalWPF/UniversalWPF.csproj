@@ -8,6 +8,7 @@
     <Version>0.9.0</Version>
     <Description>$(Description). Contains the RelativePanel, NumberBox and TwoPaneView controls</Description>
     <LangVersion>10</LangVersion>
+    <NoWarn Condition="'$(TargetFramework)'=='net452'">$(NoWarn);CS8600;CS8602;CS8604</NoWarn> <!-- Disable nullable warnings on .NET Framework -->
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)'=='net452'">

@@ -253,6 +253,7 @@ namespace UniversalWPF
                 {
                     if (node.IsAlignLeftWith)
                     {
+                        Debug.Assert(node.m_alignLeftWithNode != null);
                         RPNode alignLeftWithNeighbor = node.m_alignLeftWithNode;
                         double restrictedHorizontalSpace = alignLeftWithNeighbor.m_arrangeRect.X;
 
@@ -265,6 +266,7 @@ namespace UniversalWPF
                     }
                     else if (node.IsRightOf)
                     {
+                        Debug.Assert(node.m_rightOfNode != null);
                         RPNode rightOfNeighbor = node.m_rightOfNode;
                         double restrictedHorizontalSpace = rightOfNeighbor.m_arrangeRect.X + rightOfNeighbor.m_arrangeRect.Width;
 
@@ -295,8 +297,8 @@ namespace UniversalWPF
                 {
                     if (node.IsAlignRightWith)
                     {
+                        Debug.Assert(node.m_alignRightWithNode != null);
                         RPNode alignRightWithNeighbor = node.m_alignRightWithNode;
-
                         width -= availableSize.Width - (alignRightWithNeighbor.m_arrangeRect.X + alignRightWithNeighbor.m_arrangeRect.Width);
                     }
                     else if (node.IsAlignHorizontalCenterWith)
@@ -305,14 +307,15 @@ namespace UniversalWPF
                     }
                     else if (node.IsLeftOf)
                     {
+                        Debug.Assert(node.m_leftOfNode != null);
                         RPNode leftOfNeighbor = node.m_leftOfNode;
-
                         width -= availableSize.Width - leftOfNeighbor.m_arrangeRect.X;
                     }
                 }
 
                 if (isHorizontallyCenteredFromLeft && isHorizontallyCenteredFromRight)
                 {
+                    Debug.Assert(node.m_alignHorizontalCenterWithNode != null);
                     RPNode alignHorizontalCenterWithNeighbor = node.m_alignHorizontalCenterWithNode;
                     double centerOfNeighbor = alignHorizontalCenterWithNeighbor.m_arrangeRect.X + (alignHorizontalCenterWithNeighbor.m_arrangeRect.Width / 2.0f);
                     width = Math.Min(centerOfNeighbor, availableSize.Width - centerOfNeighbor) * 2.0f;
@@ -375,6 +378,7 @@ namespace UniversalWPF
                 {
                     if (node.IsAlignTopWith)
                     {
+                        Debug.Assert(node.m_alignTopWithNode != null);
                         RPNode alignTopWithNeighbor = node.m_alignTopWithNode;
                         double restrictedVerticalSpace = alignTopWithNeighbor.m_arrangeRect.Y;
 
@@ -387,6 +391,7 @@ namespace UniversalWPF
                     }
                     else if (node.IsBelow)
                     {
+                        Debug.Assert(node.m_belowNode != null);
                         RPNode belowNeighbor = node.m_belowNode;
                         double restrictedVerticalSpace = belowNeighbor.m_arrangeRect.Y + belowNeighbor.m_arrangeRect.Height;
 
@@ -434,8 +439,8 @@ namespace UniversalWPF
                 {
                     if (node.IsAlignBottomWith)
                     {
+                        Debug.Assert(node.m_alignBottomWithNode != null);
                         RPNode alignBottomWithNeighbor = node.m_alignBottomWithNode;
-
                         height -= availableSize.Height - (alignBottomWithNeighbor.m_arrangeRect.Y + alignBottomWithNeighbor.m_arrangeRect.Height);
                     }
                     else if (node.IsAlignVerticalCenterWith)
@@ -444,14 +449,15 @@ namespace UniversalWPF
                     }
                     else if (node.IsAbove)
                     {
+                        Debug.Assert(node.m_aboveNode != null);
                         RPNode aboveNeighbor = node.m_aboveNode;
-
                         height -= availableSize.Height - aboveNeighbor.m_arrangeRect.Y;
                     }
                 }
 
                 if (isVerticallyCenteredFromTop && isVerticallyCenteredFromBottom)
                 {
+                    Debug.Assert(node.m_alignVerticalCenterWithNode != null);
                     RPNode alignVerticalCenterWithNeighbor = node.m_alignVerticalCenterWithNode;
                     double centerOfNeighbor = alignVerticalCenterWithNeighbor.m_arrangeRect.Y + (alignVerticalCenterWithNeighbor.m_arrangeRect.Height / 2.0f);
                     height = Math.Min(centerOfNeighbor, availableSize.Height - centerOfNeighbor) * 2.0f;
@@ -590,6 +596,7 @@ namespace UniversalWPF
                 // through the latter later.
                 if (node.m_alignLeftWithNode != node.m_alignRightWithNode)
                 {
+                    Debug.Assert(node.m_alignLeftWithNode != null);
                     AccumulateNegativeDesiredWidth(node.m_alignLeftWithNode, x);
                 }
             }
@@ -599,6 +606,7 @@ namespace UniversalWPF
             }
             else if (node.IsRightOf)
             {
+                Debug.Assert(node.m_rightOfNode != null);
                 AccumulatePositiveDesiredWidth(node.m_rightOfNode, x);
             }
 
@@ -624,6 +632,7 @@ namespace UniversalWPF
                 // the positive direction, that means that we have already 
                 // moved the cursor right to calculate the maximum positive 
                 // value, so we will use the initial value of Y.
+                Debug.Assert(node.m_alignRightWithNode != null);
                 AccumulatePositiveDesiredWidth(node.m_alignRightWithNode, initialX);
             }
             else if (node.IsAlignHorizontalCenterWith)
@@ -640,11 +649,13 @@ namespace UniversalWPF
                 // direction, that means that we have already moved the 
                 // cursor right to calculate the maximum positive value, so
                 // we will use the initial value of X.
+                Debug.Assert(node.m_leftOfNode != null);
                 AccumulateNegativeDesiredWidth(node.m_leftOfNode, initialX);
             }
 
             if (isHorizontallyCenteredFromLeft && isHorizontallyCenteredFromRight)
             {
+                Debug.Assert(node.m_alignHorizontalCenterWithNode != null);
                 double centerX = x - (node.DesiredWidth / 2.0);
                 double edgeX = centerX - (node.m_alignHorizontalCenterWithNode.DesiredWidth / 2.0);
                 m_minX = Math.Min(m_minX, edgeX);
@@ -699,6 +710,7 @@ namespace UniversalWPF
                 // through the latter later.
                 if (node.m_alignRightWithNode != node.m_alignLeftWithNode)
                 {
+                    Debug.Assert(node.m_alignRightWithNode != null);
                     AccumulatePositiveDesiredWidth(node.m_alignRightWithNode, x);
                 }
             }
@@ -708,6 +720,7 @@ namespace UniversalWPF
             }
             else if (node.IsLeftOf)
             {
+                Debug.Assert(node.m_leftOfNode != null);
                 AccumulateNegativeDesiredWidth(node.m_leftOfNode, x);
             }
 
@@ -733,6 +746,7 @@ namespace UniversalWPF
                 // direction, that means that we have already moved the 
                 // cursor left to calculate the minimum negative value,
                 // so we will use the initial value of X.
+                Debug.Assert(node.m_alignLeftWithNode != null);
                 AccumulateNegativeDesiredWidth(node.m_alignLeftWithNode, initialX);
             }
             else if (node.IsAlignHorizontalCenterWith)
@@ -749,11 +763,13 @@ namespace UniversalWPF
                 // direction, that means that we have already moved the 
                 // cursor left to calculate the minimum negative value, so
                 // we will use the initial value of X.
+                Debug.Assert(node.m_rightOfNode != null);
                 AccumulatePositiveDesiredWidth(node.m_rightOfNode, initialX);
             }
 
             if (isHorizontallyCenteredFromLeft && isHorizontallyCenteredFromRight)
             {
+                Debug.Assert(node.m_alignHorizontalCenterWithNode != null);
                 double centerX = x + (node.DesiredWidth / 2.0);
                 double edgeX = centerX + (node.m_alignHorizontalCenterWithNode.DesiredWidth / 2.0);
                 m_maxX = Math.Max(m_maxX, edgeX);
@@ -808,6 +824,7 @@ namespace UniversalWPF
                 // through the latter later.
                 if (node.m_alignTopWithNode != node.m_alignBottomWithNode)
                 {
+                    Debug.Assert(node.m_alignTopWithNode != null);
                     AccumulateNegativeDesiredHeight(node.m_alignTopWithNode, y);
                 }
             }
@@ -817,6 +834,7 @@ namespace UniversalWPF
             }
             else if (node.IsBelow)
             {
+                Debug.Assert(node.m_belowNode != null);
                 AccumulatePositiveDesiredHeight(node.m_belowNode, y);
             }
 
@@ -842,6 +860,7 @@ namespace UniversalWPF
                 // the positive direction, that means that we have already 
                 // moved the cursor up to calculate the maximum positive 
                 // value, so we will use the initial value of Y.
+                Debug.Assert(node.m_alignBottomWithNode != null);
                 AccumulatePositiveDesiredHeight(node.m_alignBottomWithNode, initialY);
             }
             else if (node.IsAlignVerticalCenterWith)
@@ -858,11 +877,13 @@ namespace UniversalWPF
                 // means that we have already moved the cursor up to 
                 // calculate the maximum positive value, so we will use
                 // the initial value of Y.
+                Debug.Assert(node.m_aboveNode != null);
                 AccumulateNegativeDesiredHeight(node.m_aboveNode, initialY);
             }
 
             if (isVerticallyCenteredFromTop && isVerticallyCenteredFromBottom)
             {
+                Debug.Assert(node.m_alignVerticalCenterWithNode != null);
                 double centerY = y - (node.DesiredHeight / 2.0);
                 double edgeY = centerY - (node.m_alignVerticalCenterWithNode.DesiredHeight / 2.0);
                 m_minY = Math.Min(m_minY, edgeY);
@@ -916,6 +937,7 @@ namespace UniversalWPF
                 // through the latter later.
                 if (node.m_alignBottomWithNode != node.m_alignTopWithNode)
                 {
+                    Debug.Assert(node.m_alignBottomWithNode != null);
                     AccumulatePositiveDesiredHeight(node.m_alignBottomWithNode, y);
                 }
             }
@@ -925,6 +947,7 @@ namespace UniversalWPF
             }
             else if (node.IsAbove)
             {
+                Debug.Assert(node.m_aboveNode != null);
                 AccumulateNegativeDesiredHeight(node.m_aboveNode, y);
             }
 
@@ -950,6 +973,7 @@ namespace UniversalWPF
                 // direction, that means that we have already moved the 
                 // cursor down to calculate the minimum negative value,
                 // so we will use the initial value of Y.
+                Debug.Assert(node.m_alignTopWithNode != null);
                 AccumulateNegativeDesiredHeight(node.m_alignTopWithNode, initialY);
             }
             else if (node.IsAlignVerticalCenterWith)
@@ -966,11 +990,13 @@ namespace UniversalWPF
                 // means that we have already moved the cursor down to
                 // calculate the minimum negative value, so we will use
                 // the initial value of Y.
+                Debug.Assert(node.m_belowNode != null);
                 AccumulatePositiveDesiredHeight(node.m_belowNode, initialY);
             }
 
             if (isVerticallyCenteredFromTop && isVerticallyCenteredFromBottom)
             {
+                Debug.Assert(node.m_alignVerticalCenterWithNode != null);
                 double centerY = y + (node.DesiredHeight / 2.0);
                 double edgeY = centerY + (node.m_alignVerticalCenterWithNode.DesiredHeight / 2.0);
                 m_maxY = Math.Max(m_maxY, edgeY);

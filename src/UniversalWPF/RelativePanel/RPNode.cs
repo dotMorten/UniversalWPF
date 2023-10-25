@@ -1,5 +1,7 @@
 ﻿#nullable enable
+
 using System;
+using System.Diagnostics;
 using System.Windows;
 
 namespace UniversalWPF;
@@ -364,6 +366,7 @@ internal sealed class RPNode
         {
             if (IsAlignLeftWith)
             {
+                Debug.Assert(m_alignLeftWithNode != null);
                 m_alignLeftWithNode.m_isHorizontalLeaf = false;
             }
             else if (IsAlignHorizontalCenterWith)
@@ -372,6 +375,7 @@ internal sealed class RPNode
             }
             else if (IsRightOf)
             {
+                Debug.Assert(m_rightOfNode != null);
                 m_rightOfNode.m_isHorizontalLeaf = false;
             }
         }
@@ -380,6 +384,7 @@ internal sealed class RPNode
         {
             if (IsAlignTopWith)
             {
+                Debug.Assert(m_alignTopWithNode != null);
                 m_alignTopWithNode.m_isVerticalLeaf = false;
             }
             else if (IsAlignVerticalCenterWith)
@@ -388,6 +393,7 @@ internal sealed class RPNode
             }
             else if (IsBelow)
             {
+                Debug.Assert(m_belowNode != null);
                 m_belowNode.m_isVerticalLeaf = false;
             }
         }
@@ -396,6 +402,7 @@ internal sealed class RPNode
         {
             if (IsAlignRightWith)
             {
+                Debug.Assert(m_alignRightWithNode != null);
                 m_alignRightWithNode.m_isHorizontalLeaf = false;
             }
             else if (IsAlignHorizontalCenterWith)
@@ -404,6 +411,7 @@ internal sealed class RPNode
             }
             else if (IsLeftOf)
             {
+                Debug.Assert(m_leftOfNode != null);
                 m_leftOfNode.m_isHorizontalLeaf = false;
             }
         }
@@ -412,6 +420,7 @@ internal sealed class RPNode
         {
             if (IsAlignBottomWith)
             {
+                Debug.Assert(m_alignBottomWithNode != null);
                 m_alignBottomWithNode.m_isVerticalLeaf = false;
             }
             else if (IsAlignVerticalCenterWith)
@@ -420,17 +429,20 @@ internal sealed class RPNode
             }
             else if (IsAbove)
             {
+                Debug.Assert(m_aboveNode != null);
                 m_aboveNode.m_isVerticalLeaf = false;
             }
         }
 
         if (isHorizontallyCenteredFromLeft && isHorizontallyCenteredFromRight)
         {
+            Debug.Assert(m_alignHorizontalCenterWithNode != null);
             m_alignHorizontalCenterWithNode.m_isHorizontalLeaf = false;
         }
 
         if (isVerticallyCenteredFromTop && isVerticallyCenteredFromBottom)
         {
+            Debug.Assert(m_alignVerticalCenterWithNode != null);
             m_alignVerticalCenterWithNode.m_isVerticalLeaf = false;
         }
     }
