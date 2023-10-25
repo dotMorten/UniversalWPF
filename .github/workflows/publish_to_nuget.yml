@@ -1,4 +1,4 @@
-name: Publish WinUIEx NuGet
+name: Publish UniversalWpf NuGet
 
 on:
   workflow_dispatch:
@@ -24,7 +24,7 @@ jobs:
       
     - name: Build
       run: |
-        msbuild /restore /t:Build,Pack src/WinUIEx/WinUIEx.csproj /p:Configuration=Release /p:CertificatePath=${{ steps.cert_file.outputs.filePath }} /p:CertificatePassword=${{ secrets.PFX_PASSWORD }}
+        msbuild /restore /t:Build,Pack src/UniversalWPF/UniversalWPF.csproj /p:Configuration=Release /p:CertificatePath=${{ steps.cert_file.outputs.filePath }} /p:CertificatePassword=${{ secrets.PFX_PASSWORD }}
       
     - name: Sign NuGet Package
       run: |
