@@ -4,6 +4,7 @@
       <Item Type="UniversalWPF.TwoPaneView" />
       <Item Type="UniversalWPF.NumberBox" />
       <Item Type="UniversalWPF.RelativePanel" />
+	  <Item Type="UniversalWPF.ToggleSwitch" />
     </ToolboxItems>
   </File>
 </FileList>

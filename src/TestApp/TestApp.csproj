@@ -84,6 +84,9 @@
     <Compile Include="Samples\StateTriggers\SimpleStateSample.xaml.cs">
       <DependentUpon>SimpleStateSample.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Samples\ToggleSwitch\TS_Sample1.xaml.cs">
+      <DependentUpon>TS_Sample1.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Samples\TwoPaneViews\TPSample1.xaml.cs">
       <DependentUpon>TPSample1.xaml</DependentUpon>
     </Compile>
@@ -134,6 +137,10 @@
     <Page Include="Samples\StateTriggers\SimpleStateSample.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Samples\ToggleSwitch\TS_Sample1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Samples\TwoPaneViews\TPSample1.xaml">
       <SubType>Designer</SubType>
