@@ -1,0 +1,440 @@
+﻿<!-- Copyright (c) Microsoft Corporation. All rights reserved. Licensed under the MIT License. See LICENSE in the project root for license information. -->
+<ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:local="clr-namespace:UniversalWPF"
+                    >
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/UniversalWPF;component/Themes/WinUIResources.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    <sys:Double x:Key="ToggleSwitchOnStrokeThickness">0</sys:Double>
+      <sys:Double x:Key="ToggleSwitchOuterBorderStrokeThickness">1</sys:Double>
+      <SolidColorBrush x:Key="ToggleSwitchContentForeground" Color="{StaticResource TextFillColorPrimary}" />
+      <SolidColorBrush x:Key="ToggleSwitchContentForegroundDisabled" Color="{StaticResource TextFillColorDisabled}" />
+      <SolidColorBrush x:Key="ToggleSwitchHeaderForeground" Color="{StaticResource TextFillColorPrimary}" />
+      <SolidColorBrush x:Key="ToggleSwitchHeaderForegroundDisabled" Color="{StaticResource TextFillColorDisabled}" />
+      <SolidColorBrush x:Key="ToggleSwitchContainerBackground" Color="{StaticResource SubtleFillColorTransparent}" />
+      <SolidColorBrush x:Key="ToggleSwitchContainerBackgroundPointerOver" Color="{StaticResource SubtleFillColorTransparent}" />
+      <SolidColorBrush x:Key="ToggleSwitchContainerBackgroundPressed" Color="{StaticResource SubtleFillColorTransparent}" />
+      <SolidColorBrush x:Key="ToggleSwitchContainerBackgroundDisabled" Color="{StaticResource SubtleFillColorTransparent}" />
+      <SolidColorBrush x:Key="ToggleSwitchFillOff" Color="{StaticResource ControlAltFillColorSecondary}" />
+      <SolidColorBrush x:Key="ToggleSwitchFillOffPointerOver" Color="{StaticResource ControlAltFillColorTertiary}" />
+      <SolidColorBrush x:Key="ToggleSwitchFillOffPressed" Color="{StaticResource ControlAltFillColorQuarternary}" />
+      <SolidColorBrush x:Key="ToggleSwitchFillOffDisabled" Color="{StaticResource ControlAltFillColorDisabled}" />
+      <SolidColorBrush x:Key="ToggleSwitchStrokeOff" Color="{StaticResource ControlStrongStrokeColorDefault}" />
+      <SolidColorBrush x:Key="ToggleSwitchStrokeOffPointerOver" Color="{StaticResource ControlStrongStrokeColorDefault}" />
+      <SolidColorBrush x:Key="ToggleSwitchStrokeOffPressed" Color="{StaticResource ControlStrongStrokeColorDefault}" />
+      <SolidColorBrush x:Key="ToggleSwitchStrokeOffDisabled" Color="{StaticResource ControlStrongStrokeColorDisabled}" />
+      <SolidColorBrush x:Key="ToggleSwitchFillOn" Color="{StaticResource SystemAccentColorDark1}" />
+    <SolidColorBrush x:Key="ToggleSwitchFillOnPointerOver" Color="{StaticResource SystemAccentColorDark1}" />
+      <SolidColorBrush x:Key="ToggleSwitchFillOnPressed" Color="{StaticResource SystemAccentColorDark1}" />
+      <SolidColorBrush x:Key="ToggleSwitchFillOnDisabled" Color="{StaticResource AccentFillColorDisabled}" />
+    <SolidColorBrush x:Key="ToggleSwitchStrokeOn" Color="{StaticResource SystemAccentColorDark1}" />
+    <SolidColorBrush x:Key="ToggleSwitchStrokeOnPointerOver" Color="{StaticResource SystemAccentColorDark1}" Opacity="0.9" />
+      <SolidColorBrush x:Key="ToggleSwitchStrokeOnPressed" Color="{StaticResource SystemAccentColorDark1}" Opacity="0.8"  />
+      <SolidColorBrush x:Key="ToggleSwitchStrokeOnDisabled" Color="{StaticResource AccentFillColorDisabled}" />
+      <SolidColorBrush x:Key="ToggleSwitchKnobFillOff" Color="{StaticResource TextFillColorSecondary}" />
+      <SolidColorBrush x:Key="ToggleSwitchKnobFillOffPointerOver" Color="{StaticResource TextFillColorSecondary}" />
+      <SolidColorBrush x:Key="ToggleSwitchKnobFillOffPressed" Color="{StaticResource TextFillColorSecondary}" />
+      <SolidColorBrush x:Key="ToggleSwitchKnobFillOffDisabled" Color="{StaticResource TextFillColorDisabled}" />
+      <SolidColorBrush x:Key="ToggleSwitchKnobFillOn" Color="{StaticResource TextOnAccentFillColorPrimary}" />
+      <SolidColorBrush x:Key="ToggleSwitchKnobFillOnPointerOver" Color="{StaticResource TextOnAccentFillColorPrimary}" />
+      <SolidColorBrush x:Key="ToggleSwitchKnobFillOnPressed" Color="{StaticResource TextOnAccentFillColorPrimary}" />
+      <SolidColorBrush x:Key="ToggleSwitchKnobFillOnDisabled" Color="{StaticResource TextOnAccentFillColorDisabled}" />
+      <!--<SolidColorBrush x:Key="ToggleSwitchKnobStrokeOn" Color="{StaticResource CircleElevationBorder}" />-->
+      <LinearGradientBrush x:Key="ToggleSwitchKnobStrokeOn" MappingMode="RelativeToBoundingBox" StartPoint="0,0" EndPoint="0,1">
+        <LinearGradientBrush.GradientStops>
+            <GradientStop Offset="0.50" Color="{StaticResource ControlStrokeColorDefault}" />
+            <GradientStop Offset="0.70" Color="{StaticResource ControlStrokeColorSecondary}" />
+        </LinearGradientBrush.GradientStops>
+      </LinearGradientBrush>
+      <SolidColorBrush x:Key="ToggleSwitchCurtainBackgroundThemeBrush" Color="#FF4617B4" />
+      <SolidColorBrush x:Key="ToggleSwitchCurtainDisabledBackgroundThemeBrush" Color="Transparent" />
+      <SolidColorBrush x:Key="ToggleSwitchCurtainPointerOverBackgroundThemeBrush" Color="#FF5F37BE" />
+      <SolidColorBrush x:Key="ToggleSwitchCurtainPressedBackgroundThemeBrush" Color="#FF7241E4" />
+      <SolidColorBrush x:Key="ToggleSwitchDisabledForegroundThemeBrush" Color="#66000000" />
+      <SolidColorBrush x:Key="ToggleSwitchForegroundThemeBrush" Color="#FF000000" />
+      <SolidColorBrush x:Key="ToggleSwitchHeaderDisabledForegroundThemeBrush" Color="#66000000" />
+      <SolidColorBrush x:Key="ToggleSwitchHeaderForegroundThemeBrush" Color="#FF000000" />
+      <SolidColorBrush x:Key="ToggleSwitchOuterBorderBorderThemeBrush" Color="#59000000" />
+      <SolidColorBrush x:Key="ToggleSwitchOuterBorderDisabledBorderThemeBrush" Color="#33000000" />
+      <SolidColorBrush x:Key="ToggleSwitchThumbBackgroundThemeBrush" Color="#FF000000" />
+      <SolidColorBrush x:Key="ToggleSwitchThumbBorderThemeBrush" Color="#FF000000" />
+      <SolidColorBrush x:Key="ToggleSwitchThumbDisabledBackgroundThemeBrush" Color="#FF929292" />
+      <SolidColorBrush x:Key="ToggleSwitchThumbDisabledBorderThemeBrush" Color="#FF929292" />
+      <SolidColorBrush x:Key="ToggleSwitchThumbPointerOverBackgroundThemeBrush" Color="#FF000000" />
+      <SolidColorBrush x:Key="ToggleSwitchThumbPointerOverBorderThemeBrush" Color="#FF000000" />
+      <SolidColorBrush x:Key="ToggleSwitchThumbPressedBackgroundThemeBrush" Color="#FF000000" />
+      <SolidColorBrush x:Key="ToggleSwitchThumbPressedForegroundThemeBrush" Color="#FF000000" />
+      <SolidColorBrush x:Key="ToggleSwitchTrackBackgroundThemeBrush" Color="#59000000" />
+      <SolidColorBrush x:Key="ToggleSwitchTrackBorderThemeBrush" Color="Transparent" />
+      <SolidColorBrush x:Key="ToggleSwitchTrackDisabledBackgroundThemeBrush" Color="#1F000000" />
+      <SolidColorBrush x:Key="ToggleSwitchTrackPointerOverBackgroundThemeBrush" Color="#4A000000" />
+      <SolidColorBrush x:Key="ToggleSwitchTrackPressedBackgroundThemeBrush" Color="#42000000" />
+    
+  <Thickness x:Key="ToggleSwitchTopHeaderMargin">0,0,0,4</Thickness>
+  <sys:Double x:Key="ToggleSwitchPreContentMargin">10.0</sys:Double>
+  <sys:Double x:Key="ToggleSwitchPostContentMargin">10.0</sys:Double>
+  <sys:Double x:Key="ToggleSwitchThemeMinWidth">154</sys:Double>
+    <Style x:Key="DefaultToggleSwitchStyle" TargetType="local:ToggleSwitch">
+    <Setter Property="Focusable" Value="True" />
+    <Setter Property="Foreground" Value="{StaticResource ToggleSwitchContentForeground}" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="HorizontalContentAlignment" Value="Left" />
+    <Setter Property="FontFamily" Value="{StaticResource ContentControlThemeFontFamily}" />
+    <Setter Property="FontSize" Value="{StaticResource ControlContentThemeFontSize}" />
+    <!--<Setter Property="Manipulation.ManipulationMode" Value="System,TranslateX" />-->
+    <Setter Property="MinWidth" Value="{StaticResource ToggleSwitchThemeMinWidth}" />
+    <!--<Setter Property="CornerRadius" Value="{StaticResource ControlCornerRadius}" />-->
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="local:ToggleSwitch">
+          <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
+            <Grid >
+            <VisualStateManager.VisualStateGroups>
+              <VisualStateGroup x:Name="CommonStates">
+                <VisualState x:Name="Normal">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OuterBorder" Storyboard.TargetProperty="Stroke">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ToggleSwitchStrokeOff}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OuterBorder" Storyboard.TargetProperty="Fill">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ToggleSwitchFillOff}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobOff" Storyboard.TargetProperty="Fill">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ToggleSwitchKnobFillOff}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobOn" Storyboard.TargetProperty="Background">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ToggleSwitchKnobFillOn}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobBounds" Storyboard.TargetProperty="Fill">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ToggleSwitchFillOn}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobBounds" Storyboard.TargetProperty="Stroke">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ToggleSwitchStrokeOn}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwitchAreaGrid" Storyboard.TargetProperty="Background">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ToggleSwitchContainerBackground}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobOn" Storyboard.TargetProperty="Width">
+                      <SplineDoubleKeyFrame KeyTime="{StaticResource ControlFasterAnimationDuration}" KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" Value="12" />
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobOn" Storyboard.TargetProperty="Height">
+                      <SplineDoubleKeyFrame KeyTime="{StaticResource ControlFasterAnimationDuration}" KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" Value="12" />
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobOff" Storyboard.TargetProperty="Width">
+                      <SplineDoubleKeyFrame KeyTime="{StaticResource ControlFasterAnimationDuration}" KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" Value="12" />
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobOff" Storyboard.TargetProperty="Height">
+                      <SplineDoubleKeyFrame KeyTime="{StaticResource ControlFasterAnimationDuration}" KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" Value="12" />
+                    </DoubleAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="PointerOver">
+                  <Storyboard>
+                    <ColorAnimationUsingKeyFrames Storyboard.TargetName="OuterBorder" Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)">
+                      <LinearColorKeyFrame KeyTime="{StaticResource ControlFasterAnimationDuration}" Value="{Binding Color,Source={StaticResource ToggleSwitchStrokeOffPointerOver}}" />
+                    </ColorAnimationUsingKeyFrames>
+                    <ColorAnimationUsingKeyFrames Storyboard.TargetName="OuterBorder" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)">
+                      <LinearColorKeyFrame KeyTime="{StaticResource ControlFasterAnimationDuration}" Value="{Binding Color,Source={StaticResource ToggleSwitchFillOffPointerOver}}" />
+                    </ColorAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobOff" Storyboard.TargetProperty="Fill">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ToggleSwitchKnobFillOffPointerOver}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobOn" Storyboard.TargetProperty="Background">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ToggleSwitchKnobFillOnPointerOver}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobBounds" Storyboard.TargetProperty="Fill">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ToggleSwitchFillOnPointerOver}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobBounds" Storyboard.TargetProperty="Stroke">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ToggleSwitchStrokeOnPointerOver}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ColorAnimationUsingKeyFrames Storyboard.TargetName="SwitchAreaGrid" Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                      <LinearColorKeyFrame KeyTime="{StaticResource ControlFasterAnimationDuration}" Value="{Binding Color,Source={StaticResource ToggleSwitchContainerBackgroundPointerOver}}" />
+                    </ColorAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobOn" Storyboard.TargetProperty="Width">
+                      <SplineDoubleKeyFrame KeyTime="{StaticResource ControlFasterAnimationDuration}" KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" Value="14" />
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobOn" Storyboard.TargetProperty="Height">
+                      <SplineDoubleKeyFrame KeyTime="{StaticResource ControlFasterAnimationDuration}" KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" Value="14" />
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobOff" Storyboard.TargetProperty="Width">
+                      <SplineDoubleKeyFrame KeyTime="{StaticResource ControlFasterAnimationDuration}" KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" Value="14" />
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobOff" Storyboard.TargetProperty="Height">
+                      <SplineDoubleKeyFrame KeyTime="{StaticResource ControlFasterAnimationDuration}" KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" Value="14" />
+                    </DoubleAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Pressed">
+                  <!--<VisualState.Setters>
+                    <Setter Target="SwitchKnobOn.HorizontalAlignment" Value="Right" />
+                    <Setter Target="SwitchKnobOn.Margin" Value="0,0,3,0" />
+                    <Setter Target="SwitchKnobOff.HorizontalAlignment" Value="Left" />
+                    <Setter Target="SwitchKnobOff.Margin" Value="3,0,0,0" />
+                  </VisualState.Setters>-->
+                  <Storyboard>
+                    <ColorAnimationUsingKeyFrames Storyboard.TargetName="OuterBorder" Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)">
+                      <LinearColorKeyFrame KeyTime="{StaticResource ControlFasterAnimationDuration}" Value="{Binding Color,Source={StaticResource ToggleSwitchStrokeOffPressed}}" />
+                    </ColorAnimationUsingKeyFrames>
+                    <ColorAnimationUsingKeyFrames Storyboard.TargetName="OuterBorder" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)">
+                      <LinearColorKeyFrame KeyTime="{StaticResource ControlFasterAnimationDuration}" Value="{Binding Color,Source={StaticResource ToggleSwitchFillOffPressed}}" />
+                    </ColorAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobBounds" Storyboard.TargetProperty="Fill">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ToggleSwitchFillOnPressed}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobBounds" Storyboard.TargetProperty="Stroke">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ToggleSwitchStrokeOnPressed}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobOff" Storyboard.TargetProperty="Fill">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ToggleSwitchKnobFillOffPressed}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobOn" Storyboard.TargetProperty="Background">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ToggleSwitchKnobFillOnPressed}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ColorAnimationUsingKeyFrames Storyboard.TargetName="SwitchAreaGrid" Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                      <LinearColorKeyFrame KeyTime="{StaticResource ControlFasterAnimationDuration}" Value="{Binding Color, Source={StaticResource ToggleSwitchContainerBackgroundPressed}}" />
+                    </ColorAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobOn" Storyboard.TargetProperty="Width">
+                      <SplineDoubleKeyFrame KeyTime="{StaticResource ControlFasterAnimationDuration}" KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" Value="17" />
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobOn" Storyboard.TargetProperty="Height">
+                      <SplineDoubleKeyFrame KeyTime="{StaticResource ControlFasterAnimationDuration}" KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" Value="14" />
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobOff" Storyboard.TargetProperty="Width">
+                      <SplineDoubleKeyFrame KeyTime="{StaticResource ControlFasterAnimationDuration}" KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" Value="17" />
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobOff" Storyboard.TargetProperty="Height">
+                      <SplineDoubleKeyFrame KeyTime="{StaticResource ControlFasterAnimationDuration}" KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" Value="14" />
+                    </DoubleAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Disabled">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HeaderContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ToggleSwitchHeaderForegroundDisabled}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OffContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ToggleSwitchContentForegroundDisabled}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OnContentPresenter" Storyboard.TargetProperty="Foreground">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ToggleSwitchContentForegroundDisabled}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ColorAnimationUsingKeyFrames Storyboard.TargetName="OuterBorder" Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)">
+                      <LinearColorKeyFrame KeyTime="{StaticResource ControlFasterAnimationDuration}" Value="{Binding Color, Source={StaticResource ToggleSwitchStrokeOffDisabled}}" />
+                    </ColorAnimationUsingKeyFrames>
+                    <ColorAnimationUsingKeyFrames Storyboard.TargetName="OuterBorder" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)">
+                      <LinearColorKeyFrame KeyTime="{StaticResource ControlFasterAnimationDuration}" Value="{Binding Color, Source={StaticResource ToggleSwitchFillOffDisabled}}" />
+                    </ColorAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobBounds" Storyboard.TargetProperty="Fill">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ToggleSwitchFillOnDisabled}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobBounds" Storyboard.TargetProperty="Stroke">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ToggleSwitchStrokeOnDisabled}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobOff" Storyboard.TargetProperty="Fill">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ToggleSwitchKnobFillOffDisabled}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobOn" Storyboard.TargetProperty="Background">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ToggleSwitchKnobFillOnDisabled}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ColorAnimationUsingKeyFrames Storyboard.TargetName="SwitchAreaGrid" Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                      <LinearColorKeyFrame KeyTime="{StaticResource ControlFasterAnimationDuration}" Value="{Binding Color, Source={StaticResource ToggleSwitchContainerBackgroundDisabled}}" />
+                    </ColorAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobOn" Storyboard.TargetProperty="Width">
+                      <SplineDoubleKeyFrame KeyTime="{StaticResource ControlNormalAnimationDuration}" KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" Value="12" />
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobOn" Storyboard.TargetProperty="Height">
+                      <SplineDoubleKeyFrame KeyTime="{StaticResource ControlNormalAnimationDuration}" KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" Value="12" />
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobOff" Storyboard.TargetProperty="Width">
+                      <SplineDoubleKeyFrame KeyTime="{StaticResource ControlNormalAnimationDuration}" KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" Value="12" />
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobOff" Storyboard.TargetProperty="Height">
+                      <SplineDoubleKeyFrame KeyTime="{StaticResource ControlNormalAnimationDuration}" KeySpline="{StaticResource ControlFastOutSlowInKeySpline}" Value="12" />
+                    </DoubleAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+              </VisualStateGroup>
+              <VisualStateGroup x:Name="ToggleStates">
+                <VisualStateGroup.Transitions>
+                  <VisualTransition x:Name="DraggingToOnTransition" From="Dragging" To="On" GeneratedDuration="0">
+                    <Storyboard>
+                      <!--<RepositionThemeAnimation TargetName="SwitchKnob" FromHorizontalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.KnobCurrentToOnOffset}" />-->
+                      <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobBounds" Storyboard.TargetProperty="Opacity">
+                        <LinearDoubleKeyFrame KeyTime="{StaticResource ControlFasterAnimationDuration}" Value="1" />
+                      </DoubleAnimationUsingKeyFrames>
+                      <DoubleAnimationUsingKeyFrames Storyboard.TargetName="OuterBorder" Storyboard.TargetProperty="Opacity">
+                        <LinearDoubleKeyFrame KeyTime="{StaticResource ControlFasterAnimationDuration}" Value="0" />
+                      </DoubleAnimationUsingKeyFrames>
+                      <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobOn" Storyboard.TargetProperty="Opacity">
+                        <LinearDoubleKeyFrame KeyTime="{StaticResource ControlFasterAnimationDuration}" Value="1" />
+                      </DoubleAnimationUsingKeyFrames>
+                      <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobOff" Storyboard.TargetProperty="Opacity">
+                        <LinearDoubleKeyFrame KeyTime="{StaticResource ControlFasterAnimationDuration}" Value="0" />
+                      </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                  </VisualTransition>
+                  <VisualTransition x:Name="OnToDraggingTransition" From="On" To="Dragging" GeneratedDuration="0">
+                    <Storyboard>
+                      <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobBounds" Storyboard.TargetProperty="Opacity">
+                        <LinearDoubleKeyFrame KeyTime="0" Value="1" />
+                      </DoubleAnimationUsingKeyFrames>
+                      <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobOn" Storyboard.TargetProperty="Opacity">
+                        <LinearDoubleKeyFrame KeyTime="0" Value="1" />
+                      </DoubleAnimationUsingKeyFrames>
+                      <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobOff" Storyboard.TargetProperty="Opacity">
+                        <LinearDoubleKeyFrame KeyTime="0" Value="0" />
+                      </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                  </VisualTransition>
+                  <VisualTransition x:Name="DraggingToOffTransition" From="Dragging" To="Off" GeneratedDuration="0">
+                    <Storyboard>
+                      <!--<RepositionThemeAnimation TargetName="SwitchKnob" FromHorizontalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.KnobCurrentToOffOffset}" />-->
+                      <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobBounds" Storyboard.TargetProperty="Opacity">
+                        <LinearDoubleKeyFrame KeyTime="{StaticResource ControlFasterAnimationDuration}" Value="0" />
+                      </DoubleAnimationUsingKeyFrames>
+                      <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobOn" Storyboard.TargetProperty="Opacity">
+                        <LinearDoubleKeyFrame KeyTime="{StaticResource ControlFasterAnimationDuration}" Value="0" />
+                      </DoubleAnimationUsingKeyFrames>
+                      <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobOff" Storyboard.TargetProperty="Opacity">
+                        <LinearDoubleKeyFrame KeyTime="{StaticResource ControlFasterAnimationDuration}" Value="1" />
+                      </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                  </VisualTransition>
+                  <VisualTransition x:Name="OnToOffTransition" From="On" To="Off" GeneratedDuration="0">
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="SwitchKnobOff" Storyboard.TargetProperty="(Border.RenderTransform).(TranslateTransform.X)"
+                            Duration="00:00:00.083" To="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.KnobOnToOffOffset}" 
+                        />
+                      <!--<RepositionThemeAnimation TargetName="SwitchKnobOnTranslation" FromHorizontalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.KnobOnToOffOffset}" />-->
+                    </Storyboard>
+                  </VisualTransition>
+                  <VisualTransition x:Name="OffToOnTransition" From="Off" To="On" GeneratedDuration="0">
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="SwitchKnobOn" Storyboard.TargetProperty="(Border.RenderTransform).(TranslateTransform.X)"
+                            Duration="00:00:00.083" To="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.KnobOffToOnOffset}" 
+                        />
+
+                        <!--<DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobOnTranslation" Storyboard.TargetProperty="X">
+                            <LinearDoubleKeyFrame KeyTime="{StaticResource ControlFasterAnimationDuration}" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.KnobOffToOnOffset}" />
+                        </DoubleAnimationUsingKeyFrames>-->
+                      <!--<RepositionThemeAnimation TargetName="SwitchKnob" FromHorizontalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.KnobOffToOnOffset}" />-->
+                      <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobBounds" Storyboard.TargetProperty="Opacity">
+                        <LinearDoubleKeyFrame KeyTime="{StaticResource ControlFasterAnimationDuration}" Value="1" />
+                      </DoubleAnimationUsingKeyFrames>
+                      <DoubleAnimationUsingKeyFrames Storyboard.TargetName="OuterBorder" Storyboard.TargetProperty="Opacity">
+                        <LinearDoubleKeyFrame KeyTime="{StaticResource ControlFasterAnimationDuration}" Value="0" />
+                      </DoubleAnimationUsingKeyFrames>
+                      <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobOn" Storyboard.TargetProperty="Opacity">
+                        <LinearDoubleKeyFrame KeyTime="{StaticResource ControlFasterAnimationDuration}" Value="1" />
+                      </DoubleAnimationUsingKeyFrames>
+                      <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobOff" Storyboard.TargetProperty="Opacity">
+                        <LinearDoubleKeyFrame KeyTime="{StaticResource ControlFasterAnimationDuration}" Value="0" />
+                      </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                  </VisualTransition>
+                </VisualStateGroup.Transitions>
+                <VisualState x:Name="Dragging" />
+                <VisualState x:Name="Off" />
+                <VisualState x:Name="On">
+                  <Storyboard>
+                    <DoubleAnimation Storyboard.TargetName="KnobTranslateTransform" Storyboard.TargetProperty="X" To="20" Duration="0" />
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobBounds" Storyboard.TargetProperty="Opacity">
+                      <LinearDoubleKeyFrame KeyTime="{StaticResource ControlFasterAnimationDuration}" Value="1" />
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="OuterBorder" Storyboard.TargetProperty="Opacity">
+                      <LinearDoubleKeyFrame KeyTime="{StaticResource ControlFasterAnimationDuration}" Value="0" />
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobOn" Storyboard.TargetProperty="Opacity">
+                      <LinearDoubleKeyFrame KeyTime="{StaticResource ControlFasterAnimationDuration}" Value="1" />
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobOff" Storyboard.TargetProperty="Opacity">
+                      <LinearDoubleKeyFrame KeyTime="{StaticResource ControlFasterAnimationDuration}" Value="0" />
+                    </DoubleAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+              </VisualStateGroup>
+              <VisualStateGroup x:Name="ContentStates">
+                <VisualState x:Name="OffContent">
+                  <Storyboard>
+                    <DoubleAnimation Storyboard.TargetName="OffContentPresenter" Storyboard.TargetProperty="Opacity" To="1" Duration="0" />
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="IsHitTestVisible" Storyboard.TargetName="OffContentPresenter">
+                      <DiscreteObjectKeyFrame KeyTime="0">
+                        <DiscreteObjectKeyFrame.Value>
+                          <sys:Boolean>True</sys:Boolean>
+                        </DiscreteObjectKeyFrame.Value>
+                      </DiscreteObjectKeyFrame>
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="OnContent">
+                  <Storyboard>
+                    <DoubleAnimation Storyboard.TargetName="OnContentPresenter" Storyboard.TargetProperty="Opacity" To="1" Duration="0" />
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="IsHitTestVisible" Storyboard.TargetName="OnContentPresenter">
+                      <DiscreteObjectKeyFrame KeyTime="0">
+                        <DiscreteObjectKeyFrame.Value>
+                          <sys:Boolean>True</sys:Boolean>
+                        </DiscreteObjectKeyFrame.Value>
+                      </DiscreteObjectKeyFrame>
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+              </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+                            <ContentPresenter x:Name="HeaderContentPresenter" Grid.Row="0" Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}" TextElement.Foreground="{StaticResource ToggleSwitchHeaderForeground}" IsHitTestVisible="False" Margin="{StaticResource ToggleSwitchTopHeaderMargin}" VerticalAlignment="Top" Visibility="Collapsed" />
+            <Grid Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top">
+              <Grid.RowDefinitions>
+                <RowDefinition Height="10" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="10" />
+              </Grid.RowDefinitions>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="12" MaxWidth="12" />
+                <ColumnDefinition Width="Auto" />
+              </Grid.ColumnDefinitions>
+              <Border x:Name="SwitchAreaGrid" Grid.RowSpan="3" Grid.ColumnSpan="3" Margin="0,5" CornerRadius="{TemplateBinding CornerRadius}" Focusable="True" Background="{StaticResource ToggleSwitchContainerBackground}" />
+              <ContentPresenter x:Name="OffContentPresenter" Grid.RowSpan="3" Grid.Column="2" Opacity="0" TextElement.Foreground="{TemplateBinding Foreground}" IsHitTestVisible="False" Content="{TemplateBinding OffContent}" ContentTemplate="{TemplateBinding OffContentTemplate}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+              <ContentPresenter x:Name="OnContentPresenter" Grid.RowSpan="3" Grid.Column="2" Opacity="0" TextElement.Foreground="{TemplateBinding Foreground}" IsHitTestVisible="False" Content="{TemplateBinding OnContent}" ContentTemplate="{TemplateBinding OnContentTemplate}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+              <Rectangle x:Name="OuterBorder" Grid.Row="1" Height="20" Width="40" RadiusX="10" RadiusY="10" Fill="{StaticResource ToggleSwitchFillOff}" Stroke="{StaticResource ToggleSwitchStrokeOff}" StrokeThickness="{StaticResource ToggleSwitchOuterBorderStrokeThickness}" />
+              <Rectangle x:Name="SwitchKnobBounds" Grid.Row="1" Height="20" Width="40" RadiusX="10" RadiusY="10" Fill="{StaticResource ToggleSwitchFillOn}" Stroke="{StaticResource ToggleSwitchStrokeOn}" StrokeThickness="{StaticResource ToggleSwitchOnStrokeThickness}" Opacity="0" />
+              <Grid x:Name="SwitchKnob" Grid.Row="1" HorizontalAlignment="Left" Width="20" Height="20">
+                <Border x:Name="SwitchKnobOn" Background="{StaticResource ToggleSwitchKnobFillOn}" BorderBrush="{StaticResource ToggleSwitchKnobStrokeOn}" Width="12" Height="12" CornerRadius="7" Opacity="0" HorizontalAlignment="Center" Margin="0,0,1,0" RenderTransformOrigin="0.5, 0.5">
+                  <Border.RenderTransform>
+                      <TranslateTransform x:Name="SwitchKnobOnTranslation" />
+                    <!--<CompositeTransform />-->
+                  </Border.RenderTransform>
+                </Border>
+                <Rectangle x:Name="SwitchKnobOff" Fill="{StaticResource ToggleSwitchKnobFillOff}" Width="12" Height="12" RadiusX="7" RadiusY="7" HorizontalAlignment="Center" Margin="-1,0,0,0" RenderTransformOrigin="0.5, 0.5">
+                  <Rectangle.RenderTransform>
+                      <TranslateTransform x:Name="SwitchKnobOffTranslation" />
+                    <!--<CompositeTransform />-->
+                  </Rectangle.RenderTransform>
+                </Rectangle>
+                <Grid.RenderTransform>
+                  <TranslateTransform x:Name="KnobTranslateTransform" />
+                </Grid.RenderTransform>
+              </Grid>
+              <Thumb x:Name="SwitchThumb"  Grid.RowSpan="3" Grid.ColumnSpan="3">
+                <Thumb.Template>
+                  <ControlTemplate TargetType="Thumb">
+                    <Rectangle Fill="Transparent" />
+                  </ControlTemplate>
+                </Thumb.Template>
+              </Thumb>
+            </Grid>
+          </Grid>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+   <Style TargetType="local:ToggleSwitch" BasedOn="{StaticResource DefaultToggleSwitchStyle}" />
+
+</ResourceDictionary>
